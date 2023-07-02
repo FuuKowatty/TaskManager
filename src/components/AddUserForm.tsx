@@ -29,7 +29,7 @@ export function Form() {
     e.preventDefault();
     axios
       .post("/api/getUsers", formData)
-      .catch((err) => {
+      .catch((err:any) => {
         console.log(err);
       })
       .finally(() => {
