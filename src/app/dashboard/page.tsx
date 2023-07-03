@@ -1,12 +1,20 @@
-"use client";
+import { HelloBanner } from "@/components/HelloBanner";
+import { ListTasks } from "@/components/ListTasks";
+import { LogoutButton } from "@/components/LogoutButton";
 
-import { redirect } from "next/navigation";
 
-import { useAppSelector } from "@/redux/hooks";
+
+
 
 export default function Dashboard() {
-  const res = useAppSelector((state) => state.usersReducer);
-  if (!res.loggedUser) return redirect("/login");
 
-  return <h1>Dashboard</h1>;
+
+  return(
+    <div>
+      <h1>Dashboard</h1>
+      <HelloBanner />
+      <LogoutButton />
+      <ListTasks />
+    </div>
+  )
 }
