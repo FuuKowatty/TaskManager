@@ -8,7 +8,8 @@ export interface UserState {
   loggedUser: User | null;
   response: {
     status: boolean | null;
-    message: string | null;
+    message: "logged" | "Wrong password" | "Email not found" | null;
+    errorType: "email" | "password" | null;
   };
 }
 
@@ -18,6 +19,7 @@ const initialState: UserState = {
   response: {
     status: null,
     message: null,
+    errorType: null,
   },
 };
 
@@ -26,8 +28,8 @@ export const user = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.response.status = null;
       state.response.message = null;
+      state.response.errorType = null;
     },
     //   register: (state, action: PayloadAction<FormRegister>) => {
     //     const found = state.users.find((user) => user.email === action.payload.email);
@@ -49,35 +51,33 @@ export const user = createSlice({
         (user) => user.email === action.payload.email
       );
       if (!found) {
+        state.response.errorType = "email";
         state.response.message = "Email not found";
         state.response.status = false;
       } else if (found) {
         if (found.password === action.payload.password) {
           state.loggedUser = found;
-          state.response.message = "logged";
+          state.response.status = true;
         } else {
           state.response.status = false;
+          state.response.errorType = "password";
           state.response.message = "Wrong password";
         }
       }
     },
-    logout: (state) => initialState,
+    logout: () => initialState,
   },
   extraReducers: (builder) => {
     builder
       .addCase(getUsers.pending, (state) => {
         state.response.status = null;
-        state.response.message = "loading";
       })
       .addCase(getUsers.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.users = action.payload;
         state.response.status = true;
-        state.response.message = "users fetched";
       })
       .addCase(getUsers.rejected, (state) => {
         state.response.status = false;
-        state.response.message = "error";
       });
   },
 });

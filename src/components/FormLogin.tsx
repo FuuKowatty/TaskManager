@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 import { validationSchema } from "@/lib/validation";
 
-import { login } from "@/redux/featrues/userSlice";
+import { login, reset } from "@/redux/featrues/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getUsers } from "@/redux/services/fetchUsers";
 
@@ -33,6 +33,11 @@ export function FormLogin() {
     router.push("/dashboard");
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(reset());
+    formik.handleChange(e);
+  };
+
   return (
     <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
       <h1 className="text-center text-3xl font-bold">Welcome</h1>
@@ -48,18 +53,25 @@ export function FormLogin() {
               type="email"
               name="email"
               placeholder="JohnCruise@gmail.com"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-              className="border-b-2 border-gray-400 p-1 text-black
-              focus:border-b-blue-700 focus:outline-none
+              className="min-w-[256px] border-b-2 border-gray-400 p-1
+              text-black focus:border-b-blue-700 focus:outline-none
               "
             />
           </label>
           <p className="min-h-[30px] text-sm text-red-500" role="alert">
-            {formik.touched.email && <>{formik.errors.email}</>}
-            {response.response.message === "Email not found" && (
-              <>{response.response.message}</>
+            {formik.touched.email && formik.errors.email ? (
+              <>{formik.errors.email}</>
+            ) : (
+              <>
+                {response.response.errorType === "email" ? (
+                  <>{response.response.message}</>
+                ) : (
+                  ""
+                )}
+              </>
             )}
           </p>
         </fieldset>
@@ -70,18 +82,25 @@ export function FormLogin() {
               type="password"
               name="password"
               placeholder="Must have at least 6 characters"
-              onChange={formik.handleChange}
+              onChange={handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              className="border-b-2 border-gray-400 p-1 text-black
-              focus:border-b-blue-700 focus:outline-none"
+              className="min-w-[256px] border-b-2 border-gray-400 p-1
+              text-black focus:border-b-blue-700 focus:outline-none"
             />
           </label>
           <div>
             <p className="min-h-[30px] text-sm text-red-500" role="alert">
-              {formik.touched.password && <>{formik.errors.password}</>}
-              {response.response.message === "Wrong password" && (
-                <>{response.response.message}</>
+              {formik.touched.password && formik.errors.password ? (
+                <>{formik.errors.password}</>
+              ) : (
+                <>
+                  {response.response.errorType === "password" ? (
+                    <>{response.response.message}</>
+                  ) : (
+                    ""
+                  )}
+                </>
               )}
             </p>
           </div>

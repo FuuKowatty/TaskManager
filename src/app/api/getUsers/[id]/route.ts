@@ -1,25 +1,29 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(request:Request,{ params }: { params: { id: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
-
     const posts = await prisma.user.findUnique({
-        where: {
-          id: Number(params.id),
-        }
-      })
+      where: {
+        id: Number(params.id),
+      },
+    });
 
     return NextResponse.json(posts);
-
-} catch(err) {
-    return NextResponse.json({message: "GET Error", err}, {status: 500})
+  } catch (err) {
+    return NextResponse.json({ message: "GET Error", err }, { status: 500 });
+  }
 }
-}
 
-export async function DELETE(request:Request,{ params }: { params: { id: string } }) {
-    try {
-      const { id } = params;
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { id } = params;
 
     await prisma.user.delete({
       where: {

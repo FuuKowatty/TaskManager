@@ -1,9 +1,10 @@
 import { clsx } from "clsx";
 import { Golos_Text, Roboto } from "next/font/google";
 import "./globals.css";
-import Providers from "./providers";
+
 import { DarkModeSwitcher } from "@/components/DarkModeSwitcher";
 
+import Providers from "./providers";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -27,10 +28,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(roboto.variable, golosText.variable)}>
-      <Providers>
-          <div className="max-w-xs">
-            <DarkModeSwitcher />  
+      <body className={`${clsx(roboto.variable, golosText.variable)}`}>
+        <Providers>
+          <div className="fixed left-10 top-10 max-w-xs">
+            <DarkModeSwitcher />
           </div>
           {children}
         </Providers>
