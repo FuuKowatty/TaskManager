@@ -1,29 +1,26 @@
-"use client"
+"use client";
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import {useRouter} from 'next/navigation'
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface InitialFormData {
-    title: string;
-    description: string;
-    userId: number | undefined;
+  title: string;
+  description: string;
+  userId: number | undefined;
 }
 
 const initialFormData: InitialFormData = {
-  title: '',
-  description: '',
+  title: "",
+  description: "",
   userId: undefined,
-}
-
+};
 
 export function AddTask() {
-
-
   const router = useRouter();
   const [formData, setFormData] = useState(initialFormData);
   const [users, setUsers] = useState<User[]>([]);
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -31,10 +28,9 @@ export function AddTask() {
     }));
   };
 
-  
-  console.log(formData)
+  console.log(formData);
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     axios
       .post("/api/getTasks", formData)
@@ -48,23 +44,42 @@ export function AddTask() {
 
   useEffect(() => {
     const getTasks = async () => {
-        const users = await axios.get('/api/getUsers')
-        setUsers(users.data)
-    }
-    getTasks()
-  }, [])
+      const users = await axios.get("/api/getUsers");
+      setUsers(users.data);
+    };
+    getTasks();
+  }, []);
 
   return (
-<form onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-xl text-black">
-  <input type="text" name="title" value={formData.title} onChange={handleChange} /> <br />
-  <input type="text" name="description" value={formData.description} onChange={handleChange} /><br />
-  <select value={formData.userId} name="userId" onChange={handleChange}>
-    {users && users.map(user => (
-        <option value={user.id} key={user.id}>{user.name}</option>
-    ))}
-  </select>
-  <button type="submit" className="text-white">Submit</button>
-</form>
-
+    <form
+      onSubmit={handleSubmit}
+      className="flex max-w-xl flex-col gap-2 text-black"
+    >
+      <input
+        type="text"
+        name="title"
+        value={formData.title}
+        onChange={handleChange}
+      />{" "}
+      <br />
+      <input
+        type="text"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+      />
+      <br />
+      <select value={formData.userId} name="userId" onChange={handleChange}>
+        {users &&
+          users.map((user) => (
+            <option value={user.id} key={user.id}>
+              {user.name}
+            </option>
+          ))}
+      </select>
+      <button type="submit" className="text-white">
+        Submit
+      </button>
+    </form>
   );
 }
