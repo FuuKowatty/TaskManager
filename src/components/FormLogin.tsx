@@ -1,10 +1,12 @@
 "use client";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
+
 import { validationSchema } from "@/lib/validation";
+
+import { login } from "@/redux/featrues/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getUsers } from "@/redux/services/fetchUsers";
-import { login } from "@/redux/featrues/userSlice";
-import { useRouter } from "next/navigation";
 
 export function FormLogin() {
   const router = useRouter();
@@ -32,12 +34,12 @@ export function FormLogin() {
   }
 
   return (
-    <div className="bg-white text-darkGray rounded-md pt-24 px-16 pb-8 shadow-md shadow-gray-300 focus-within:">
-      <h1 className="text-3xl font-bold text-center">Welcome</h1>
-      <span className="text-center w-full block py-8 min-h-[50px]">LOGO</span>
+    <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
+      <h1 className="text-center text-3xl font-bold">Welcome</h1>
+      <span className="block min-h-[50px] w-full py-8 text-center">LOGO</span>
       <form
         onSubmit={formik.handleSubmit}
-        className="flex flex-col gap-8 max-w-md"
+        className="flex max-w-md flex-col gap-8"
       >
         <fieldset>
           <label className="flex flex-col gap-1">
@@ -49,14 +51,16 @@ export function FormLogin() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-              className="p-1 text-black border-b-2 border-gray-400
-              focus:outline-none focus:border-b-blue-700
+              className="border-b-2 border-gray-400 p-1 text-black
+              focus:border-b-blue-700 focus:outline-none
               "
             />
           </label>
-          <p className="text-sm text-red-500 min-h-[30px]" role="alert">
+          <p className="min-h-[30px] text-sm text-red-500" role="alert">
             {formik.touched.email && <>{formik.errors.email}</>}
-            {response.response.message === 'Email not found' && <>{response.response.message}</>}
+            {response.response.message === "Email not found" && (
+              <>{response.response.message}</>
+            )}
           </p>
         </fieldset>
         <fieldset w-full h-full>
@@ -69,19 +73,28 @@ export function FormLogin() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              className="p-1 text-black border-b-2 border-gray-400
-              focus:outline-none focus:border-b-blue-700"
+              className="border-b-2 border-gray-400 p-1 text-black
+              focus:border-b-blue-700 focus:outline-none"
             />
           </label>
           <div>
-          <p className="text-sm text-red-500 min-h-[30px]" role="alert">
-            {formik.touched.password && <>{formik.errors.password}</>}
-            {response.response.message === 'Wrong password' && <>{response.response.message}</>}
-          </p>
+            <p className="min-h-[30px] text-sm text-red-500" role="alert">
+              {formik.touched.password && <>{formik.errors.password}</>}
+              {response.response.message === "Wrong password" && (
+                <>{response.response.message}</>
+              )}
+            </p>
           </div>
         </fieldset>
-        <button type="submit" className="py-2 rounded-2xl bg-blue-700 text-white">Login</button>
-        <div className="text-sm mt-8">Don&apos;t want login? <span className="font-bold">View Demo</span></div>
+        <button
+          type="submit"
+          className="rounded-2xl bg-blue-700 py-2 text-white"
+        >
+          Login
+        </button>
+        <div className="mt-8 text-sm">
+          Don&apos;t want login? <span className="font-bold">View Demo</span>
+        </div>
       </form>
     </div>
   );

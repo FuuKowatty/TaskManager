@@ -1,50 +1,51 @@
-"use client"
+"use client";
 
-import { FormLogin } from "@/components/FormLogin"
-import { login } from "@/redux/featrues/userSlice"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { getUsers } from "@/redux/services/fetchUsers"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 
+import { FormLogin } from "@/components/FormLogin";
 
+import { login } from "@/redux/featrues/userSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getUsers } from "@/redux/services/fetchUsers";
 
 export default function Login() {
-    const router = useRouter()
-    const response = useAppSelector(state => state.usersReducer)
-    const dispatch = useAppDispatch()
-    console.log(response)
-    const handleSubmit = async(e: React.FormEvent) => {
-        e.preventDefault()
-        await dispatch(getUsers())
-        dispatch(login({
-            email: 'emily.smith@example.com',
-            password: 'securepass'
-        }))
-    }
+  const router = useRouter();
+  const response = useAppSelector((state) => state.usersReducer);
+  const dispatch = useAppDispatch();
+  console.log(response);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await dispatch(getUsers());
+    dispatch(
+      login({
+        email: "emily.smith@example.com",
+        password: "securepass",
+      })
+    );
+  };
 
-    if(response.loggedUser) {
-        router.push('/dashboard')
-      }
+  if (response.loggedUser) {
+    router.push("/dashboard");
+  }
 
+  return (
+    <div className="flex h-[100vh] w-[100vw] items-center justify-center bg-lightGray">
+      <FormLogin />
+    </div>
+    // <form
+    //     onSubmit={handleSubmit}
+    //     className="flex flex-col gap-4 max-w-md bg-gray-700 p-8"
+    // >
+    //     <label className="flex flex-col gap-1">
+    //         Email
+    //         <input type="text" placeholder="Email" className="p-1 rounded-sm" />
+    //     </label>
+    //     <label className="flex flex-col gap-1">
+    //         Passowrd
+    //         <input type="password" placeholder="Password" className="p-1 rounded-sm" />
+    //     </label>
 
-    return(
-        <div className="bg-lightGray h-[100vh] w-[100vw] flex justify-center items-center">
-            <FormLogin />
-        </div>
-        // <form 
-        //     onSubmit={handleSubmit}
-        //     className="flex flex-col gap-4 max-w-md bg-gray-700 p-8"
-        // >
-        //     <label className="flex flex-col gap-1">
-        //         Email
-        //         <input type="text" placeholder="Email" className="p-1 rounded-sm" />
-        //     </label>
-        //     <label className="flex flex-col gap-1">
-        //         Passowrd
-        //         <input type="password" placeholder="Password" className="p-1 rounded-sm" />
-        //     </label>
-
-        //     <button className="bg-blue-700 py-1">Login</button>
-        // </form>
-    )
+    //     <button className="bg-blue-700 py-1">Login</button>
+    // </form>
+  );
 }
