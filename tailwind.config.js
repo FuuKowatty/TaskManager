@@ -12,6 +12,10 @@ module.exports = {
         darkGray: "#333333",
       },
     },
+    fontFamily: {
+      roboto: ["var(--font-roboto)"],
+      "golos-text": ["var(--font-golos-text)"],
+    },
   },
   plugins: [],
 };
