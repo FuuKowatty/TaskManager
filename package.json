@@ -8,11 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --cache --write  \"**/*.{js,jsx,ts,tsx}\"",
-    "lint-format": "yarn format && yarn lint --fix",
     "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx}": "yarn lint-format"
   },
   "dependencies": {
     "@prisma/client": "^4.16.1",
