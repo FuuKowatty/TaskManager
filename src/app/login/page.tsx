@@ -1,5 +1,6 @@
 "use client"
 
+import { FormLogin } from "@/components/FormLogin"
 import { login } from "@/redux/featrues/userSlice"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { getUsers } from "@/redux/services/fetchUsers"
@@ -27,20 +28,23 @@ export default function Login() {
 
 
     return(
-        <form 
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-4 max-w-md bg-gray-700 p-8"
-        >
-            <label className="flex flex-col gap-1">
-                Email
-                <input type="text" placeholder="Email" className="p-1 rounded-sm" />
-            </label>
-            <label className="flex flex-col gap-1">
-                Passowrd
-                <input type="password" placeholder="Password" className="p-1 rounded-sm" />
-            </label>
+        <div className="bg-lightGray h-[100vh] w-[100vw] flex justify-center items-center">
+            <FormLogin />
+        </div>
+        // <form 
+        //     onSubmit={handleSubmit}
+        //     className="flex flex-col gap-4 max-w-md bg-gray-700 p-8"
+        // >
+        //     <label className="flex flex-col gap-1">
+        //         Email
+        //         <input type="text" placeholder="Email" className="p-1 rounded-sm" />
+        //     </label>
+        //     <label className="flex flex-col gap-1">
+        //         Passowrd
+        //         <input type="password" placeholder="Password" className="p-1 rounded-sm" />
+        //     </label>
 
-            <button className="bg-blue-700 py-1">Login</button>
-        </form>
+        //     <button className="bg-blue-700 py-1">Login</button>
+        // </form>
     )
 }
