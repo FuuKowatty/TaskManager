@@ -1,10 +1,19 @@
-import { Inter } from "next/font/google";
+import { clsx } from "clsx";
+import { Golos_Text, Roboto } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { DarkModeSwitcher } from "@/components/DarkModeSwitcher";
 
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  variable: "--font-roboto",
+});
+const golosText = Golos_Text({
+  subsets: ["latin"],
+  variable: "--font-golos-text",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -18,8 +27,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
-        <Providers>
+      <body className={clsx(roboto.variable, golosText.variable)}>
+      <Providers>
           <div className="max-w-xs">
             <DarkModeSwitcher />  
           </div>
