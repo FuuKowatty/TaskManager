@@ -35,4 +35,14 @@ body {
     white-space: nowrap;
     width: 1px;
   }
+
+  .visually-visible {
+    clip: initial;
+    clip-path: initial;
+    height: initial;
+    overflow: inherit;
+    position: initial;
+    white-space: initial;
+    width: initial;
+  }
 }
