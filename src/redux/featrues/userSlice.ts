@@ -1,8 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
-import type { FormLogin } from "@/components/FormLogin";
-
 import { loginUser } from "../services/fetchUsers";
 
 type LoginPayload = FormLogin & {

@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 import { Golos_Text, Roboto } from "next/font/google";
 import "./globals.css";
 
-import { Navbar } from "@/components/nav/Navbar";
+import { DarkModeSwitcher } from "@/components/DarkModeSwitcher";
 
 import Providers from "./providers";
 
@@ -30,10 +30,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(roboto.variable, golosText.variable)}>
         <Providers>
-          <div className="flex min-h-screen items-stretch justify-stretch bg-white">
-            <Navbar />
-            {children}
-          </div>
+          <DarkModeSwitcher />
+          {children}
         </Providers>
       </body>
     </html>
