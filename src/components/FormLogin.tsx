@@ -75,7 +75,7 @@ export function FormLogin() {
             )}
           </p>
         </fieldset>
-        <fieldset w-full h-full>
+        <fieldset className="h-full w-full">
           <label className="flex flex-col gap-1">
             Password
             <input
