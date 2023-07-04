@@ -1,10 +1,15 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getUsers } from "../services/fetchUsers";
+import type { FormLogin } from "@/components/FormLogin";
 
-export interface UserState {
+import { loginUser } from "../services/fetchUsers";
+
+type LoginPayload = FormLogin & {
   users: User[];
+};
+
+interface UserState {
   loggedUser: User | null;
   response: {
     status: boolean | null;
@@ -14,7 +19,6 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  users: [],
   loggedUser: null,
   response: {
     status: null,
@@ -46,8 +50,8 @@ export const user = createSlice({
     //       state.loggedUser = newUser;
     //     }
     //   },
-    login: (state, action: PayloadAction<FormLogin>) => {
-      const found = state.users.find(
+    login: (state, action: PayloadAction<LoginPayload>) => {
+      const found = action.payload.users.find(
         (user) => user.email === action.payload.email
       );
       if (!found) {
@@ -69,14 +73,13 @@ export const user = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getUsers.pending, (state) => {
+      .addCase(loginUser.pending, (state) => {
         state.response.status = null;
       })
-      .addCase(getUsers.fulfilled, (state, action) => {
-        state.users = action.payload;
+      .addCase(loginUser.fulfilled, (state) => {
         state.response.status = true;
       })
-      .addCase(getUsers.rejected, (state) => {
+      .addCase(loginUser.rejected, (state) => {
         state.response.status = false;
       });
   },

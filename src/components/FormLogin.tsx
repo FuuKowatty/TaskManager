@@ -1,36 +1,30 @@
 "use client";
 import { useFormik } from "formik";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 import { validationSchema } from "@/lib/validation";
 
-import { login, reset } from "@/redux/featrues/userSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getUsers } from "@/redux/services/fetchUsers";
+import { reset } from "@/redux/featrues/userSlice";
+import { useAppSelector } from "@/redux/hooks";
+import { loginUser } from "@/redux/services/fetchUsers";
 
 export function FormLogin() {
-  const router = useRouter();
   const response = useAppSelector((state) => state.usersReducer);
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema,
-    onSubmit: async ({ email, password }) => {
-      await dispatch(getUsers());
-      dispatch(
-        login({
-          email,
-          password,
-        })
-      );
+    onSubmit: ({ email, password }) => {
+      dispatch(loginUser({ email, password }));
     },
   });
 
   if (response.loggedUser) {
-    router.push("/dashboard");
+    redirect("/dashboard");
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +69,7 @@ export function FormLogin() {
             )}
           </p>
         </fieldset>
-        <fieldset w-full h-full>
+        <fieldset>
           <label className="flex flex-col gap-1">
             Password
             <input
