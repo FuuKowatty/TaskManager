@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${clsx(roboto.variable, golosText.variable)}`}>
+      <body className={clsx(roboto.variable, golosText.variable)}>
         <Providers>
           <div className="fixed left-10 top-10 max-w-xs">
             <DarkModeSwitcher />
