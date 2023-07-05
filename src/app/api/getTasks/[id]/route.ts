@@ -10,6 +10,7 @@ export async function GET(
     const tasks = await prisma.task.findMany({
       where: {
         userId: Number(params.id),
+        isCompleted: false,
       },
     });
     if (!tasks) return NextResponse.json({ message: "No tasks found" });

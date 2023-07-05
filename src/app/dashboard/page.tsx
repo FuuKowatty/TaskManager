@@ -1,6 +1,7 @@
 import { HelloBanner } from "@/components/HelloBanner";
 import { ListTasks } from "@/components/ListTasks";
 import { Navbar } from "@/components/nav/Navbar";
+import { Calendar } from "@/components/ui/calendar";
 
 export default function Dashboard() {
   return (
@@ -10,6 +11,7 @@ export default function Dashboard() {
         <h1>Dashboard</h1>
         <HelloBanner />
         <ListTasks />
+        <Calendar />
       </main>
     </div>
   );

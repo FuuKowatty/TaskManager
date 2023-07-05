@@ -12,11 +12,10 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   try {
     const json: FormAddTask = await request.json();
     const { userId } = json;
-    console.log(userId, Number(userId));
     const user = await prisma.user.findUnique({
       where: {
         id: Number(userId),
