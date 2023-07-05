@@ -1,10 +1,12 @@
+type Role = "employee" | "admin" | "manager";
+
 interface User {
   id: number;
   name: string;
   surname: string;
   email: string;
   password: string;
-  role: string;
+  role: Role;
 }
 
 interface FormRegister {

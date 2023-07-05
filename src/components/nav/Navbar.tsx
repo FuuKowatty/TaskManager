@@ -3,12 +3,13 @@
 import Link from "next/link";
 
 import { NavLink } from "@/components/nav/NavLink";
-
-import { navData } from "@/data/navData";
+import { useNavdata } from "@/components/nav/useNavData";
 
 import { LogoutButton } from "../LogoutButton";
 
 export function Navbar() {
+  const navData = useNavdata();
+
   return (
     <nav className="fixed  bottom-2 left-0 right-0 mx-4 flex flex-shrink-0 gap-4 rounded-xl bg-slate-950 px-6  py-3 lg:static  lg:w-64 lg:flex-col lg:gap-0 lg:rounded-3xl lg:py-14 lg:pl-8 lg:pr-12">
       <Link
