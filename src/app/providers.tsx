@@ -1,12 +1,13 @@
 "use client";
 
-import { ReduxProvider } from "@/redux/provider";
 import { ThemeProvider } from "next-themes";
+
+import { QueryProvider } from "@/lib/query-provider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider attribute="class">
-      <ReduxProvider>{children}</ReduxProvider>
+      <QueryProvider>{children}</QueryProvider>
     </ThemeProvider>
   );
 }

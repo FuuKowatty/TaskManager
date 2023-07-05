@@ -6,7 +6,7 @@ import { HiSquares2X2 } from "react-icons/hi2";
 
 export type NavData = { icon: IconType; text: string; href: string }[];
 
-export const navData: NavData = [
+export const navDataEmployee: NavData = [
   {
     icon: HiSquares2X2,
     text: "Dashboard",
@@ -16,11 +16,6 @@ export const navData: NavData = [
     icon: BsGraphUp,
     text: "Statistics",
     href: "/statistics",
-  },
-  {
-    icon: BiGroup,
-    text: "Team",
-    href: "/team",
   },
   {
     icon: FiSettings,
@@ -42,18 +37,8 @@ export const navDataManager: NavData = [
   },
   {
     icon: BiPlus,
-    text: "Add user",
-    href: "/add-user",
-  },
-  {
-    icon: BiPlus,
     text: "Add task",
     href: "/add-task",
-  },
-  {
-    icon: BiGroup,
-    text: "Team",
-    href: "/team",
   },
   {
     icon: FiSettings,
@@ -77,11 +62,6 @@ export const navDataAdmin: NavData = [
     icon: BiPlus,
     text: "Add user",
     href: "/add-user",
-  },
-  {
-    icon: BiPlus,
-    text: "Add task",
-    href: "/add-task",
   },
   {
     icon: BiGroup,

@@ -1,34 +1,42 @@
 "use client";
+
 import { useFormik } from "formik";
-import { redirect } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import { validationSchema } from "@/lib/validation";
 
-import { reset } from "@/redux/featrues/userSlice";
-import { useAppSelector } from "@/redux/hooks";
-import { loginUser } from "@/redux/services/fetchUsers";
+import { useLogin } from "@/hooks/useLogin";
+import { useSession } from "@/state/useSession";
 
 export function FormLogin() {
-  const response = useAppSelector((state) => state.usersReducer);
-  const dispatch = useDispatch();
+  const { handleLogin, getLoginErrorMessage, resetLoginState, data } =
+    useLogin();
+
+  const router = useRouter();
+  const { setSessionUser } = useSession();
+
+  const loginError = getLoginErrorMessage();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema,
-    onSubmit: ({ email, password }) => {
-      dispatch(loginUser({ email, password }));
+    onSubmit: async ({ email, password }) => {
+      const setUserState = () => {
+        if (!data) {
+          return;
+        }
+        setSessionUser(data);
+        router.push("/dashboard");
+      };
+      handleLogin({ email, password }, { onSuccess: setUserState });
     },
   });
 
-  if (response.loggedUser) {
-    redirect("/dashboard");
-  }
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(reset());
+    resetLoginState();
     formik.handleChange(e);
   };
 
@@ -56,16 +64,12 @@ export function FormLogin() {
             />
           </label>
           <p className="min-h-[30px] text-sm text-red-500" role="alert">
-            {formik.touched.email && formik.errors.email ? (
+            {formik.touched.email && formik.errors.email && (
               <>{formik.errors.email}</>
-            ) : (
-              <>
-                {response.response.errorType === "email" ? (
-                  <>{response.response.message}</>
-                ) : (
-                  ""
-                )}
-              </>
+            )}
+
+            {loginError && loginError.type === "email" && (
+              <>{loginError.message}</>
             )}
           </p>
         </fieldset>
@@ -85,16 +89,12 @@ export function FormLogin() {
           </label>
           <div>
             <p className="min-h-[30px] text-sm text-red-500" role="alert">
-              {formik.touched.password && formik.errors.password ? (
+              {formik.touched.password && formik.errors.password && (
                 <>{formik.errors.password}</>
-              ) : (
-                <>
-                  {response.response.errorType === "password" ? (
-                    <>{response.response.message}</>
-                  ) : (
-                    ""
-                  )}
-                </>
+              )}
+
+              {loginError && loginError.type === "password" && (
+                <>{loginError.message}</>
               )}
             </p>
           </div>

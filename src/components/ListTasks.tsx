@@ -2,14 +2,14 @@
 
 import axios from "axios";
 
-import { useAppSelector } from "@/redux/hooks";
+import { useSession } from "@/state/useSession";
 
 import { Task } from "./Task";
 
 export async function ListTasks() {
-  const id = useAppSelector((state) => state.usersReducer.loggedUser?.id);
+  const { sessionUser } = useSession();
   const { data: tasks }: { data: Task[] } = await axios.get(
-    `/api/getTasks/${id}`
+    `/api/getTasks/${sessionUser?.id}`
   );
 
   return (

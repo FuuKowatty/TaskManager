@@ -1,12 +1,13 @@
 "use client";
 
-import { useAppSelector } from "@/redux/hooks";
+import { useSession } from "@/state/useSession";
 
 export function HelloBanner() {
-  const name = useAppSelector((state) => state.usersReducer.loggedUser?.name);
+  const { sessionUser } = useSession();
+
   return (
     <div>
-      <span>Hello {name}</span>
+      <span>Hello {sessionUser?.name}</span>
       <p>It is good to see you</p>
     </div>
   );

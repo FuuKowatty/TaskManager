@@ -1,15 +1,14 @@
-import { useAppSelector } from "@/redux/hooks";
-
 import type { NavData } from "@/data/navData";
-import { navData, navDataAdmin, navDataManager } from "@/data/navData";
+import { navDataAdmin, navDataEmployee, navDataManager } from "@/data/navData";
+import { useSession } from "@/state/useSession";
 
-const roleToData: Record<Role, NavData> = {
-  employee: navData,
+const roleToData = {
+  employee: navDataEmployee,
   admin: navDataAdmin,
   manager: navDataManager,
-};
+} satisfies Record<Role, NavData>;
 
 export function useNavdata() {
-  const selector = useAppSelector(({ usersReducer }) => usersReducer);
-  return roleToData[selector.loggedUser?.role || "employee"];
+  const { sessionUser } = useSession();
+  return roleToData[sessionUser?.role || "employee"];
 }
