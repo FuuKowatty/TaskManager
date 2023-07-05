@@ -3,7 +3,15 @@
 import { useLoginForm } from "@/hooks/useLoginForm";
 
 export function FormLogin() {
-  const { formik, loginError, handleChange } = useLoginForm();
+  const { formik, loginError, handleChange, isLoading } = useLoginForm();
+
+  if (isLoading) {
+    return (
+      <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
+        <p>Redirecting...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
