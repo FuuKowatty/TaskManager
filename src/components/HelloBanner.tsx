@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useSession } from "@/state/useSession";
 
 export function HelloBanner() {
@@ -14,11 +16,12 @@ export function HelloBanner() {
         </span>
         <p className="text-lg">It is good to see you</p>
       </div>
-      <div className="w-[50%]">
-        <img
+      <div className="relative h-[160px] w-[320px]">
+        <Image
           src="https://i.imgur.com/tep9cOL.png"
           alt="banner"
-          className="block h-full w-full object-cover"
+          className="object-cover"
+          fill={true}
         />
       </div>
     </div>
