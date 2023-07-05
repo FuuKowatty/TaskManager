@@ -1,10 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
-  const router = useRouter();
-
   const {
     mutate: handleLogin,
     error: loginErrors,

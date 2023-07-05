@@ -1,44 +1,9 @@
 "use client";
 
-import { useFormik } from "formik";
-import { useRouter } from "next/navigation";
-
-import { validationSchema } from "@/lib/validation";
-
-import { useLogin } from "@/hooks/useLogin";
-import { useSession } from "@/state/useSession";
+import { useLoginForm } from "@/hooks/useLoginForm";
 
 export function FormLogin() {
-  const { handleLogin, getLoginErrorMessage, resetLoginState, data } =
-    useLogin();
-
-  const router = useRouter();
-  const { setSessionUser } = useSession();
-
-  const loginError = getLoginErrorMessage();
-
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema,
-    onSubmit: async ({ email, password }) => {
-      const setUserState = () => {
-        if (!data) {
-          return;
-        }
-        setSessionUser(data);
-        router.push("/dashboard");
-      };
-      handleLogin({ email, password }, { onSuccess: setUserState });
-    },
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    resetLoginState();
-    formik.handleChange(e);
-  };
+  const { formik, loginError, handleChange } = useLoginForm();
 
   return (
     <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
