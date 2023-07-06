@@ -16,15 +16,6 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-
-  @apply font-roboto;
-}
-
 @layer utilities {
   .visually-hidden {
     clip: rect(0 0 0 0);
@@ -48,6 +39,12 @@ body {
 }
 
 @layer base {
+
+  body {
+    @apply bg-lightGray;
+    @apply font-roboto;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;

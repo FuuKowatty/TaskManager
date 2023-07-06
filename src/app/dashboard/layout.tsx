@@ -8,7 +8,7 @@ type Props = {
 
 export default function DashboardLayout({ children }: Props) {
   return (
-    <div className="flex min-h-screen items-stretch justify-stretch bg-lightGray p-7">
+    <div className="m-auto flex min-h-screen max-w-[1256px] items-stretch   justify-stretch border-2 bg-lightGray py-8">
       <Navbar />
       {children}
     </div>
