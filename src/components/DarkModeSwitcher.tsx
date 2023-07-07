@@ -11,7 +11,7 @@ export function DarkModeSwitcher() {
 
   return (
     <span
-      className="fixed right-5 top-1 flex min-h-[44px] min-w-[44px] items-center"
+      className="right-5 top-1 flex min-h-[44px] min-w-[44px] items-center lg:fixed"
       onClick={handleChangeMode}
     >
       <button className="relative ml-auto  flex h-[24px] w-[42px] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-gray-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-gray-800">

@@ -30,7 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(roboto.variable, golosText.variable)}>
         <Providers>
-          <DarkModeSwitcher />
+          <div className="hidden md:block">
+            <DarkModeSwitcher />
+          </div>
           {children}
         </Providers>
       </body>
