@@ -5,7 +5,7 @@ export function DashboardHeader() {
   return (
     <>
       <HelloBanner />
-      <div className="row-span-2">
+      <div className="">
         <Calendar />
       </div>
     </>

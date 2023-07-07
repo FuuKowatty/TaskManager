@@ -16,7 +16,7 @@ export default function Dashboard() {
   const { role } = sessionUser;
 
   return (
-    <main className="auto lg:grid-cols-[1.5fr 1fr] grid w-full auto-rows-[200px] items-start justify-items-center gap-x-2 gap-y-4 py-20 text-black lg:auto-rows-[250px] lg:gap-x-16 lg:gap-y-0 lg:px-4 lg:py-0">
+    <main className="grid w-full justify-items-center gap-x-4 text-black lg:grid-cols-1FR340PX">
       {/* <div className="w-full">
         <HelloBanner />
         <Calendar />

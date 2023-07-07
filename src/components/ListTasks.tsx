@@ -13,8 +13,8 @@ export async function ListTasks() {
   );
 
   return (
-    <div className="relative flex h-full w-full flex-col items-center">
-      <div className="absolute bottom-0 left-0 right-0 top-0 flex h-[calc(100%-20px)] flex-col items-center">
+    <div className="relative mt-4 flex h-full w-full flex-col items-center">
+      <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col items-center">
         <span className="mb-4 shrink-0 text-xl font-bold">Your Tasks:</span>
         {tasks.length ? (
           <div className="flex w-full flex-col items-center gap-8 overflow-y-auto">

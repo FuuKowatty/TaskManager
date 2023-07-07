@@ -20,7 +20,7 @@ export function Task({
   const formattedDate = new Date(endDate);
 
   return (
-    <div className="w-[350px] rounded-md bg-slate-950 p-4 text-white">
+    <div className="w-[320px] rounded-md bg-slate-950 p-4 text-white">
       <h1 className="font-golos-text text-lg font-bold">{title}</h1>
       <p className="text-md w-[80%] text-gray-300">{description}</p>
       <p>{formattedDate.toLocaleString("en-US")}</p>

@@ -13,42 +13,32 @@ import { ListTasks } from "@/components/ListTasks";
 
 export function EmployeeView() {
   const StatsData = [
-    { piwo: 10, wodka: 20 },
-    { piwo: 10, wodka: 20 },
-    { piwo: 10, wodka: 20 },
-    { piwo: 10, wodka: 20 },
+    { MonthName: "siema", taskCount: 20 },
+    { MonthName: "siema1", taskCount: 2220 },
+    { MonthName: "siema2", taskCount: 3320 },
+    { MonthName: "siema3", taskCount: 4520 },
   ];
 
   return (
     <>
       <DashboardHeader />
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
-          width={500}
-          height={400}
-          data={StatsData}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="monthName" />
-          <YAxis />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="taskCount"
-            stroke="#8884d8"
-            fill="#8884d8"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-      <div className="w-full lg:col-start-2 lg:h-[120%]">
-        <ListTasks />
+      <div className="w-full">
+        <ResponsiveContainer>
+          <AreaChart data={StatsData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="MonthName" />
+            <YAxis />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="taskCount"
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </div>
+      <ListTasks />
     </>
   );
 }

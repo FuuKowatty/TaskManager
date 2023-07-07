@@ -77,10 +77,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       gridTemplateColumns: {
-        16: "repeat(16, minmax(0, 1fr)",
-      },
-      gridTemplateRows: {
-        16: "repeat(16, minmax(0, 1fr))",
+        "1FR340PX": "1fr 340px",
       },
     },
   },
