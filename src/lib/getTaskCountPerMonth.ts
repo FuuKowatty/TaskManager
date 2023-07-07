@@ -7,6 +7,7 @@ export function getTaskCountPerMonth(tasks: Task[]) {
       taskCount,
     })
   );
+  sortByMonthOrder(taskCountPerMonth);
 
   return taskCountPerMonth;
 }
@@ -36,4 +37,33 @@ function getTasksPerMonth(filteredTasks: Task[]): { [month: string]: number } {
   });
 
   return taskCountByMonth;
+}
+
+function sortByMonthOrder(
+  taskCountPerMonth: { monthName: string; taskCount: number }[]
+) {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const sortedTaskCountPerMonth = taskCountPerMonth;
+
+  sortedTaskCountPerMonth.sort((a, b) => {
+    const aIndex = monthNames.indexOf(a.monthName);
+    const bIndex = monthNames.indexOf(b.monthName);
+    return aIndex - bIndex;
+  });
+
+  return sortedTaskCountPerMonth;
 }

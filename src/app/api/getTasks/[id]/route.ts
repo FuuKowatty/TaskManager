@@ -7,10 +7,12 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    const { searchParams } = new URL(request.url);
+    const isCompleted = searchParams.get("isCompleted");
     const tasks = await prisma.task.findMany({
       where: {
         userId: Number(params.id),
-        isCompleted: false,
+        isCompleted: isCompleted ? true : false,
       },
     });
     if (!tasks) return NextResponse.json({ message: "No tasks found" });

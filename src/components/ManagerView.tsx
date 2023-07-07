@@ -13,13 +13,14 @@ import {
 
 import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
 
-import { useSession } from "@/state/useSession";
-
 export default async function ManagerRoleView() {
-  const { sessionUser } = useSession();
-  const { data: tasks }: { data: Task[] } = await axios.get(`/api/getTasks/19`);
+  const { data: tasks }: { data: Task[] } = await axios.get(
+    `/api/getTasks/21?isCompleted=true`
+  );
 
   const StatsData = getTaskCountPerMonth(tasks);
+
+  console.log(StatsData);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
