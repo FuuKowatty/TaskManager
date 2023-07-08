@@ -9,7 +9,7 @@ type Props = {
 
 export default function DashboardLayout({ children }: Props) {
   return (
-    <div className="m-auto flex min-h-screen max-w-[1256px] items-stretch justify-stretch overflow-hidden px-4 py-8 lg:px-0">
+    <div className="m-auto flex min-h-screen max-w-[1256px] items-stretch justify-stretch px-4 py-8 lg:px-0">
       <Navbar />
       <MobileTopNavbar withLogoutButton />
       {children}

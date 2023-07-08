@@ -22,7 +22,7 @@ export function HelloBanner() {
           </span>
           <p className="text-lg">It is good to see you</p>
         </div>
-        <div className="relative h-40 w-32 lg:h-40 lg:w-40">
+        <div className="relative h-40 w-80">
           <Image
             src="https://i.imgur.com/tep9cOL.png"
             alt="banner"
