@@ -1,8 +1,8 @@
 "use client";
 
+import { DashboardHeader } from "@/components/DashboardHeader";
 import { AdminView } from "@/components/views/AdminView";
 import { EmployeeView } from "@/components/views/EmployeeView";
-import { ManagerView } from "@/components/views/ManagerView";
 
 import { useSession } from "@/state/useSession";
 
@@ -17,14 +17,8 @@ export default function Dashboard() {
 
   return (
     <main className="grid w-full justify-items-center gap-x-4 overflow-hidden text-black lg:grid-cols-1FR340PX">
-      {/* <div className="w-full">
-        <HelloBanner />
-        <Calendar />
-      </div>
-      <ListTasks /> */}
-
-      {role === "admin" && <AdminView />}
-      {role === "manager" && <ManagerView />}
+      <DashboardHeader />
+      {(role === "admin" || role === "manager") && <AdminView />}
       {role === "employee" && <EmployeeView />}
     </main>
   );
