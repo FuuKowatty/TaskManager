@@ -66,7 +66,7 @@ export const navDataAdmin: NavData = [
   {
     icon: BiGroup,
     text: "Team",
-    href: "dashboard/team",
+    href: "/dashboard/team",
   },
   {
     icon: FiSettings,

@@ -2,7 +2,6 @@
 
 import { DashboardHeader } from "@/components/DashboardHeader";
 import { AdminView } from "@/components/views/AdminView";
-import { EmployeeView } from "@/components/views/EmployeeView";
 
 import { useSession } from "@/state/useSession";
 
@@ -19,7 +18,6 @@ export default function Dashboard() {
     <main className="grid w-full justify-items-center gap-x-4 overflow-hidden text-black lg:grid-cols-1FR340PX lg:grid-rows-6">
       <DashboardHeader />
       {(role === "admin" || role === "manager") && <AdminView />}
-      {role === "employee" && <EmployeeView />}
     </main>
   );
 }
