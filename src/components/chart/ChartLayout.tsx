@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import {
   Area,
   AreaChart,
@@ -11,26 +10,21 @@ import {
   YAxis,
 } from "recharts";
 
-import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
+interface ChartAreaProps {
+  children?: React.ReactNode;
+  StatsData: {
+    monthName: string;
+    taskCount: number;
+  }[];
+  userId: number;
+}
 
-// import { useSession } from "@/state/useSession";
-
-export async function ChartArea() {
-  // const { sessionUser } = useSession();
-
-  // if (!sessionUser) {
-  //   return null;
-  // }
-
-  // const { id } = sessionUser;
-
-  const completedTasks = axios.get(`/api/getTasks/21?isCompleted=true`);
-  const StatsData = getTaskCountPerMonth((await completedTasks).data);
-
+export async function ChartAreaLayout({ children, StatsData }: ChartAreaProps) {
   return (
     <div className="relative row-start-2 row-end-7 w-full">
-      <div className="h-[40%] w-full">siemka</div>
+      <div className="h-[40%] w-full"></div>
       <div className="relative h-[60%]">
+        {children}
         <ResponsiveContainer>
           <AreaChart data={StatsData}>
             <CartesianGrid strokeDasharray="3 3" />

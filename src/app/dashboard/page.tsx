@@ -16,7 +16,7 @@ export default function Dashboard() {
   const { role } = sessionUser;
 
   return (
-    <main className="grid w-full justify-items-center gap-x-4 overflow-hidden text-black lg:grid-cols-1FR340PX">
+    <main className="grid w-full justify-items-center gap-x-4 overflow-hidden text-black lg:grid-cols-1FR340PX lg:grid-rows-6">
       <DashboardHeader />
       {(role === "admin" || role === "manager") && <AdminView />}
       {role === "employee" && <EmployeeView />}

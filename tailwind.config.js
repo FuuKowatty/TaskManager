@@ -79,6 +79,9 @@ module.exports = {
       gridTemplateColumns: {
         "1FR340PX": "1fr 340px",
       },
+      gridTemplateRows: {
+        12: "repeat(12, 1fr)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

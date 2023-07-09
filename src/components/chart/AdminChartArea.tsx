@@ -2,20 +2,12 @@
 
 import axios from "axios";
 import { useState } from "react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 
 import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
 
 import { useSession } from "@/state/useSession";
 
+import { ChartAreaLayout } from "./ChartLayout";
 import { SelectUserInput } from "../SelectUserInput";
 
 export async function AdminChartArea() {
@@ -33,24 +25,10 @@ export async function AdminChartArea() {
   const StatsData = getTaskCountPerMonth((await completedTasks).data);
 
   return (
-    <div className="relative w-full">
+    <ChartAreaLayout StatsData={StatsData} userId={userId}>
       <div className="absolute right-0 top-[-50px]">
         <SelectUserInput userId={userId} handleChangeUser={handleChangeUser} />
       </div>
-      <ResponsiveContainer>
-        <AreaChart data={StatsData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="monthName" />
-          <YAxis />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="taskCount"
-            stroke="#8884d8"
-            fill="#8884d8"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
+    </ChartAreaLayout>
   );
 }
