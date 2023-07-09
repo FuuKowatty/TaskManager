@@ -40,6 +40,11 @@
 
 @layer base {
 
+  * {
+  
+   @apply box-border m-0 p-0
+  }
+
   body {
     @apply bg-lightGray;
     @apply font-roboto;

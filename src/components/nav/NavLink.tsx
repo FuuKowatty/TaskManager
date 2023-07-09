@@ -5,13 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { IconType } from "react-icons";
 
-type Props = {
+interface NavLinkProps {
   href: string;
   text: string;
   icon: IconType;
-};
+}
 
-export function NavLink({ href, text, icon: Icon }: Props) {
+export function NavLink({ href, text, icon: Icon }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
 

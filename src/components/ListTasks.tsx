@@ -17,7 +17,7 @@ export async function ListTasks() {
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col items-center">
         <span className="mb-4 shrink-0 text-xl font-bold">Your Tasks:</span>
         {tasks.length ? (
-          <div className="flex w-full flex-col items-center gap-8 overflow-y-auto">
+          <div className="flex w-full flex-col items-center overflow-y-auto">
             {tasks.map((task) => (
               <Task key={task.id} {...task} />
             ))}

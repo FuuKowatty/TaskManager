@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 export function Button({ id }: { id: number }) {
   const router = useRouter();
   const handleDeleteUser = () => {
-    console.log(id);
     axios
       .delete(`/api/getUsers/${id}`)
       .catch((err) => {

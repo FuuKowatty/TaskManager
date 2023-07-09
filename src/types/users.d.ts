@@ -21,3 +21,10 @@ interface FormLogin {
   email: string;
   password: string;
 }
+
+interface UserWithCompletedTasks {
+  id: number;
+  name: string;
+  surname: string;
+  numberOfCompletedTasks: number;
+}
