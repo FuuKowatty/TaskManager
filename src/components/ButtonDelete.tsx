@@ -2,8 +2,9 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { BiTrash } from "react-icons/bi";
 
-export function Button({ id }: { id: number }) {
+export function ButtonDelete({ id }: { id: number }) {
   const router = useRouter();
   const handleDeleteUser = () => {
     axios
@@ -16,5 +17,10 @@ export function Button({ id }: { id: number }) {
       });
   };
 
-  return <button onClick={handleDeleteUser}>Delete Me</button>;
+  return (
+    <button onClick={handleDeleteUser} className="flex items-center">
+      <BiTrash className="mr-2 h-4 w-4" />
+      <span>Delete user</span>
+    </button>
+  );
 }

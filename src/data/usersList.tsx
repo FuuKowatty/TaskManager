@@ -1,8 +1,9 @@
 import type { ColumnDef } from "@tanstack/table-core";
 import Link from "next/link";
-import { BiDotsVerticalRounded, BiEdit, BiTrash } from "react-icons/bi";
+import { BiDotsVerticalRounded, BiEdit } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 
+import { ButtonDelete } from "@/components/ButtonDelete";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -56,13 +57,13 @@ export const columns: ColumnDef<User>[] = [
             </Link>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-500 focus:bg-red-300">
-              <BiTrash className="mr-2 h-4 w-4" />
-              <span>Delete user</span>
+              <ButtonDelete id={id} />
             </DropdownMenuItem>
             <DropdownMenuItem>
               <BiEdit className="mr-2 h-4 w-4" />
               <span>Edit user</span>
             </DropdownMenuItem>
+            <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
       );
