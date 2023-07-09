@@ -1,24 +1,37 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import { useSession } from "@/state/useSession";
 
 import { Task } from "./Task";
 
-export async function ListTasks() {
+export function ListTasks({ userId }: { userId?: number }) {
   const { sessionUser } = useSession();
-  const { data: tasks }: { data: Task[] } = await axios.get(
-    `/api/getTasks/${sessionUser?.id}`
-  );
+
+  const { data } = useQuery({
+    queryKey: ["tasks", userId || sessionUser?.id],
+    queryFn: async () => {
+      const { data } = await axios.get<Task[]>(
+        `/api/getTasks/${userId || sessionUser?.id}`
+      );
+
+      return data;
+    },
+  });
+
+  if (!data) {
+    return null;
+  }
 
   return (
-    <div className="relative mt-4 flex h-full w-full flex-col items-center">
+    <div className="relative mt-4  flex h-full w-full flex-col items-center">
       <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col items-center">
         <span className="mb-4 shrink-0 text-xl font-bold">Your Tasks:</span>
-        {tasks.length ? (
+        {data.length ? (
           <div className="flex w-full flex-col items-center overflow-y-auto">
-            {tasks.map((task) => (
+            {data.map((task) => (
               <Task key={task.id} {...task} />
             ))}
           </div>

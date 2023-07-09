@@ -4,9 +4,9 @@ import prisma from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const posts = await prisma.user.findMany();
+    const users = await prisma.user.findMany();
 
-    return NextResponse.json(posts);
+    return NextResponse.json(users);
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });
   }
