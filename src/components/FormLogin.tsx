@@ -2,6 +2,8 @@
 
 import { useLoginForm } from "@/hooks/useLoginForm";
 
+import { FormButton } from "./Form.Button";
+
 export function FormLogin() {
   const { formik, loginError, handleChange, isLoading } = useLoginForm();
 
@@ -72,12 +74,7 @@ export function FormLogin() {
             </p>
           </div>
         </fieldset>
-        <button
-          type="submit"
-          className="rounded-2xl bg-blue-700 py-2 text-white"
-        >
-          Login
-        </button>
+        <FormButton>Login</FormButton>
         <div className="mt-8 text-sm">
           Don&apos;t want login? <span className="font-bold">View Demo</span>
         </div>

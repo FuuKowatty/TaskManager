@@ -39,7 +39,7 @@ export function SelectUserInput({
   return (
     <Select value={value} onValueChange={setValue}>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a employee" />
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

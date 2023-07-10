@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { validationSchema } from "@/lib/validation";
+import { loginValidationSchema } from "@/lib/validation";
 
 import { useLogin } from "@/hooks/useLogin";
 import { useSession } from "@/state/useSession";
@@ -25,7 +25,7 @@ export function useLoginForm() {
       email: "",
       password: "",
     },
-    validationSchema,
+    validationSchema: loginValidationSchema,
     onSubmit: async (formData) => {
       startLoading();
       handleLogin(formData, {
