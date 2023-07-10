@@ -1,11 +1,11 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { BiTrash } from "react-icons/bi";
 
 export function ButtonDelete({ id }: { id: number }) {
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const handleDeleteUser = () => {
     axios
       .delete(`/api/getUsers/${id}`)
@@ -13,7 +13,7 @@ export function ButtonDelete({ id }: { id: number }) {
         console.log(err);
       })
       .finally(() => {
-        router.refresh();
+        queryClient.invalidateQueries({ queryKey: ["team"] });
       });
   };
 
