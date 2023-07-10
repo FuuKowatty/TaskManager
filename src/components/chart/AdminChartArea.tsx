@@ -26,7 +26,7 @@ export async function AdminChartArea() {
 
   return (
     <ChartAreaLayout StatsData={StatsData} userId={userId}>
-      <div className="absolute right-0 top-[-50px]">
+      <div className="my-4 ml-auto w-max">
         <SelectUserInput userId={userId} handleChangeUser={handleChangeUser} />
       </div>
     </ChartAreaLayout>

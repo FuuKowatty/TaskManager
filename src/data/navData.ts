@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons";
-import { BiGroup, BiPlus } from "react-icons/bi";
+import { BiGroup } from "react-icons/bi";
 import { BsGraphUp } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { HiSquares2X2 } from "react-icons/hi2";
@@ -36,11 +36,6 @@ export const navDataManager: NavData = [
     href: "/statistics",
   },
   {
-    icon: BiPlus,
-    text: "Add task",
-    href: "/add-task",
-  },
-  {
     icon: FiSettings,
     text: "Settings",
     href: "/settings",
@@ -57,11 +52,6 @@ export const navDataAdmin: NavData = [
     icon: BsGraphUp,
     text: "Statistics",
     href: "/statistics",
-  },
-  {
-    icon: BiPlus,
-    text: "Add user",
-    href: "/add-user",
   },
   {
     icon: BiGroup,
