@@ -37,7 +37,7 @@ export function UsersList<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="w-full">
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -96,7 +96,7 @@ export function UsersList<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-center space-x-6 py-4">
+      <div className="mt-4 flex items-center justify-center space-x-6 py-4">
         <Button
           variant="outline"
           size="sm"

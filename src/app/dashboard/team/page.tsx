@@ -1,5 +1,8 @@
 "use client";
 
+import { BiPlus } from "react-icons/bi";
+
+import { Button } from "@/components/ui/button";
 import { UsersList } from "@/components/UsersList";
 
 import { columns } from "@/data/usersList";
@@ -13,8 +16,11 @@ export default function Team() {
   }
 
   return (
-    <section className="flex w-full flex-col pl-2 pr-6">
-      <h2 className="mb-8 font-golos-text text-5xl">Team</h2>
+    <section className="flex w-full flex-col items-start pl-2 pr-6">
+      <h2 className="mb-12 font-golos-text text-5xl">Team</h2>
+      <Button className="mb-12">
+        <BiPlus className="mr-2 h-5 w-5" /> Add user
+      </Button>
       <UsersList columns={columns} data={data} />
     </section>
   );
