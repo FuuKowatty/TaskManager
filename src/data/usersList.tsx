@@ -42,7 +42,7 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: "password",
-    header: ({ column }) => HeaderWithSort(column, "Password"),
+    header: "Password",
   },
   {
     id: "actions",
