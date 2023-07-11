@@ -5,6 +5,7 @@ import { useState } from "react";
 import { loginValidationSchema } from "@/lib/validation";
 
 import { useLogin } from "@/hooks/useLogin";
+import { useActiveUserId } from "@/state/useActiveStatsUser";
 import { useSession } from "@/state/useSession";
 
 export function useLoginForm() {
@@ -14,6 +15,7 @@ export function useLoginForm() {
 
   const router = useRouter();
   const { setSessionUser } = useSession();
+  const { setActiveStatsUserId } = useActiveUserId();
 
   const loginError = getLoginErrorMessage();
 
@@ -31,6 +33,7 @@ export function useLoginForm() {
       handleLogin(formData, {
         onSuccess(data) {
           setSessionUser(data);
+          setActiveStatsUserId(data.id);
           router.push("/dashboard");
         },
         onSettled: stopLoading,

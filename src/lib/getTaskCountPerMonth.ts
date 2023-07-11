@@ -1,12 +1,31 @@
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export function getTaskCountPerMonth(tasks: Task[]) {
-  const filteredTasks = filterCurrentYear(tasks);
-  const taskCountByMonth = getTasksPerMonth(filteredTasks);
-  const taskCountPerMonth = Object.entries(taskCountByMonth).map(
-    ([monthName, taskCount]) => ({
-      monthName,
-      taskCount,
-    })
+  const currentYear = String(new Date().getFullYear());
+  const actuallYearTasks = tasks.filter((task) =>
+    task.endDate.includes(currentYear)
   );
+  const filteredTasks = filterCurrentYear(actuallYearTasks);
+  const taskCountByMonth = getTasksPerMonth(filteredTasks);
+  const taskCountPerMonth = [];
+  for (const monthName of monthNames) {
+    const taskCount = taskCountByMonth[monthName] || 0;
+    taskCountPerMonth.push({ monthName, taskCount });
+  }
+
   sortByMonthOrder(taskCountPerMonth);
 
   return taskCountPerMonth;
@@ -25,23 +44,6 @@ function filterCurrentYear(tasks: Task[]) {
 function getTasksPerMonth(filteredTasks: Task[]): { [month: string]: number } {
   const taskCountByMonth: { [month: string]: number } = {};
 
-  filteredTasks.forEach((task: Task) => {
-    const endDate = new Date(task.endDate);
-    const monthName = endDate.toLocaleString("default", { month: "long" });
-
-    if (!taskCountByMonth[monthName]) {
-      taskCountByMonth[monthName] = 0;
-    }
-
-    taskCountByMonth[monthName]++;
-  });
-
-  return taskCountByMonth;
-}
-
-function sortByMonthOrder(
-  taskCountPerMonth: { monthName: string; taskCount: number }[]
-) {
   const monthNames = [
     "January",
     "February",
@@ -57,6 +59,23 @@ function sortByMonthOrder(
     "December",
   ];
 
+  monthNames.forEach((monthName) => {
+    taskCountByMonth[monthName] = 0;
+  });
+
+  filteredTasks.forEach((task: Task) => {
+    const endDate = new Date(task.endDate);
+    const monthName = endDate.toLocaleString("default", { month: "long" });
+
+    taskCountByMonth[monthName]++;
+  });
+
+  return taskCountByMonth;
+}
+
+function sortByMonthOrder(
+  taskCountPerMonth: { monthName: string; taskCount: number }[]
+) {
   const sortedTaskCountPerMonth = taskCountPerMonth;
 
   sortedTaskCountPerMonth.sort((a, b) => {
