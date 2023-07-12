@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
@@ -16,17 +17,10 @@ export async function POST({ json }: Request) {
       },
     });
 
-    if (!user) {
+    if (!user?.password) {
       return NextResponse.json(
         { type: "email", message: "Email not found" },
         { status: 404 }
-      );
-    }
-
-    if (user?.password !== password) {
-      return NextResponse.json(
-        { type: "password", message: "Wrong password" },
-        { status: 400 }
       );
     }
 
@@ -35,8 +29,20 @@ export async function POST({ json }: Request) {
     response.cookies.set({
       name: "userId",
       value: user.id.toString(),
-      maxAge: 60 * 60 * 24,
     });
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (password !== user.password) {
+      if (isPasswordCorrect) {
+        return response;
+      }
+
+      return NextResponse.json(
+        { type: "password", message: "Wrong password" },
+        { status: 400 }
+      );
+    }
 
     return response;
   } catch (err) {
