@@ -6,6 +6,6 @@ interface Props {
   children: ReactNode;
 }
 
-export default function DashboardLayoutPage({ children }: Props) {
+export default function Layout({ children }: Props) {
   return <DashboardLayout>{children}</DashboardLayout>;
 }

@@ -30,7 +30,15 @@ export async function POST({ json }: Request) {
       );
     }
 
-    return NextResponse.json({ user });
+    const response = NextResponse.json(user, { status: 200 });
+
+    response.cookies.set({
+      name: "userId",
+      value: user.id.toString(),
+      maxAge: 60 * 60 * 24,
+    });
+
+    return response;
   } catch (err) {
     return NextResponse.json({ message: "POST Error", err }, { status: 500 });
   }

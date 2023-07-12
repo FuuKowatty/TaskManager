@@ -1,10 +1,10 @@
-import type { Column, ColumnDef } from "@tanstack/table-core";
-import { ArrowUpDown } from "lucide-react";
+import type { ColumnDef } from "@tanstack/table-core";
 import Link from "next/link";
 import { BiDotsVerticalRounded, BiEdit } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 
 import { ButtonDelete } from "@/components/ButtonDelete";
+import { TableHeaderSort } from "@/components/TableHeaderSort";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,30 +15,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const HeaderWithSort = (column: Column<User>, text: string) => {
-  return (
-    <Button
-      variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    >
-      {text}
-      <ArrowUpDown className="ml-2 h-4 w-4" />
-    </Button>
-  );
-};
-
 export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "name",
-    header: ({ column }) => HeaderWithSort(column, "Name"),
+    header: ({ column }) => TableHeaderSort(column, "Name"),
   },
   {
     accessorKey: "surname",
-    header: ({ column }) => HeaderWithSort(column, "Surname"),
+    header: ({ column }) => TableHeaderSort(column, "Surname"),
   },
   {
     accessorKey: "email",
-    header: ({ column }) => HeaderWithSort(column, "Email"),
+    header: ({ column }) => TableHeaderSort(column, "Email"),
   },
   {
     accessorKey: "password",
