@@ -1,11 +1,18 @@
 import type { ReactNode } from "react";
 
-import { DashboardLayout } from "@/components/layouts/DashboardLayout";
+import { MobileTopNavbar } from "@/components/nav/MobileTopNavbar";
+import { Navbar } from "@/components/nav/Navbar";
 
 interface Props {
   children: ReactNode;
 }
 
 export default function DashboardLayoutPage({ children }: Props) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return (
+    <div className="m-auto flex h-screen max-w-[1256px] items-stretch justify-stretch px-4 py-8 lg:px-0">
+      <Navbar />
+      <MobileTopNavbar withLogoutButton />
+      {children}
+    </div>
+  );
 }

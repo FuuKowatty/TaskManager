@@ -5,7 +5,7 @@ import Link from "next/link";
 import { NavLink } from "@/components/nav/NavLink";
 import { useNavdata } from "@/components/nav/useNavData";
 
-import { LogoutButton } from "../button/ButtonLogout";
+import { ButtonLogout } from "../button/ButtonLogout";
 
 export function Navbar() {
   const navData = useNavdata();
@@ -24,7 +24,7 @@ export function Navbar() {
         })}
       </ul>
       <div className="hidden md:block">
-        <LogoutButton />
+        <ButtonLogout />
       </div>
     </nav>
   );

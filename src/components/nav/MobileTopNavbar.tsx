@@ -1,7 +1,8 @@
 "use client";
 
-import { LogoutButton } from "@/components/button/ButtonLogout";
 import { DarkModeSwitcher } from "@/components/DarkModeSwitcher";
+
+import { ButtonLogout } from "../button/ButtonLogout";
 
 interface Props {
   withLogoutButton: boolean;
@@ -10,7 +11,7 @@ interface Props {
 export function MobileTopNavbar({ withLogoutButton }: Props) {
   return (
     <nav className="fixed left-0 right-0 top-2 z-10 mx-4 flex justify-between rounded-xl bg-slate-300 px-4 py-2 md:hidden">
-      {withLogoutButton && <LogoutButton />}
+      {withLogoutButton && <ButtonLogout />}
       <DarkModeSwitcher />
     </nav>
   );

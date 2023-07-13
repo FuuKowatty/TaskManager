@@ -42,11 +42,11 @@ export default function TasksPage() {
   const router = useRouter();
   const { sessionUser } = useSession();
   const { data } = useQuery({
-    queryKey: ["tasks", sessionUser?.id],
+    queryKey: ["tasks", sessionUser.id],
     queryFn: async () => {
-      const role = sessionUser?.role;
+      const role = sessionUser.role;
       const isRoleCorrect = role === "manager" || role === "admin";
-      const url = isRoleCorrect ? "/" : `/${sessionUser?.id}`;
+      const url = isRoleCorrect ? "/" : `/${sessionUser.id}`;
 
       const { data } = await axios.get<Task[]>(url);
       return data;
