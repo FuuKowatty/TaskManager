@@ -12,7 +12,7 @@ export default function Home() {
 
             <h1
               className={
-                "flex flex-col text-center font-golos-text text-3xl font-bold lg:text-left xl:text-5xl 2xl:text-6xl"
+                "flex flex-col text-center font-golos-text text-3xl font-[800] lg:text-left xl:text-5xl 2xl:text-6xl"
               }
             >
               <span className="">Task Manager App</span>

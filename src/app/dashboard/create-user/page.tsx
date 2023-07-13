@@ -1,6 +1,6 @@
 "use client";
 
-import { FormButton } from "@/components/Form.Button";
+import { FormButton } from "@/components/FormButton";
 
 import { useCreateUserForm } from "@/hooks/useCreateUserForm";
 

@@ -2,7 +2,7 @@
 
 import { useLoginForm } from "@/hooks/useLoginForm";
 
-import { FormButton } from "./Form.Button";
+import { FormButton } from "./FormButton";
 
 export function FormLogin() {
   const { formik, loginError, handleChange, isLoading } = useLoginForm();

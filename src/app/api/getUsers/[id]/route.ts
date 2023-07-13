@@ -19,6 +19,29 @@ export async function GET(
   }
 }
 
+export async function POST(request: Request, response: Response) {
+  try {
+    const json: User = await request.json();
+    const user = await prisma.user.update({
+      where: {
+        id: json.id,
+      },
+      data: {
+        ...json,
+      },
+    });
+
+    return NextResponse.json(user, { status: 201 });
+  } catch (error: any) {
+    if (error.code === "P2002") {
+      return new NextResponse("User with email already exists", {
+        status: 409,
+      });
+    }
+    return new NextResponse(error.message, { status: 500 });
+  }
+}
+
 export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }

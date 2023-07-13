@@ -45,6 +45,11 @@
    @apply box-border m-0 p-0
   }
 
+  
+  html {
+        @apply overflow-x-hidden mr-[calc(-1*(100vw-100%))] {/*dont move scroll after open modal */}
+    }
+
   body {
     @apply bg-lightGray;
     @apply font-roboto;
