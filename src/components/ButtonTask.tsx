@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 export function ButtonTask({ id }: { id: number }) {
   const router = useRouter();
   const handleDeleteTask = () => {
-    console.log(id);
     axios
       .delete(`/api/getTasks/${id}`)
       .catch((err) => {

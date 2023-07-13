@@ -1,4 +1,4 @@
-type Role = "employee" | "admin" | "manager";
+type Role = "employee" | "admin" | "manager" | "";
 
 interface User {
   id: number;
@@ -7,6 +7,7 @@ interface User {
   email: string;
   password: string;
   role: Role;
+  isLogged: boolean;
 }
 
 interface FormRegister {

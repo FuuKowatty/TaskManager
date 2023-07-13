@@ -1,12 +1,22 @@
 import { deleteCookie } from "cookies-next";
 import { atom, useAtom } from "jotai";
 
-const sessionAtom = atom<User | null>(null);
+const initialUserValue: User = {
+  id: 0,
+  name: "",
+  surname: "",
+  email: "",
+  password: "",
+  role: "",
+  isLogged: false,
+};
+
+const sessionAtom = atom(initialUserValue);
 
 export const useSession = () => {
   const [sessionUser, setSessionUser] = useAtom(sessionAtom);
   const logout = () => {
-    setSessionUser(null);
+    setSessionUser(initialUserValue);
     deleteCookie("userId");
   };
   return { sessionUser, setSessionUser, logout };

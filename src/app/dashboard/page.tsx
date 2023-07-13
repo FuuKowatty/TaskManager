@@ -19,10 +19,6 @@ const DynamicEmployeeView = dynamic(
 export default function Dashboard() {
   const { sessionUser } = useSession();
 
-  if (!sessionUser) {
-    return null;
-  }
-
   const { role } = sessionUser;
 
   return (

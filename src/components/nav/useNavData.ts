@@ -10,5 +10,5 @@ const roleToData = {
 
 export function useNavdata() {
   const { sessionUser } = useSession();
-  return roleToData[sessionUser?.role || "employee"];
+  return roleToData[sessionUser.role || "employee"];
 }

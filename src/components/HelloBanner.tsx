@@ -6,11 +6,6 @@ import { useSession } from "@/state/useSession";
 
 export function HelloBanner() {
   const { sessionUser } = useSession();
-
-  if (!sessionUser) {
-    return null;
-  }
-
   const { name, surname } = sessionUser;
 
   return (

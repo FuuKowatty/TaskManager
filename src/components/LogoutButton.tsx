@@ -7,7 +7,7 @@ import { useSession } from "@/state/useSession";
 
 export function LogoutButton() {
   const { sessionUser, logout } = useSession();
-  if (!sessionUser) return redirect("/login");
+  if (!sessionUser.isLogged) return redirect("/login");
 
   return (
     <button

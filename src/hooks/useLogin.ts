@@ -19,7 +19,8 @@ export const useLogin = () => {
     if (!data) {
       return;
     }
-    setSessionUser(data);
+
+    setSessionUser({ ...data, isLogged: true });
     setActiveStatsUserId(data.id);
     router.push("/dashboard");
   };
