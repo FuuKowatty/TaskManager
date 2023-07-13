@@ -1,10 +1,20 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import { BiLogOut } from "react-icons/bi";
 
+import { useAutoLogin } from "@/hooks/api/useAutoLogin";
+import { useSession } from "@/state/useSession";
+
 export function LogoutButton() {
+  const { userIdCookie } = useAutoLogin();
   const { sessionUser, logout } = useSession();
-  if (!sessionUser.isLogged) return redirect("/login");
+
+  if (!userIdCookie) {
+    return null;
+  }
+
+  if (!sessionUser.isLogged && !userIdCookie) return redirect("/login");
 
   return (
     <button
