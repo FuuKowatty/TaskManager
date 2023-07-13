@@ -2,12 +2,14 @@
 
 import { FormButton } from "@/components/FormButton";
 
+import { useAutoLogin } from "@/hooks/useAutoLogin";
 import { useLoginForm } from "@/hooks/useLoginForm";
 
 export default function FormLogin() {
   const { formik, loginError, handleChange, isLoading } = useLoginForm();
+  const { userIdCookie } = useAutoLogin();
 
-  if (isLoading) {
+  if (isLoading || userIdCookie) {
     return (
       <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
         <p>Redirecting...</p>

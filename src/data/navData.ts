@@ -1,66 +1,35 @@
+import { ListChecks } from "lucide-react";
 import type { IconType } from "react-icons";
 import { BiGroup } from "react-icons/bi";
-import { BsGraphUp } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { HiSquares2X2 } from "react-icons/hi2";
 
-export type NavData = { icon: IconType; text: string; href: string }[];
+export type NavLink = { icon: IconType; text: string; href: string };
 
-export const navDataEmployee: NavData = [
-  {
-    icon: HiSquares2X2,
-    text: "Dashboard",
-    href: "/dashboard",
-  },
-  {
-    icon: BsGraphUp,
-    text: "Statistics",
-    href: "/statistics",
-  },
-  {
-    icon: FiSettings,
-    text: "Settings",
-    href: "/settings",
-  },
-];
+const dashboard = {
+  icon: HiSquares2X2,
+  text: "Dashboard",
+  href: "/dashboard",
+} satisfies NavLink;
 
-export const navDataManager: NavData = [
-  {
-    icon: HiSquares2X2,
-    text: "Dashboard",
-    href: "/dashboard",
-  },
-  {
-    icon: BsGraphUp,
-    text: "Statistics",
-    href: "/statistics",
-  },
-  {
-    icon: FiSettings,
-    text: "Settings",
-    href: "/settings",
-  },
-];
+const tasks = {
+  icon: ListChecks,
+  text: "Tasks",
+  href: "/tasks",
+} satisfies NavLink;
 
-export const navDataAdmin: NavData = [
-  {
-    icon: HiSquares2X2,
-    text: "Dashboard",
-    href: "/dashboard",
-  },
-  {
-    icon: BsGraphUp,
-    text: "Statistics",
-    href: "/statistics",
-  },
-  {
-    icon: BiGroup,
-    text: "Team",
-    href: "/dashboard/team",
-  },
-  {
-    icon: FiSettings,
-    text: "Settings",
-    href: "/settings",
-  },
-];
+const settings = {
+  icon: FiSettings,
+  text: "Settings",
+  href: "/settings",
+} satisfies NavLink;
+
+const team = {
+  icon: BiGroup,
+  text: "Team",
+  href: "/dashboard/team",
+} satisfies NavLink;
+
+export const navDataEmployee: NavLink[] = [dashboard, tasks, settings];
+export const navDataManager: NavLink[] = [dashboard, tasks, settings];
+export const navDataAdmin: NavLink[] = [dashboard, tasks, team, settings];

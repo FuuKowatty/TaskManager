@@ -117,7 +117,12 @@ export function EditUserModal({ closeModal, userData }: ModalProps) {
               )}
             </p>
           </fieldset>
-          <button onClick={closeModal}>Cancel</button>
+          <button
+            className="rounded-2xl border-[1px] border-gray-200 py-2 text-black"
+            onClick={closeModal}
+          >
+            Cancel
+          </button>
           <FormButton>Update User</FormButton>
         </form>
       </div>

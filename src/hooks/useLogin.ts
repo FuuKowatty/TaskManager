@@ -1,20 +1,42 @@
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
+
+import { useActiveUserId } from "@/state/useActiveStatsUser";
+import { useSession } from "@/state/useSession";
+
+interface Credentials {
+  email: string;
+  password: string;
+}
 
 export const useLogin = () => {
+  const { setSessionUser } = useSession();
+  const { setActiveStatsUserId } = useActiveUserId();
+  const router = useRouter();
+
+  const onSuccess = (data?: User) => {
+    if (!data) {
+      return;
+    }
+    setSessionUser(data);
+    setActiveStatsUserId(data.id);
+    router.push("/dashboard");
+  };
+
   const {
     mutate: handleLogin,
     error: loginErrors,
     reset: resetLoginState,
-    data,
   } = useMutation({
-    mutationFn: async (credentials: { email: string; password: string }) => {
-      const { data } = await axios.post<{ user: User }>(
+    mutationFn: async (credentials: Credentials) => {
+      const { data } = await axios.post<User>(
         "http://localhost:3000/api/login",
         credentials
       );
-      return data.user;
+      return data;
     },
+    onSuccess,
   });
 
   function getLoginErrorMessage() {
@@ -36,6 +58,5 @@ export const useLogin = () => {
     handleLogin,
     getLoginErrorMessage,
     resetLoginState,
-    data,
   };
 };

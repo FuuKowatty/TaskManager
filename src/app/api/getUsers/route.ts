@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
@@ -12,11 +13,23 @@ export async function GET() {
   }
 }
 
+const SALT_ROUNDS = 10;
+
 export async function POST(request: Request, response: Response) {
   try {
-    const json: FormRegister = await request.json();
+    const { email, name, password, role, surname }: FormRegister =
+      await request.json();
+
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
     const user = await prisma.user.create({
-      data: json,
+      data: {
+        email,
+        name,
+        password: hashedPassword,
+        role,
+        surname,
+      },
     });
 
     return NextResponse.json(user, { status: 201 });
