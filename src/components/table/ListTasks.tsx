@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { useSession } from "@/state/useSession";
 
-import { Task } from "./Task";
+import { Task } from "../Task";
 
 export function ListTasks({ userId }: { userId?: number }) {
   const { sessionUser } = useSession();

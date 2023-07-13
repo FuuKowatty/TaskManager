@@ -6,8 +6,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
 
-import { TableHeaderSort } from "@/components/TableHeaderSort";
-import { TasksTable } from "@/components/TasksTable";
+import { TableHeaderSort } from "@/components/table/TableHeaderSort";
+import { TasksTable } from "@/components/table/TasksTable";
 
 import { useSession } from "@/state/useSession";
 

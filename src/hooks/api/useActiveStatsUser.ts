@@ -6,9 +6,6 @@ import { useActiveUserId } from "@/state/useActiveStatsUser";
 
 export async function useActiveStatsUser() {
   const { activeStatsUserId, setActiveStatsUserId } = useActiveUserId();
-  if (!activeStatsUserId) {
-    return null;
-  }
 
   const handleChangeUser = (id: number) => {
     setActiveStatsUserId(id);

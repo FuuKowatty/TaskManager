@@ -20,7 +20,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { HashPasswordInput } from "./hashPasswordInput";
+import { HashPasswordInput } from "../hashPasswordInput";
 
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

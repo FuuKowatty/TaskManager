@@ -5,7 +5,7 @@ import Link from "next/link";
 import { NavLink } from "@/components/nav/NavLink";
 import { useNavdata } from "@/components/nav/useNavData";
 
-import { LogoutButton } from "../LogoutButton";
+import { LogoutButton } from "../button/ButtonLogout";
 
 export function Navbar() {
   const navData = useNavdata();

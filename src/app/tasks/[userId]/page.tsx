@@ -1,4 +1,4 @@
-import { ListTasks } from "@/components/ListTasks";
+import { ListTasks } from "@/components/table/ListTasks";
 
 export default async function TasksPage({
   params,

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { loginValidationSchema } from "@/lib/validation";
 
-import { useLogin } from "@/hooks/useLogin";
+import { useLogin } from "@/hooks/api/useLogin";
 
 export function useLoginForm() {
   const [isLoading, setIsLoading] = useState(false);

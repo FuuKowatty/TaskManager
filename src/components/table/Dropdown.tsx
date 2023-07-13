@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 
-import { ButtonDelete } from "@/components/ButtonDelete";
+import { ButtonDelete } from "@/components/button/ButtonDelete";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,12 +15,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useDeleteUser } from "@/hooks/useDeleteUser";
+import { useDeleteUser } from "@/hooks/api/useDeleteUser";
 import { useModal } from "@/hooks/useModal";
 
-import { ButtonEdit } from "./ButtonEdit";
-import { DeleteUserModal } from "./modals/DeleteUserModal";
-import { EditUserModal } from "./modals/EditUserModal";
+import { ButtonEdit } from "../button/ButtonEdit";
+import { DeleteUserModal } from "../modals/DeleteUserModal";
+import { EditUserModal } from "../modals/EditUserModal";
 
 export function Dropdown({ userData }: { userData: User }) {
   const { id, name, surname } = userData;

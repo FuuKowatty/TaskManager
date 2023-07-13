@@ -1,9 +1,9 @@
 "use client";
 
-import { FormButton } from "@/components/FormButton";
+import { FormButton } from "@/components/button/ButtonForm";
 
-import { useAutoLogin } from "@/hooks/useAutoLogin";
-import { useLoginForm } from "@/hooks/useLoginForm";
+import { useAutoLogin } from "@/hooks/api/useAutoLogin";
+import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
 export default function FormLogin() {
   const { formik, loginError, handleChange, isLoading } = useLoginForm();

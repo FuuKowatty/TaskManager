@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { RedirectButton } from "@/components/RedirectButton";
+import { RedirectButton } from "@/components/button/ButtonRedirect";
 
 export default function Home() {
   return (

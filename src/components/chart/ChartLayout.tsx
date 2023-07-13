@@ -10,7 +10,7 @@ import {
   YAxis,
 } from "recharts";
 
-import { Tiles } from "../Tiles";
+import { Tiles } from "../tiles/Tiles";
 
 interface ChartAreaProps {
   children?: React.ReactNode;

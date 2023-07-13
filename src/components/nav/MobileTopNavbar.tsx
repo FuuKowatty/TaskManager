@@ -1,7 +1,7 @@
 "use client";
 
+import { LogoutButton } from "@/components/button/ButtonLogout";
 import { DarkModeSwitcher } from "@/components/DarkModeSwitcher";
-import { LogoutButton } from "@/components/LogoutButton";
 
 interface Props {
   withLogoutButton: boolean;

@@ -1,9 +1,9 @@
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
-import { useUpdateUserForm } from "@/hooks/useUpdateUserForm";
+import { useUpdateUserForm } from "@/hooks/formik/useUpdateUserForm";
 
 import { Modal } from "./Modal";
-import { FormButton } from "../FormButton";
+import { FormButton } from "../button/ButtonForm";
 
 interface ModalProps {
   closeModal: () => void;

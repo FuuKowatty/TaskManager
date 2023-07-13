@@ -1,13 +1,12 @@
 "use client";
 
-import { useActiveStatsUser } from "@/hooks/useActiveStatsUser";
+import { useActiveStatsUser } from "@/hooks/api/useActiveStatsUser";
 
 import { ChartAreaLayout } from "./ChartLayout";
-import { SelectUserInput } from "../SelectUserInput";
+import { SelectUserInput } from "../form/SelectUserInput";
 
 export async function AdminChartArea() {
   const data = await useActiveStatsUser();
-  if (!data) return null;
   const { activeStatsUserId: userId, handleChangeUser, StatsData } = data;
 
   return (

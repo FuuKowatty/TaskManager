@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
 
-import { UsersList } from "@/components/UsersList";
+import { columns } from "@/components/table/TableColumns";
+import { UsersList } from "@/components/table/UsersList";
 
-import { columns } from "@/data/usersList";
-import { useUserList } from "@/hooks/useUserList";
+import { useUserList } from "@/hooks/api/useUserList";
 
 export default function Team() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import type { ColumnDef } from "@tanstack/table-core";
 
-import { Dropdown } from "@/components/Dropdown";
-import { TableHeaderSort } from "@/components/TableHeaderSort";
+import { Dropdown } from "@/components/table/Dropdown";
+import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 
 export const columns: ColumnDef<User>[] = [
   {
