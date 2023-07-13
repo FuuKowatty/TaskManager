@@ -9,7 +9,7 @@ import { useSession } from "@/state/useSession";
 
 export function useAutoLogin() {
   const router = useRouter();
-  const { setSessionUser } = useSession();
+  const { setSessionUser, logout } = useSession();
   const { setActiveStatsUserId } = useActiveUserId();
 
   const onSuccess = (data?: User) => {
@@ -45,5 +45,5 @@ export function useAutoLogin() {
     handleAutoLogin();
   }, [handleAutoLogin, userIdCookie]);
 
-  return { userIdCookie };
+  return { userIdCookie, logout };
 }

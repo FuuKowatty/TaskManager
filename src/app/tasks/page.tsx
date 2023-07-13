@@ -45,10 +45,10 @@ export default function TasksPage() {
     queryKey: ["tasks", sessionUser?.id],
     queryFn: async () => {
       const role = sessionUser?.role;
-      const url =
-        role === "manager" || role === "admin" ? "/" : `/${sessionUser?.id}`;
-      const { data } = await axios.get<Task[]>(url);
+      const isRoleCorrect = role === "manager" || role === "admin";
+      const url = isRoleCorrect ? "/" : `/${sessionUser?.id}`;
 
+      const { data } = await axios.get<Task[]>(url);
       return data;
     },
     enabled: Boolean(sessionUser?.id),

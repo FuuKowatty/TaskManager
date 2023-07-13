@@ -1,23 +1,27 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useFormik } from "formik";
-import { useRouter } from "next/navigation";
 
 import { createUserValidation } from "@/lib/validation";
 
 export function useUpdateUserForm(userData: User, closeModal: () => void) {
-  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const editMutation = useMutation({
+    mutationFn: async (data: User) => {
+      axios.post(`/api/getUsers/${userData.id}`, data);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["team"]);
+      closeModal();
+    },
+  });
 
   const formik = useFormik({
     initialValues: userData,
     validationSchema: createUserValidation,
     onSubmit: async (formData) => {
-      router.push("team");
-      try {
-        axios.post(`/api/getUsers/${userData.id}`, formData);
-      } finally {
-        router.refresh();
-        closeModal();
-      }
+      editMutation.mutate(formData);
     },
   });
 

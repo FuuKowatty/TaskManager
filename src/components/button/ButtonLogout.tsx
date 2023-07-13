@@ -1,9 +1,6 @@
 "use client";
 
-import { redirect } from "next/navigation";
 import { BiLogOut } from "react-icons/bi";
-
-import { useSession } from "@/state/useSession";
 
 export function LogoutButton() {
   const { sessionUser, logout } = useSession();

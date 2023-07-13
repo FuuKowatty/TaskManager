@@ -1,3 +1,4 @@
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { clsx } from "clsx";
 import { Golos_Text, Roboto } from "next/font/google";
 import "./globals.css";
@@ -34,6 +35,7 @@ export default function RootLayout({
             <DarkModeSwitcher />
           </div>
           {children}
+          <ReactQueryDevtools />
         </Providers>
       </body>
     </html>
