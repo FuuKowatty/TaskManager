@@ -1,46 +1,36 @@
-import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { useActiveUserId } from "@/state/useActiveStatsUser";
 import { useSession } from "@/state/useSession";
 
-export function useAuth() {
-  const { setSessionUser, logout } = useSession();
+export const useAuth = () => {
+  const router = useRouter();
+  const { sessionUser, setSessionUser } = useSession();
   const { setActiveStatsUserId } = useActiveUserId();
-
-  const onSuccess = (data?: User) => {
-    if (!data) {
-      return;
-    }
-    setSessionUser({ ...data, isLogged: true });
-    setActiveStatsUserId(data.id);
-  };
-
-  const userIdCookie = getCookie("userId");
-
-  const { mutate: handleAutoLogin } = useMutation({
-    mutationFn: async () => {
-      if (!userIdCookie) {
-        return;
-      }
-
-      const { data } = await axios.post<User>(
-        `http://localhost:3000/api/login/${userIdCookie}`
-      );
-      return data;
-    },
-    onSuccess: onSuccess,
-  });
-
   useEffect(() => {
-    if (!userIdCookie) {
-      return;
-    }
+    if (sessionUser.isLogged) return;
 
-    handleAutoLogin();
-  }, [handleAutoLogin, userIdCookie]);
+    const checkUser = async () => {
+      const userIdCookie = getCookie("userId");
+      if (userIdCookie) {
+        try {
+          const { data }: { data: Omit<User, "isLogged"> } = await axios.get(
+            `http://localhost:3000/api/getUsers/${Number(userIdCookie)}`
+          );
+          setSessionUser({ ...data, isLogged: true });
+          setActiveStatsUserId(data.id);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          router.push("/login");
+        }
+      } else {
+        router.push("/login");
+      }
+    };
 
-  return { userIdCookie, logout };
-}
+    checkUser();
+  }, [router, setSessionUser, setActiveStatsUserId, sessionUser.isLogged]);
+};

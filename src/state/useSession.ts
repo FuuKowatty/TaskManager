@@ -16,6 +16,7 @@ const sessionAtom = atom(initialUserValue);
 
 export const useSession = () => {
   const [sessionUser, setSessionUser] = useAtom(sessionAtom);
+
   const logout = useCallback(() => {
     setSessionUser(initialUserValue);
     deleteCookie("userId");

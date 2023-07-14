@@ -2,19 +2,12 @@
 
 import { FormButton } from "@/components/button/ButtonForm";
 
+import { useLogin } from "@/hooks/api/useLogin";
 import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
 export default function FormLogin() {
-  const { formik, loginError, handleChange, isLoading } = useLoginForm();
-
-  if (isLoading) {
-    return (
-      <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
-        <p>Redirecting...</p>
-      </div>
-    );
-  }
-
+  const { handleLogin } = useLogin();
+  const { formik, handleChange } = useLoginForm(handleLogin);
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-lightGray">
       <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
@@ -39,7 +32,7 @@ export default function FormLogin() {
               "
               />
             </label>
-            <p className="min-h-[30px] text-sm text-red-500" role="alert">
+            {/* <p className="min-h-[30px] text-sm text-red-500" role="alert">
               {formik.touched.email && formik.errors.email && (
                 <>{formik.errors.email}</>
               )}
@@ -47,7 +40,7 @@ export default function FormLogin() {
               {loginError && loginError.type === "email" && (
                 <>{loginError.message}</>
               )}
-            </p>
+            </p> */}
           </fieldset>
           <fieldset>
             <label className="flex flex-col gap-1">
@@ -63,8 +56,7 @@ export default function FormLogin() {
               text-black focus:border-b-blue-700 focus:outline-none"
               />
             </label>
-            <div>
-              <p className="min-h-[30px] text-sm text-red-500" role="alert">
+            {/* <p className="min-h-[30px] text-sm text-red-500" role="alert">
                 {formik.touched.password && formik.errors.password && (
                   <>{formik.errors.password}</>
                 )}
@@ -72,8 +64,7 @@ export default function FormLogin() {
                 {loginError && loginError.type === "password" && (
                   <>{loginError.message}</>
                 )}
-              </p>
-            </div>
+              </p> */}
           </fieldset>
           <FormButton>Login</FormButton>
           <div className="mt-8 text-sm">
