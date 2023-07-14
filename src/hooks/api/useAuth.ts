@@ -1,14 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { useActiveUserId } from "@/state/useActiveStatsUser";
 import { useSession } from "@/state/useSession";
 
-export function useAutoLogin() {
-  const router = useRouter();
+export function useAuth() {
   const { setSessionUser, logout } = useSession();
   const { setActiveStatsUserId } = useActiveUserId();
 
@@ -18,7 +16,6 @@ export function useAutoLogin() {
     }
     setSessionUser({ ...data, isLogged: true });
     setActiveStatsUserId(data.id);
-    router.push("/dashboard");
   };
 
   const userIdCookie = getCookie("userId");
