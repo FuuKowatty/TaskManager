@@ -54,10 +54,6 @@ export default function TasksPage() {
     enabled: Boolean(sessionUser?.id),
   });
 
-  if (!data) {
-    return null;
-  }
-
   return (
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">
       <h2 className="mb-8 font-golos-text text-5xl">Tasks</h2>
@@ -68,7 +64,7 @@ export default function TasksPage() {
         <BsPersonFillAdd color="white" />
         Create Task
       </button>
-      <TasksTable columns={columns} data={data} />
+      <TasksTable columns={columns} data={data || []} />
     </section>
   );
 }

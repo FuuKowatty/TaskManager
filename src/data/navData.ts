@@ -15,13 +15,13 @@ const dashboard = {
 const tasks = {
   icon: ListChecks,
   text: "Tasks",
-  href: "dashboard/tasks",
+  href: "/dashboard/tasks",
 } satisfies NavLink;
 
 const settings = {
   icon: FiSettings,
   text: "Settings",
-  href: "dashboard/settings",
+  href: "/dashboard/settings",
 } satisfies NavLink;
 
 const team = {
