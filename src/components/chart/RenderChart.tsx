@@ -5,7 +5,7 @@ import { useSession } from "@/state/useSession";
 import { AdminChartArea } from "./AdminChartArea";
 import { ChartArea } from "./ChartArea";
 import { BestEmployess } from "../BestEmployess";
-import { ListTasks } from "../table/ListTasks";
+import { ListTasks } from "../ListTasks";
 
 export async function Charts() {
   const { sessionUser } = useSession();
@@ -15,7 +15,7 @@ export async function Charts() {
   return sessionUser.role === "employee" ? (
     <>
       <ChartArea />
-      <ListTasks />
+      <ListTasks userId={sessionUser.id} />
     </>
   ) : (
     <>

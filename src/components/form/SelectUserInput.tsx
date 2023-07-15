@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 import {
@@ -13,8 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { apiClient } from "@/lib/apiClient";
-
+import { useUserList } from "@/hooks/api/useUserList";
 import { useActiveUserId } from "@/state/useActiveStatsUser";
 
 export function SelectUserInput({ userId }: { userId: number }) {
@@ -22,15 +20,9 @@ export function SelectUserInput({ userId }: { userId: number }) {
   const [value, setValue] = useState(String(userId));
   setActiveStatsUserId(parseInt(value));
 
-  const { data: users } = useQuery({
-    queryFn: async () => {
-      const { data } = await apiClient.get<User[]>("getUsers");
-      return data;
-    },
-    queryKey: ["stat users"],
-  });
+  const { data: users, isLoading } = useUserList();
 
-  if (!users) {
+  if (isLoading) {
     return <p>loading</p>;
   }
 
@@ -42,7 +34,7 @@ export function SelectUserInput({ userId }: { userId: number }) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Employees</SelectLabel>
-          {users.length &&
+          {users &&
             users.map((user) => (
               <SelectItem
                 value={String(user.id)}

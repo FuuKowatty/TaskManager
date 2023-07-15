@@ -1,4 +1,4 @@
-import { ListTasks } from "@/components/table/ListTasks";
+import { ListTasks } from "@/components/ListTasks";
 
 import { ChartArea } from "../chart/ChartArea";
 

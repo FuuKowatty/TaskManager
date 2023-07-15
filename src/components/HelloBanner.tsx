@@ -12,7 +12,7 @@ export function HelloBanner() {
     <div className="w-full">
       <div className="flex w-full items-center justify-between rounded-md bg-gray-200 text-black">
         <div className="p-4 py-6">
-          <span className=" mb-2 block font-golos-text text-3xl font-bold ">
+          <span className=" mb-2 block text-3xl font-bold ">
             Hello <br /> {name} {surname}!
           </span>
           <p className="text-lg">It is good to see you</p>

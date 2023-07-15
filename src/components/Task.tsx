@@ -1,11 +1,8 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 
-import { apiClient } from "@/lib/apiClient";
-
-import { useSession } from "@/state/useSession";
+import { useUpdateTaskStatus } from "@/hooks/api/updateTaskStatus";
 
 export function Task({
   id,
@@ -14,18 +11,7 @@ export function Task({
   isCompleted,
   endDate,
 }: Omit<Task, "startDate" | "userId">) {
-  const queryClient = useQueryClient();
-  const { sessionUser } = useSession();
-
-  const { mutate: handleTaskComplete } = useMutation({
-    mutationFn: () => {
-      return apiClient.get(`updateTask/${id}`);
-    },
-
-    onSuccess: () => {
-      queryClient.invalidateQueries(["tasks", sessionUser.id]);
-    },
-  });
+  const { mutate: handleTaskComplete } = useUpdateTaskStatus(id);
 
   const formattedDate = new Date(endDate);
 

@@ -1,30 +1,14 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useUserTasks } from "@/hooks/api/useUserTasks";
 
-import { apiClient } from "@/lib/apiClient";
+import { Task } from "./Task";
 
-import { useSession } from "@/state/useSession";
+export function ListTasks({ userId }: { userId: number }) {
+  const { data, isLoading } = useUserTasks(userId);
 
-import { Task } from "../Task";
-
-export function ListTasks({ userId }: { userId?: number }) {
-  const { sessionUser } = useSession();
-
-  const { data } = useQuery({
-    queryKey: ["tasks", userId || sessionUser?.id],
-    queryFn: async () => {
-      const { data } = await apiClient.get<Task[]>(
-        `getTasks/${userId || sessionUser?.id}`
-      );
-
-      return data;
-    },
-  });
-
-  if (!data) {
-    return null;
-  }
+  if (!data) return <p>Could not Load data</p>;
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="relative col-start-2 row-span-3 row-start-4 flex h-full w-full flex-col items-center">

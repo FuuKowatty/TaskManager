@@ -1,11 +1,9 @@
-async function getBestEmployees(): Promise<UserWithCompletedTasks[]> {
-  const request = await fetch("http://localhost:3000/api/getUsersByTaskCount");
-  const data = await request.json();
-  return data;
-}
+import { useBestEmployees } from "@/hooks/api/useBestEmployeesList";
 
-export async function BestEmployess() {
-  const bestEmployees = await getBestEmployees();
+export function BestEmployess() {
+  const { data: bestEmployees, isLoading } = useBestEmployees();
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="col-start-2 row-span-3 row-start-4 w-full">
@@ -13,15 +11,19 @@ export async function BestEmployess() {
         Employees of the month
       </div>
       <ol className="ml-4">
-        {bestEmployees.slice(0, 5).map((employee) => (
-          <li
-            key={employee.id}
-            className="mb-4 rounded-md bg-slate-950 p-2 text-white"
-          >
-            {employee.name} {employee.surname} -{" "}
-            {employee.numberOfCompletedTasks}
-          </li>
-        ))}
+        {bestEmployees ? (
+          bestEmployees.slice(0, 5).map((employee) => (
+            <li
+              key={employee.id}
+              className="mb-4 rounded-md bg-slate-950 p-2 text-white"
+            >
+              {employee.name} {employee.surname} -{" "}
+              {employee.numberOfCompletedTasks}
+            </li>
+          ))
+        ) : (
+          <p>No Employees found</p>
+        )}
       </ol>
     </div>
   );
