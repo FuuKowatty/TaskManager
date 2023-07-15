@@ -7,6 +7,9 @@ import { SelectUserInput } from "../form/SelectUserInput";
 
 export async function AdminChartArea() {
   const data = await useActiveStatsUser();
+
+  if (!data) return null;
+
   const { activeStatsUserId: userId, handleChangeUser, StatsData } = data;
 
   return (
