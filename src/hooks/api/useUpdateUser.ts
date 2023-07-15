@@ -1,18 +1,16 @@
-import { useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export function useUpdateUser(formData: User) {
+import { apiClient } from "@/lib/apiClient";
+
+export function useUpdateUser(userId: number, closeModal: () => void) {
   const queryClient = useQueryClient();
-  const handleUpdateUser = () => {
-    axios
-      .post(`/api/getUsers/${formData.id}`, formData)
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        queryClient.invalidateQueries({ queryKey: ["team"] });
-      });
-  };
-
-  return handleUpdateUser;
+  return useMutation({
+    mutationFn: async (data: User) => {
+      apiClient.post(`getUsers/${userId}`, data);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["team"]);
+      closeModal();
+    },
+  });
 }

@@ -25,7 +25,7 @@ import { EditUserModal } from "../modals/EditUserModal";
 export function Dropdown({ userData }: { userData: User }) {
   const { id, name, surname } = userData;
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
-  const handleDeleteUser = useDeleteUser(id);
+  const handleDeleteUser = useDeleteUser(id, closeModal);
 
   return (
     <DropdownMenu>

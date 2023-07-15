@@ -2,7 +2,7 @@
 
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 
-import { useUpdateTaskStatus } from "@/hooks/api/updateTaskStatus";
+import { useUpdateTaskStatus } from "@/hooks/api/useUpdateTaskStatus";
 
 export function Task({
   id,

@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-export function useDeleteUser(id: number) {
+export function useDeleteUser(id: number, closeModal: () => void) {
   const queryClient = useQueryClient();
   const handleDeleteUser = () => {
     axios
@@ -10,6 +10,7 @@ export function useDeleteUser(id: number) {
         console.log(err);
       })
       .finally(() => {
+        closeModal();
         queryClient.invalidateQueries({ queryKey: ["team"] });
       });
   };
