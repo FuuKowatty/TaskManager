@@ -2,12 +2,13 @@
 
 import { useQuery } from "@tanstack/react-query";
 import type { ColumnDef } from "@tanstack/react-table";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
 
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { TasksTable } from "@/components/table/TasksTable";
+
+import { apiClient } from "@/lib/apiClient";
 
 import { useSession } from "@/state/useSession";
 
@@ -46,9 +47,9 @@ export default function TasksPage() {
     queryFn: async () => {
       const role = sessionUser.role;
       const isRoleCorrect = role === "manager" || role === "admin";
-      const url = isRoleCorrect ? "/" : `/${sessionUser.id}`;
+      const urlEnd = isRoleCorrect ? "/" : `/${sessionUser.id}`;
 
-      const { data } = await axios.get<Task[]>(url);
+      const { data } = await apiClient.get<Task[]>(`getTasks${urlEnd}`);
       return data;
     },
     enabled: Boolean(sessionUser?.id),

@@ -15,6 +15,7 @@ const roboto = Roboto({
 const golosText = Golos_Text({
   subsets: ["latin"],
   variable: "--font-golos-text",
+  display: "swap",
 });
 
 export const metadata = {

@@ -1,5 +1,7 @@
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+
+import { apiClient } from "@/lib/apiClient";
 
 import { useActiveUserId } from "@/state/useActiveStatsUser";
 import { useSession } from "@/state/useSession";
@@ -14,15 +16,20 @@ export const useLogin = () => {
 
   if (sessionUser.isLogged) router.push("/dashboard");
 
-  const handleLogin = async (formData: FormLogin) => {
-    try {
-      const { data: userData }: { data: Omit<User, "isLogged"> } =
-        await axios.post("http://localhost:3000/api/login", formData);
+  const loginMutation = useMutation({
+    mutationFn: async (formData: FormLogin) => {
+      const { data } = await apiClient.post<User>("login", formData);
+      return data;
+    },
+    onSuccess: (userData) => {
       setSessionUser({ ...userData, isLogged: true });
       setActiveStatsUserId(userData.id);
-    } finally {
       router.push("/dashboard");
-    }
+    },
+  });
+
+  const handleLogin = async (formData: FormLogin) => {
+    loginMutation.mutate(formData);
   };
 
   return {

@@ -1,7 +1,7 @@
 "use client";
 
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 import {
   Select,
@@ -13,28 +13,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function SelectUserInput({
-  handleChangeUser,
-  userId,
-}: {
-  handleChangeUser: (id: number) => void;
-  userId: number;
-}) {
-  const [users, setUsers] = useState<User[]>([]);
+import { apiClient } from "@/lib/apiClient";
+
+import { useActiveUserId } from "@/state/useActiveStatsUser";
+
+export function SelectUserInput({ userId }: { userId: number }) {
+  const { setActiveStatsUserId } = useActiveUserId();
   const [value, setValue] = useState(String(userId));
+  setActiveStatsUserId(parseInt(value));
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const users = axios.get("api/getUsers");
-      setUsers((await users).data);
-    };
+  const { data: users } = useQuery({
+    queryFn: async () => {
+      const { data } = await apiClient.get<User[]>("getUsers");
+      return data;
+    },
+    queryKey: ["stat users"],
+  });
 
-    fetchUsers();
-  }, []);
-
-  useEffect(() => {
-    handleChangeUser(Number(value));
-  }, [value, handleChangeUser]);
+  if (!users) {
+    return <p>loading</p>;
+  }
 
   return (
     <Select value={value} onValueChange={setValue}>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
+import { apiClient } from "@/lib/apiClient";
 
 import { useSession } from "@/state/useSession";
 
@@ -13,8 +14,8 @@ export function ListTasks({ userId }: { userId?: number }) {
   const { data } = useQuery({
     queryKey: ["tasks", userId || sessionUser?.id],
     queryFn: async () => {
-      const { data } = await axios.get<Task[]>(
-        `/api/getTasks/${userId || sessionUser?.id}`
+      const { data } = await apiClient.get<Task[]>(
+        `getTasks/${userId || sessionUser?.id}`
       );
 
       return data;

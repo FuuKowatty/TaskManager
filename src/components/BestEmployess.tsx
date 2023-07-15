@@ -1,8 +1,11 @@
-import axios from "axios";
+async function getBestEmployees(): Promise<UserWithCompletedTasks[]> {
+  const request = await fetch("http://localhost:3000/api/getUsersByTaskCount");
+  const data = await request.json();
+  return data;
+}
 
 export async function BestEmployess() {
-  const { data: bestEmployees }: { data: UserWithCompletedTasks[] } =
-    await axios.get("api/getUsersByTaskCount");
+  const bestEmployees = await getBestEmployees();
 
   return (
     <div className="col-start-2 row-span-3 row-start-4 w-full">

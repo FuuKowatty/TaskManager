@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { useFormik } from "formik";
 
+import { apiClient } from "@/lib/apiClient";
 import { createUserValidation } from "@/lib/validation";
 
 export function useUpdateUserForm(userData: User, closeModal: () => void) {
@@ -9,7 +9,7 @@ export function useUpdateUserForm(userData: User, closeModal: () => void) {
 
   const editMutation = useMutation({
     mutationFn: async (data: User) => {
-      axios.post(`/api/getUsers/${userData.id}`, data);
+      apiClient.post(`getUsers/${userData.id}`, data);
     },
     onSettled: () => {
       queryClient.invalidateQueries(["team"]);

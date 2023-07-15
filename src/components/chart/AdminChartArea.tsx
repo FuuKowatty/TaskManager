@@ -8,12 +8,12 @@ export async function AdminChartArea() {
 
   if (!data) return null;
 
-  const { activeStatsUserId: userId, handleChangeUser, StatsData } = data;
+  const { activeStatsUserId: userId, StatsData } = data;
 
   return (
     <ChartAreaLayout StatsData={StatsData}>
       <div className="absolute right-0 top-[-40px]">
-        <SelectUserInput userId={userId} handleChangeUser={handleChangeUser} />
+        <SelectUserInput userId={userId} />
       </div>
     </ChartAreaLayout>
   );

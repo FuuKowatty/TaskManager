@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Area,
   AreaChart,
@@ -10,7 +8,7 @@ import {
   YAxis,
 } from "recharts";
 
-import { Tiles } from "../tiles/Tiles";
+import { Tiles } from "@/components/tiles/Tiles";
 
 interface ChartAreaProps {
   children?: React.ReactNode;
