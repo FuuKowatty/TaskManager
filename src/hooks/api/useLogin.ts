@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
 import { apiClient } from "@/lib/apiClient";
@@ -16,7 +17,11 @@ export const useLogin = () => {
 
   if (sessionUser.isLogged) router.push("/dashboard");
 
-  const loginMutation = useMutation({
+  const {
+    mutate: loginMutate,
+    error: loginError,
+    reset: resetApiResponseErrors,
+  } = useMutation({
     mutationFn: async (formData: FormLogin) => {
       const { data } = await apiClient.post<User>("login", formData);
       return data;
@@ -28,11 +33,28 @@ export const useLogin = () => {
     },
   });
 
+  const getLoginErrorMessage = () => {
+    if (loginError instanceof AxiosError) {
+      const errorData = loginError.response?.data;
+
+      if (
+        typeof errorData.type !== "string" &&
+        typeof errorData.message !== "string"
+      ) {
+        return;
+      }
+
+      return errorData;
+    }
+  };
+
   const handleLogin = async (formData: FormLogin) => {
-    loginMutation.mutate(formData);
+    loginMutate(formData);
   };
 
   return {
     handleLogin,
+    loginError: getLoginErrorMessage(),
+    resetApiResponseErrors,
   };
 };

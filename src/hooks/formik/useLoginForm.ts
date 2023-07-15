@@ -3,7 +3,8 @@ import { useFormik } from "formik";
 import { loginValidationSchema } from "@/lib/validation";
 
 export function useLoginForm(
-  handleLogin: (formData: FormLogin) => Promise<void>
+  handleLogin: (formData: FormLogin) => Promise<void>,
+  resetApiResponseErrors: () => void
 ) {
   const formik = useFormik({
     initialValues: {
@@ -17,6 +18,7 @@ export function useLoginForm(
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    resetApiResponseErrors();
     formik.handleChange(e);
   };
 
