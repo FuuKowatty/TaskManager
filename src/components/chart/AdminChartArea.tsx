@@ -1,5 +1,3 @@
-"use client";
-
 import { useActiveStatsUser } from "@/hooks/api/useActiveStatsUser";
 
 import { ChartAreaLayout } from "./ChartLayout";

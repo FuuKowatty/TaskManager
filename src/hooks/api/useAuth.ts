@@ -18,7 +18,7 @@ export const useAuth = () => {
       if (userIdCookie) {
         try {
           const { data }: { data: Omit<User, "isLogged"> } = await axios.get(
-            `http://localhost:3000/api/getUsers/${Number(userIdCookie)}`
+            `/api/getUsers/${Number(userIdCookie)}`
           );
           setSessionUser({ ...data, isLogged: true });
           setActiveStatsUserId(data.id);

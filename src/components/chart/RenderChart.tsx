@@ -10,6 +10,8 @@ import { ListTasks } from "../table/ListTasks";
 export async function Charts() {
   const { sessionUser } = useSession();
 
+  if (!sessionUser.isLogged) return null;
+
   return sessionUser.role === "employee" ? (
     <>
       <ChartArea />
