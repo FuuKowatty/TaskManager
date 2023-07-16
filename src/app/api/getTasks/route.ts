@@ -14,22 +14,20 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const json: FormAddTask = await request.json();
-    const { userId } = json;
-    const user = await prisma.user.findUnique({
-      where: {
-        id: Number(userId),
-      },
-    });
-
-    if (!user) {
-      return new NextResponse("User not found");
-    }
+    const {
+      title,
+      description,
+      endDate,
+      userId,
+    }: FormAddTask & { userId: string } = await request.json();
+    const endDateTime = `${endDate}T23:59:59Z`;
 
     const task = await prisma.task.create({
       data: {
-        ...json,
-        userId: user.id,
+        title,
+        description,
+        endDate: endDateTime,
+        userId: parseInt(userId),
       },
     });
 

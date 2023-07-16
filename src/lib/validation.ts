@@ -26,3 +26,11 @@ export const createUserValidation = Yup.object({
   ...passowordSchema,
   role: Yup.string().required("Required"),
 });
+
+export const createTaskValidation = Yup.object({
+  title: Yup.string().required().min(3).max(255),
+  description: Yup.string().max(255),
+  isCompleted: Yup.boolean(),
+  endDate: Yup.date().required("Required"),
+  userId: Yup.number().min(1, "Please choose an employee").required("Required"),
+});

@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
@@ -8,9 +7,7 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { TasksTable } from "@/components/table/TasksTable";
 
-import { apiClient } from "@/lib/apiClient";
-
-import { useSession } from "@/state/useSession";
+import { useTasksList } from "@/hooks/api/useTasksList";
 
 const columns: ColumnDef<Task>[] = [
   {
@@ -41,26 +38,17 @@ const columns: ColumnDef<Task>[] = [
 
 export default function TasksPage() {
   const router = useRouter();
-  const { sessionUser } = useSession();
-  const { data } = useQuery({
-    queryKey: ["tasks", sessionUser.id],
-    queryFn: async () => {
-      const role = sessionUser.role;
-      const isRoleCorrect = role === "manager" || role === "admin";
-      const urlEnd = isRoleCorrect ? "/" : `/${sessionUser.id}`;
+  const { data, isLoading, error } = useTasksList();
 
-      const { data } = await apiClient.get<Task[]>(`getTasks${urlEnd}`);
-      return data;
-    },
-    enabled: Boolean(sessionUser?.id),
-  });
+  if (error) return <p>Sorry could not data</p>;
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">
       <h2 className="mb-8 text-5xl font-bold">Tasks</h2>
       <button
         className="absolute right-0 top-0 flex w-[162px] items-center justify-center gap-1 rounded-md bg-blue-700 p-2 font-bold text-white hover:bg-blue-800"
-        onClick={() => router.push("create-user")}
+        onClick={() => router.push("create-task")}
       >
         <BsPersonFillAdd color="white" />
         Create Task
