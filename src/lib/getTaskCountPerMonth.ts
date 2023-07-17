@@ -16,7 +16,7 @@ const monthNames = [
 export function getTaskCountPerMonth(tasks: Task[]) {
   const currentYear = String(new Date().getFullYear());
   const actuallYearTasks = tasks.filter((task) =>
-    task.endDate.includes(currentYear)
+    task.endDate.toString().includes(currentYear)
   );
   const filteredTasks = filterCurrentYear(actuallYearTasks);
   const taskCountByMonth = getTasksPerMonth(filteredTasks);

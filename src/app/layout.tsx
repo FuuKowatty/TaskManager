@@ -27,9 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(roboto.variable)}>
         <Providers>
-          <div className="hidden md:block">
-            <DarkModeSwitcher />
-          </div>
+          <DarkModeSwitcher />
           {children}
           <ReactQueryDevtools />
         </Providers>

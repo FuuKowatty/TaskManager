@@ -17,9 +17,9 @@ interface ChartAreaProps {
 
 export async function ChartAreaLayout({ children, StatsData }: ChartAreaProps) {
   return (
-    <div className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:block">
+    <div className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:gap-10">
       <Tiles StatsData={StatsData} />
-      <div className="relative h-96 w-full lg:h-[70%]">
+      <div className="relative h-96 w-full lg:h-[65%]">
         {children}
         <ResponsiveContainer>
           <AreaChart data={StatsData}>

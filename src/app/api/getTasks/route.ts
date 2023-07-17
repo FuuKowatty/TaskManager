@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
@@ -32,12 +33,14 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(task, { status: 201 });
-  } catch (error: any) {
-    if (error.code === "P2002") {
-      return new NextResponse("User with email already exists", {
-        status: 409,
-      });
+  } catch (error: unknown) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2002") {
+        return new NextResponse("User with email already exists", {
+          status: 409,
+        });
+      }
+      return new NextResponse(error.message, { status: 500 });
     }
-    return new NextResponse(error.message, { status: 500 });
   }
 }

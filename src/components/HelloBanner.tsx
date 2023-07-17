@@ -19,12 +19,13 @@ export function HelloBanner() {
           </span>
           <p className="text-lg">It is good to see you</p>
         </div>
-        <div className="relative h-40 w-80">
+        <div className="relative h-full w-64">
           <Image
             src="https://i.imgur.com/tep9cOL.png"
             alt="banner"
-            className="object-cover"
-            fill={true}
+            width={220}
+            height={150}
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
