@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
 
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { columns } from "@/components/table/TableColumns";
 import { UsersList } from "@/components/table/UsersList";
 
@@ -10,11 +11,14 @@ import { useUserList } from "@/hooks/api/useUserList";
 
 export default function Team() {
   const router = useRouter();
-  const { data } = useUserList();
+  const { data, isLoading } = useUserList();
 
-  if (!data) {
-    return null;
-  }
+  if (isLoading)
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">
@@ -26,7 +30,7 @@ export default function Team() {
         <BsPersonFillAdd color="white" />
         Create User
       </button>
-      <UsersList columns={columns} data={data} />
+      <UsersList columns={columns} data={data || []} />
     </section>
   );
 }

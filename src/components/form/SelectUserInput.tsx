@@ -15,6 +15,8 @@ import {
 import { useUserList } from "@/hooks/api/useUserList";
 import { useActiveUserId } from "@/state/useActiveStatsUser";
 
+import { LoadingSpinner } from "../LoadingSpinner";
+
 export function SelectUserInput({ userId }: { userId: number }) {
   const { setActiveStatsUserId } = useActiveUserId();
   const [value, setValue] = useState(String(userId));
@@ -23,7 +25,7 @@ export function SelectUserInput({ userId }: { userId: number }) {
   const { data: users, isLoading } = useUserList();
 
   if (isLoading) {
-    return <p>loading</p>;
+    return <LoadingSpinner />;
   }
 
   return (

@@ -8,6 +8,8 @@ export function HelloBanner() {
   const { sessionUser } = useSession();
   const { name, surname } = sessionUser;
 
+  if (!sessionUser.isLogged) return null;
+
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between rounded-md bg-gray-200 text-black">

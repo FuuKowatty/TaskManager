@@ -4,6 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
 
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { TasksTable } from "@/components/table/TasksTable";
 
@@ -41,7 +42,12 @@ export default function TasksPage() {
   const { data, isLoading, error } = useTasksList();
 
   if (error) return <p>Sorry could not data</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">
