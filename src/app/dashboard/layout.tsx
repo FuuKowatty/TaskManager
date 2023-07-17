@@ -9,7 +9,7 @@ interface Props {
 
 export default function DashboardLayoutPage({ children }: Props) {
   return (
-    <div className="m-auto flex h-screen max-w-[1256px] items-stretch justify-stretch px-4 py-8 lg:px-0">
+    <div className="m-auto flex h-screen max-w-[1256px] items-stretch justify-stretch px-4 pt-20 lg:py-8">
       <Navbar />
       <MobileTopNavbar withLogoutButton />
       {children}

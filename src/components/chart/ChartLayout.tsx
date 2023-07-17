@@ -17,17 +17,15 @@ interface ChartAreaProps {
 
 export async function ChartAreaLayout({ children, StatsData }: ChartAreaProps) {
   return (
-    <div className="relative row-start-2 row-end-7 h-full w-full">
-      <div className="flex h-[30%] items-center justify-center gap-6">
-        <Tiles StatsData={StatsData} />
-      </div>
-      <div className="relative h-[70%] w-full">
+    <div className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:block">
+      <Tiles StatsData={StatsData} />
+      <div className="relative h-96 w-full lg:h-[70%]">
         {children}
         <ResponsiveContainer>
           <AreaChart data={StatsData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="monthName" />
-            <YAxis />
+            <YAxis width={20} />
             <Tooltip />
             <Area
               type="monotone"

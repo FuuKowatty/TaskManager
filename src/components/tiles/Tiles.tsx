@@ -9,7 +9,7 @@ export function Tiles({ StatsData }: { StatsData: StatsData[] }) {
     getTilesData(StatsData);
   const { icon, difference } = monthRate;
   return (
-    <>
+    <div className="flex h-[30%] items-stretch justify-center gap-6 lg:items-center">
       <Tile>
         <span className="font-golos-text text-3xl font-bold">
           {currentYearTasksCount}
@@ -35,33 +35,6 @@ export function Tiles({ StatsData }: { StatsData: StatsData[] }) {
           {`${difference}%`} {icon}
         </span>
       </Tile>
-    </>
+    </div>
   );
 }
-
-// const statsListData = [
-//     {
-//       id: 0,
-//       header: "Tasks done",
-//     },
-//     {
-//       id: 1,
-//       header: "Better than month ago",
-//     },
-//     {
-//       id: 2,
-//       header: "Beers",
-//     },
-//   ];
-
-// {statsListData.map(({ header, id }) => {
-//     return (
-//       <article
-//         key={id}
-//         className="flex flex-col items-center justify-center gap-1  rounded-md bg-gray-200 py-4 text-center w-[160px]"
-//       >
-//         <span className="font-golos-text text-3xl font-bold">15</span>
-//         <p>{header}</p>
-//       </article>
-//     );
-//   })}
