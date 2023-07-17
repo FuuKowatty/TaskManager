@@ -1,9 +1,8 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import { useRouter } from "next/navigation";
-import { BsPersonFillAdd } from "react-icons/bs";
 
+import { ButtonCreate } from "@/components/button/ButtonCreate";
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { TasksTable } from "@/components/table/TasksTable";
 
@@ -37,7 +36,6 @@ const columns: ColumnDef<Task>[] = [
 ];
 
 export default function TasksPage() {
-  const router = useRouter();
   const { data, isLoading, error } = useTasksList();
 
   if (error) return <p>Sorry could not data</p>;
@@ -46,13 +44,7 @@ export default function TasksPage() {
   return (
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">
       <h2 className="mb-8 text-5xl font-bold">Tasks</h2>
-      <button
-        className="absolute right-0 top-0 flex w-[162px] items-center justify-center gap-1 rounded-md bg-blue-700 p-2 font-bold text-white hover:bg-blue-800"
-        onClick={() => router.push("create-task")}
-      >
-        <BsPersonFillAdd color="white" />
-        Create Task
-      </button>
+      <ButtonCreate redirectTo="create-task" text="Create Task" />
       <TasksTable columns={columns} data={data || []} />
     </section>
   );

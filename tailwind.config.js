@@ -72,7 +72,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       gridTemplateColumns: {
-        "1FR340PX": "1fr 340px",
+        "DASHBOARD-BIG": "minmax(300px, 1fr) minmax(200px, 0.6fr)",
+        DASHBOARD: "minmax(100px, 1fr) minmax(100px, 0.8fr)",
       },
       gridTemplateRows: {
         12: "repeat(12, 1fr)",

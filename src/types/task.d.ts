@@ -1,10 +1,10 @@
 interface Task {
   id: number;
   title: string;
-  description?: string;
+  description: string | null;
   isCompleted: boolean;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   userId: number | undefined;
 }
 

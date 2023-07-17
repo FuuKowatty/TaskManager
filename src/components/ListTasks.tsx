@@ -1,10 +1,18 @@
 "use client";
 
 import { useUserTasks } from "@/hooks/api/useUserTasks";
+import { useSession } from "@/state/useSession";
 
 import { Task } from "./Task";
 
-export function ListTasks({ userId }: { userId: number }) {
+interface Props {
+  userId?: number;
+}
+
+export function ListTasks({ userId: propsUserId }: Props) {
+  const { sessionUser } = useSession();
+  const userId = propsUserId || sessionUser.id;
+
   const { data, isLoading } = useUserTasks(userId);
 
   if (!data) return <p>Could not Load data</p>;

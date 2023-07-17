@@ -15,7 +15,7 @@ export async function Charts() {
   return sessionUser.role === "employee" ? (
     <>
       <ChartArea />
-      <ListTasks userId={sessionUser.id} />
+      <ListTasks />
     </>
   ) : (
     <>
