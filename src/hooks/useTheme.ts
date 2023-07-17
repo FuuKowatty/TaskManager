@@ -1,19 +1,10 @@
-"use client";
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { useEffect } from "react";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
 const themeAtom = atomWithStorage("theme", "system");
 
-export function DarkModeSwitcher() {
+export function useTheme() {
   const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
@@ -42,19 +33,5 @@ export function DarkModeSwitcher() {
     }
   }, [theme]);
 
-  return (
-    <div className="ml-auto max-w-sm">
-      theme
-      <Select value={theme} onValueChange={(val) => setTheme(val)}>
-        <SelectTrigger>
-          <SelectValue placeholder="Theme" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">Light</SelectItem>
-          <SelectItem value="dark">Dark</SelectItem>
-          <SelectItem value="system">System</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
-  );
+  return { theme, setTheme };
 }

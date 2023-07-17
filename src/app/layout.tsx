@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
-import { DarkModeSwitcher } from "@/components/DarkModeSwitcher";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 import Providers from "./providers";
 
@@ -27,9 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(roboto.variable)}>
         <Providers>
-          <DarkModeSwitcher />
           {children}
           <ReactQueryDevtools />
+          <ThemeSwitcher isHidden />
         </Providers>
       </body>
     </html>
