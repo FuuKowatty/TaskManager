@@ -9,11 +9,18 @@ import { TasksTable } from "@/components/table/TasksTable";
 
 import { useTasksList } from "@/hooks/api/useTasksList";
 
+function CellFormattedDate(value: string) {
+  const date = new Date(value);
+  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+    dateStyle: "full",
+    timeStyle: "medium",
+    hour12: false,
+  }).format(date);
+
+  return formattedDate;
+}
+
 const columns: ColumnDef<Task>[] = [
-  {
-    accessorKey: "id",
-    header: ({ column }) => TableHeaderSort(column, "Id"),
-  },
   {
     accessorKey: "title",
     header: ({ column }) => TableHeaderSort(column, "Title"),
@@ -23,16 +30,28 @@ const columns: ColumnDef<Task>[] = [
     header: ({ column }) => TableHeaderSort(column, "Description"),
   },
   {
-    accessorKey: "is completed",
-    header: ({ column }) => TableHeaderSort(column, "Is completed"),
+    accessorKey: "isCompleted",
+    header: ({ column }) => TableHeaderSort(column, "Progress"),
+    cell: (row) => {
+      const progress = row.getValue();
+      return progress === "true" ? "Completed" : "Pending";
+    },
   },
   {
-    accessorKey: "start date",
-    header: ({ column }) => TableHeaderSort(column, "Start date"),
+    accessorKey: "startDate",
+    header: ({ column }) => TableHeaderSort(column, "Start Date"),
+    cell: ({ getValue }) => {
+      const value = getValue() as string;
+      return CellFormattedDate(value);
+    },
   },
   {
-    accessorKey: "end date",
-    header: ({ column }) => TableHeaderSort(column, "End date"),
+    accessorKey: "endDate",
+    header: ({ column }) => TableHeaderSort(column, "End Date"),
+    cell: ({ getValue }) => {
+      const value = getValue() as string;
+      return CellFormattedDate(value);
+    },
   },
 ];
 

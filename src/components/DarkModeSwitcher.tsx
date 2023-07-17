@@ -1,30 +1,60 @@
 "use client";
+import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { useEffect } from "react";
 
-import { useTheme } from "next-themes";
-import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const themeAtom = atomWithStorage("theme", "system");
 
 export function DarkModeSwitcher() {
-  const { theme, setTheme } = useTheme();
-  const handleChangeMode = () => {
-    theme === "dark" ? setTheme("light") : setTheme("dark");
-  };
+  const [theme, setTheme] = useAtom(themeAtom);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+      return;
+    }
+
+    if (theme === "light") {
+      document.body.classList.remove("dark");
+      return;
+    }
+
+    if (theme === "system") {
+      const prefersDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (prefersDarkMode) {
+        document.body.classList.add("dark");
+        return;
+      }
+
+      document.body.classList.remove("dark");
+      return;
+    }
+  }, [theme]);
 
   return (
-    <span
-      className="right-5 top-1 flex min-h-[44px] min-w-[44px] items-center lg:fixed"
-      onClick={handleChangeMode}
-    >
-      <button className="relative ml-auto  flex h-[24px] w-[42px] cursor-pointer items-center justify-center rounded-lg border-[1.5px] border-gray-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-gray-800">
-        <div className="text-gray-800 dark:text-white">
-          <div className="text-gray-800 dark:text-white">
-            <BsFillSunFill />
-          </div>
-        </div>
-        <div className="text-gray-800 dark:text-white">
-          <BsFillMoonFill />
-        </div>
-        <div className="absolute left-[2px] right-auto h-[18px] w-[18px] rounded-full border-[3px] border-blue-300 bg-blue-400 dark:left-auto  dark:right-[2px]" />
-      </button>
-    </span>
+    <div className="ml-auto max-w-sm">
+      theme
+      <Select value={theme} onValueChange={(val) => setTheme(val)}>
+        <SelectTrigger>
+          <SelectValue placeholder="Theme" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="light">Light</SelectItem>
+          <SelectItem value="dark">Dark</SelectItem>
+          <SelectItem value="system">System</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
   );
 }
