@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { ButtonCreate } from "@/components/button/ButtonCreate";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { columns } from "@/components/table/TableColumns";
@@ -10,8 +8,7 @@ import { UsersList } from "@/components/table/UsersList";
 import { useUserList } from "@/hooks/api/useUserList";
 
 export default function Team() {
-  const router = useRouter();
-  const { data } = useUserList();
+  const { data, isLoading } = useUserList();
 
   if (isLoading)
     return (
@@ -24,7 +21,7 @@ export default function Team() {
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">
       <h2 className="mb-8 text-5xl font-bold">Team</h2>
       <ButtonCreate redirectTo="create-user" text="Create User" />
-      <UsersList columns={columns} data={data} />
+      <UsersList columns={columns} data={data ?? []} />
     </section>
   );
 }

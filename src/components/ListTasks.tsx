@@ -13,7 +13,7 @@ export function ListTasks({ userId: propsUserId }: Props) {
   const { sessionUser } = useSession();
   const userId = propsUserId || sessionUser.id;
 
-  const { data, isLoading } = useUserTasks(userId);
+  const { data } = useUserTasks(userId);
 
   if (!data) return <p>Could not Load data</p>;
 

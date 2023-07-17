@@ -41,7 +41,7 @@ export const useAuth = () => {
         router.push("/login");
         return;
       }
-
+      setSessionUser((prev) => ({ ...prev, isLogged: true }));
       authMutation.mutate();
     };
 
