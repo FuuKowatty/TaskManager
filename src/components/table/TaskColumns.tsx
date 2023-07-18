@@ -6,6 +6,11 @@ import { formatDate } from "@/lib/formatDate";
 
 import { TaskDropdown } from "./TaskDropdown";
 
+function getFullName(usersList: User[], userId: number) {
+  const userData = usersList.find((user) => user.id === userId) as User;
+  return `${userData.name} ${userData.surname}`;
+}
+
 export function getTasksColumn(usersList: User[]) {
   const columns: ColumnDef<Task>[] = [
     {
@@ -20,12 +25,7 @@ export function getTasksColumn(usersList: User[]) {
     {
       accessorKey: "userId",
       header: ({ column }) => TableHeaderSort(column, "Assigned To"),
-      cell: (props) => {
-        const userData = usersList.find(
-          (user) => user.id === props.getValue()
-        ) as User;
-        return `${userData.name} ${userData.surname}`;
-      },
+      cell: (props) => getFullName(usersList, props.getValue() as number),
     },
     {
       accessorKey: "startDate",
@@ -40,7 +40,12 @@ export function getTasksColumn(usersList: User[]) {
     {
       id: "actions",
       cell: ({ row: { original: taskData } }) => (
-        <TaskDropdown taskData={taskData} />
+        <TaskDropdown
+          taskData={{
+            ...taskData,
+            assignedTo: getFullName(usersList, taskData.userId as number),
+          }}
+        />
       ),
     },
   ];
