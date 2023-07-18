@@ -25,7 +25,11 @@ export async function ChartAreaLayout({ children, StatsData }: ChartAreaProps) {
           <AreaChart data={StatsData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="monthName" />
-            <YAxis width={20} />
+            <YAxis
+              type="number"
+              tickFormatter={(value) => (Number.isInteger(value) ? value : "")}
+              width={20}
+            />
             <Tooltip />
             <Area
               type="monotone"
