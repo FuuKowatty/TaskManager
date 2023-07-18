@@ -1,10 +1,12 @@
+import type { FormikProps } from "formik";
+
 import { useUserList } from "@/hooks/api/useUserList";
 
 import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
 
 interface TaskFormProps {
-  formik: any;
+  formik: FormikProps<Task>;
   submitText: string;
   handleCancel: () => void;
 }
@@ -52,7 +54,7 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             cols={30}
             rows={5}
             placeholder="The sales data analysis should..."
-            value={formik.values.description}
+            value={formik.values.description || ""}
             onChange={formik.handleChange}
           />
         </label>

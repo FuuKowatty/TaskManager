@@ -1,7 +1,7 @@
 import { useActiveStatsUser } from "@/hooks/api/useActiveStatsUser";
 
 import { ChartAreaLayout } from "./ChartLayout";
-import { SelectUserInput } from "../form/SelectUserInput";
+import { SelectUserInput } from "./SelectUserInput";
 
 export async function AdminChartArea() {
   const data = await useActiveStatsUser();

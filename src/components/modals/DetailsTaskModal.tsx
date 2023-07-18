@@ -40,7 +40,7 @@ export function DetailsTaskModal({
             <span className="font-bold">End Date:</span> {formatDate(endDate)}
           </p>
           <p>
-            <span className="font-bold">Progress:</span>{" "}
+            <span className="font-bold">Status:</span>{" "}
             {isCompleted ? "Completed" : "Pending"}
           </p>
         </div>

@@ -19,7 +19,7 @@ export function getTasksColumn(usersList: User[]) {
     },
     {
       accessorKey: "isCompleted",
-      header: ({ column }) => TableHeaderSort(column, "Progress"),
+      header: ({ column }) => TableHeaderSort(column, "Status"),
       cell: (props) => (props.getValue() ? "Completed" : "Pending"),
     },
     {
