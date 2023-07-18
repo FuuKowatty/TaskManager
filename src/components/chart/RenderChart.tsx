@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "@/state/useSession";
+import { useSession } from "@/hooks/state/useSession";
 
 import { AdminChartArea } from "./AdminChartArea";
 import { ChartArea } from "./ChartArea";

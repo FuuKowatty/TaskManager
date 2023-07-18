@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useDeleteUser } from "@/hooks/api/useDeleteUser";
+import { useActiveTaskFilter } from "@/hooks/state/useActiveTaskFilter";
 import { useModal } from "@/hooks/useModal";
-import { useActiveTaskFilter } from "@/state/useActiveTaskFilter";
 
 import { ButtonEdit } from "../button/ButtonEdit";
 import { DeleteModal } from "../modals/DeleteModal";

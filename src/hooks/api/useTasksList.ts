@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { apiClient } from "@/lib/apiClient";
 
-import { useSession } from "@/state/useSession";
+import { useSession } from "@/hooks/state/useSession";
 
 export function useTasksList() {
   const { sessionUser } = useSession();

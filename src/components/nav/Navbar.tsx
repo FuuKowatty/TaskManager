@@ -3,9 +3,9 @@
 import Link from "next/link";
 
 import { NavLink } from "@/components/nav/NavLink";
-import { useNavdata } from "@/components/nav/useNavData";
 
 import { useAuth } from "@/hooks/api/useAuth";
+import { useNavdata } from "@/hooks/useNavData";
 
 import { ButtonLogout } from "../button/ButtonLogout";
 

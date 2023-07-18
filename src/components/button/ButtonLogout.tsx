@@ -2,7 +2,7 @@
 
 import { BiLogOut } from "react-icons/bi";
 
-import { useSession } from "@/state/useSession";
+import { useSession } from "@/hooks/state/useSession";
 
 export function ButtonLogout() {
   const { logout } = useSession();

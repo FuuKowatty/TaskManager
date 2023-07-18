@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 
 import { useUserList } from "@/hooks/api/useUserList";
-import { useActiveUserId } from "@/state/useActiveStatsUser";
+import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 
 import { LoadingSpinner } from "../LoadingSpinner";
 

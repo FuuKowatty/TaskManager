@@ -10,7 +10,7 @@ import { TasksTable } from "@/components/table/TasksTable";
 
 import { useTasksList } from "@/hooks/api/useTasksList";
 import { useUserList } from "@/hooks/api/useUserList";
-import { useActiveTaskFilter } from "@/state/useActiveTaskFilter";
+import { useActiveTaskFilter } from "@/hooks/state/useActiveTaskFilter";
 
 export default function TasksPage() {
   const { data: tasksList, isLoading, error } = useTasksList();

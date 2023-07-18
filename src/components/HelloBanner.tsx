@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useSession } from "@/state/useSession";
+import { useSession } from "@/hooks/state/useSession";
 
 export function HelloBanner() {
   const { sessionUser } = useSession();

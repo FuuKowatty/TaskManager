@@ -1,7 +1,7 @@
 "use client";
 
 import { useUserTasks } from "@/hooks/api/useUserTasks";
-import { useSession } from "@/state/useSession";
+import { useSession } from "@/hooks/state/useSession";
 
 import { Task } from "./Task";
 

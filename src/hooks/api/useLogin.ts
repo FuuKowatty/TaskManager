@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 
 import { apiClient } from "@/lib/apiClient";
 
-import { useActiveUserId } from "@/state/useActiveStatsUser";
-import { useSession } from "@/state/useSession";
+import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
+import { useSession } from "@/hooks/state/useSession";
 
 import { useAuth } from "./useAuth";
 

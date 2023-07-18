@@ -1,5 +1,5 @@
 import { navDataAdmin, navDataEmployee, navDataManager } from "@/data/navData";
-import { useSession } from "@/state/useSession";
+import { useSession } from "@/hooks/state/useSession";
 
 const roleToData = {
   employee: navDataEmployee,

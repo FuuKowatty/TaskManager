@@ -5,8 +5,8 @@ import { useEffect } from "react";
 
 import { apiClient } from "@/lib/apiClient";
 
-import { useActiveUserId } from "@/state/useActiveStatsUser";
-import { useSession } from "@/state/useSession";
+import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
+import { useSession } from "@/hooks/state/useSession";
 
 export const useAuth = () => {
   const router = useRouter();
