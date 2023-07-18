@@ -1,5 +1,8 @@
 "use client";
 
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 import {
   Select,
   SelectContent,
@@ -8,16 +11,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { useTheme } from "@/hooks/useTheme";
-
 interface Props {
   isHidden?: boolean;
 }
 
 export function ThemeSwitcher({ isHidden }: Props) {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   if (isHidden) {
+    return null;
+  }
+
+  if (!mounted) {
     return null;
   }
 
