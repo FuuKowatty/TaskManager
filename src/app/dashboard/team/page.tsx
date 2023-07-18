@@ -2,7 +2,7 @@
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { columns } from "@/components/table/TableColumns";
+import { columns } from "@/components/table/UserColumns";
 import { UsersList } from "@/components/table/UsersList";
 
 import { useUserList } from "@/hooks/api/useUserList";

@@ -4,7 +4,7 @@ export const useModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<string>("");
 
-  const openModal = (type: string) => {
+  const openModal = (type: "delete" | "edit" | "details") => {
     setIsModalOpen(true);
     setModalType(type);
   };

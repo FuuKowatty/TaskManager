@@ -1,51 +1,29 @@
 "use client";
 
-import type { ColumnDef } from "@tanstack/react-table";
+import React from "react";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { TableHeaderSort } from "@/components/table/TableHeaderSort";
+import { getTasksColumn } from "@/components/table/TaskColumns";
 import { TasksTable } from "@/components/table/TasksTable";
 
 import { useTasksList } from "@/hooks/api/useTasksList";
-
-const columns: ColumnDef<Task>[] = [
-  {
-    accessorKey: "id",
-    header: ({ column }) => TableHeaderSort(column, "Id"),
-  },
-  {
-    accessorKey: "title",
-    header: ({ column }) => TableHeaderSort(column, "Title"),
-  },
-  {
-    accessorKey: "description",
-    header: ({ column }) => TableHeaderSort(column, "Description"),
-  },
-  {
-    accessorKey: "is completed",
-    header: ({ column }) => TableHeaderSort(column, "Is completed"),
-  },
-  {
-    accessorKey: "start date",
-    header: ({ column }) => TableHeaderSort(column, "Start date"),
-  },
-  {
-    accessorKey: "end date",
-    header: ({ column }) => TableHeaderSort(column, "End date"),
-  },
-];
+import { useUserList } from "@/hooks/api/useUserList";
 
 export default function TasksPage() {
   const { data, isLoading, error } = useTasksList();
+  const { data: usersList, isLoading: isUserLoading } = useUserList();
 
-  if (error) return <p>Sorry could not data</p>;
-  if (isLoading)
+  if (error) return <p>Sorry, could not fetch data</p>;
+  if (isLoading || isUserLoading)
     return (
       <div className="flex h-full w-full items-center justify-center">
         <LoadingSpinner />
       </div>
     );
+  if (!usersList) return null;
+
+  const columns = getTasksColumn(usersList);
 
   return (
     <section className="relative flex w-full flex-col items-start pl-2 pr-6">

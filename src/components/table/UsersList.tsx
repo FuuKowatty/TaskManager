@@ -20,8 +20,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { HashPasswordInput } from "../hashPasswordInput";
-
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -76,18 +74,10 @@ export function UsersList<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {(() => {
-                        return cell.column.id === "password" ? (
-                          <HashPasswordInput
-                            value={cell.getValue() as string}
-                          />
-                        ) : (
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )
-                        );
-                      })()}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

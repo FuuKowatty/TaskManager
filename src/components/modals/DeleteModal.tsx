@@ -3,11 +3,11 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { Modal } from "./Modal";
 
 interface ModalProps {
-  handleDeleteUser: () => void;
+  handleDelete: () => void;
   closeModal: () => void;
 }
 
-export function DeleteUserModal({ handleDeleteUser, closeModal }: ModalProps) {
+export function DeleteModal({ handleDelete, closeModal }: ModalProps) {
   return (
     <Modal>
       <div className="flex h-full flex-col items-center gap-8">
@@ -17,7 +17,7 @@ export function DeleteUserModal({ handleDeleteUser, closeModal }: ModalProps) {
         </div>
 
         <p className="text-xl text-gray-600">
-          <span className="block">Do you really want to delete user? </span>
+          <span className="block">Do you really want to delete? </span>
           <span>This process cannot be undone</span>
         </p>
         <div className="m-auto flex gap-2 text-xl text-white">
@@ -29,7 +29,7 @@ export function DeleteUserModal({ handleDeleteUser, closeModal }: ModalProps) {
           </button>
           <button
             className="min-w-[128px] rounded-md bg-red-400  px-4 py-2 hover:bg-red-500"
-            onClick={handleDeleteUser}
+            onClick={handleDelete}
           >
             Delete
           </button>

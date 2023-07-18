@@ -31,3 +31,27 @@ export async function GET(
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });
   }
 }
+
+export async function POST(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { id } = params;
+    const taskData: Task = await request.json();
+
+    const endDateTime = `${taskData.endDate}T23:59:59Z`;
+    console.log(endDateTime);
+
+    const task = await prisma.task.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: { ...taskData, endDate: endDateTime },
+    });
+
+    return NextResponse.json(task, { status: 201 });
+  } catch (error: any) {
+    return new NextResponse(error.message, { status: 500 });
+  }
+}

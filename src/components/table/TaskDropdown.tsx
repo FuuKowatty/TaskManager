@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { BiDotsVerticalRounded, BiEdit, BiTrash } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 
-import { ButtonDelete } from "@/components/button/ButtonDelete";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,18 +13,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useDeleteUser } from "@/hooks/api/useDeleteUser";
+import { useDeleteTask } from "@/hooks/api/useDeleteTask";
 import { useModal } from "@/hooks/useModal";
 
-import { ButtonEdit } from "../button/ButtonEdit";
-import { DeleteUserModal } from "../modals/DeleteUserModal";
-import { EditUserModal } from "../modals/EditUserModal";
+import { DeleteModal } from "../modals/DeleteModal";
+import { EditTaskModal } from "../modals/EditTaskModal";
 
-export function Dropdown({ userData }: { userData: User }) {
-  const { id, name, surname } = userData;
+export function TaskDropdown({ taskData }: { taskData: Task }) {
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
-  const handleDeleteUser = useDeleteUser(id, closeModal);
-
+  const handleDeleteTask = useDeleteTask(taskData.id, closeModal);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -36,33 +31,44 @@ export function Dropdown({ userData }: { userData: User }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center">
-        <DropdownMenuLabel>{`${name} ${surname}`}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <Link href={`/tasks/${id}`}>
-          <DropdownMenuItem>
-            <BsEye className="mr-2 h-4 w-4" />
-            <span>Show tasks</span>
-          </DropdownMenuItem>
-        </Link>
-        <DropdownMenuSeparator />
+        <DropdownMenuLabel>Task Options</DropdownMenuLabel>
         <DropdownMenuItem>
-          <ButtonDelete openModal={openModal} />
+          <button className="flex items-center">
+            <BsEye className="mr-2 h-4 w-4" />
+            <span>Show details</span>
+          </button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <ButtonEdit openModal={openModal} />
+          <button
+            className="flex items-center"
+            onClick={() => openModal("edit")}
+          >
+            <BiEdit className="mr-2 h-4 w-4" />
+            <span>Edit task</span>
+          </button>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <button
+            className="flex items-center"
+            onClick={() => openModal("delete")}
+          >
+            <BiTrash className="mr-2 h-4 w-4" />
+            <span>Delete task</span>
+          </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
       {isModalOpen && (
         <>
           {modalType === "delete" && (
-            <DeleteUserModal
-              handleDeleteUser={handleDeleteUser}
+            <DeleteModal
+              handleDelete={handleDeleteTask}
               closeModal={closeModal}
             />
           )}
           {modalType === "edit" && (
-            <EditUserModal closeModal={closeModal} userData={userData} />
+            <EditTaskModal taskData={taskData} closeModal={closeModal} />
           )}
         </>
       )}

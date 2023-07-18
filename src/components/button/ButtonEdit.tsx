@@ -1,10 +1,6 @@
 import { BiEdit } from "react-icons/bi";
 
-export function ButtonEdit({
-  openModal,
-}: {
-  openModal: (type: string) => void;
-}) {
+export function ButtonEdit({ openModal }: { openModal: OpenModal }) {
   return (
     <button
       className="flex items-center gap-1"
