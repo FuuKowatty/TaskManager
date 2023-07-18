@@ -10,7 +10,7 @@ interface Task {
 
 interface FormAddTask {
   title: string;
-  description?: string | null;
+  description: string | null;
   endDate: string;
   userId: number;
 }

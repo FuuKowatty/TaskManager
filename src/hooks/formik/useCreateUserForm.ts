@@ -2,11 +2,9 @@ import { useFormik } from "formik";
 
 import { createUserValidation } from "@/lib/validation";
 
-import { useCreateUser } from "../api/useCreateUser";
-
-export function useCreateUserForm() {
-  const { mutate } = useCreateUser();
-
+export function useCreateUserForm(
+  handleCreateUser: (formData: FormRegister) => void
+) {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -17,7 +15,7 @@ export function useCreateUserForm() {
     },
     validationSchema: createUserValidation,
     onSubmit: async (formData) => {
-      mutate(formData);
+      handleCreateUser(formData);
     },
   });
 

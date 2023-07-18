@@ -15,14 +15,14 @@ export function NavLink({ href, text, icon: Icon }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
-  const activeClass = isActive && "font-bold text-white";
+  const activeClass = isActive && "font-bold text-primary-foreground";
 
   return (
     <li className="flex w-full items-center justify-center">
       <Link
         href={href}
         className={clsx(
-          "flex w-full items-center justify-center rounded-lg text-gray-400 transition-all hover:font-bold hover:text-white focus:font-bold focus:text-white focus:outline-none focus:ring-2 focus:ring-gray-50 lg:justify-start lg:gap-4 lg:p-3",
+          "flex w-full items-center justify-center rounded-lg text-background transition-all hover:font-bold hover:text-primary-foreground focus:font-bold focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-gray-50 lg:justify-start lg:gap-4 lg:p-3",
           activeClass
         )}
       >

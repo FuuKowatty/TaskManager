@@ -2,11 +2,12 @@ import type { FormikProps } from "formik";
 
 import { useUserList } from "@/hooks/api/useUserList";
 
+import { ErrorMessage } from "./ErrorMessage";
 import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
 
 interface TaskFormProps {
-  formik: FormikProps<Task>;
+  formik: FormikProps<FormAddTask>;
   submitText: string;
   handleCancel: () => void;
 }
@@ -39,11 +40,10 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             placeholder="Analyze our sales data"
           />
         </label>
-        <p className="min-h-[30px] text-sm text-red-500" role="alert">
-          {formik.touched.title && formik.errors.title && (
-            <>{formik.errors.title}</>
-          )}
-        </p>
+        <ErrorMessage
+          error={formik.errors.title}
+          touched={formik.touched.title}
+        />
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
@@ -58,11 +58,10 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             onChange={formik.handleChange}
           />
         </label>
-        <p className="min-h-[30px] text-sm text-red-500" role="alert">
-          {formik.touched.description && formik.errors.description && (
-            <>{formik.errors.description}</>
-          )}
-        </p>
+        <ErrorMessage
+          error={formik.errors.description}
+          touched={formik.touched.description}
+        />
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
@@ -76,11 +75,10 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             min={blockPreviousDates()}
           />
         </label>
-        <p className="min-h-[30px] text-sm text-red-500" role="alert">
-          {formik.touched.endDate && formik.errors.endDate && (
-            <>{formik.errors.endDate}</>
-          )}
-        </p>
+        <ErrorMessage
+          error={formik.errors.endDate}
+          touched={formik.touched.endDate}
+        />
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
@@ -102,11 +100,10 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
               ))}
           </select>
         </label>
-        <p className="min-h-[30px] text-sm text-red-500" role="alert">
-          {formik.touched.userId && formik.errors.userId && (
-            <>{formik.errors.userId}</>
-          )}
-        </p>
+        <ErrorMessage
+          error={formik.errors.userId}
+          touched={formik.touched.userId}
+        />
       </fieldset>
       <ButtonCancel handleCancel={handleCancel} />
       <FormButton>{submitText}</FormButton>

@@ -11,7 +11,7 @@ export function useCreateTaskForm(
       description: "",
       endDate: "",
       userId: 0,
-    },
+    } as FormAddTask,
     validationSchema: createTaskValidation,
     onSubmit: async (formData) => {
       handleCreateTask(formData);
