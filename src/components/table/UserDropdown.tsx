@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 
@@ -17,12 +17,15 @@ import {
 
 import { useDeleteUser } from "@/hooks/api/useDeleteUser";
 import { useModal } from "@/hooks/useModal";
+import { useActiveTaskFilter } from "@/state/useActiveTaskFilter";
 
 import { ButtonEdit } from "../button/ButtonEdit";
 import { DeleteModal } from "../modals/DeleteModal";
 import { EditUserModal } from "../modals/EditUserModal";
 
 export function Dropdown({ userData }: { userData: User }) {
+  const router = useRouter();
+  const { setActiveTaskFilter } = useActiveTaskFilter();
   const { id, name, surname } = userData;
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
   const handleDeleteUser = useDeleteUser(id, closeModal);
@@ -38,12 +41,19 @@ export function Dropdown({ userData }: { userData: User }) {
       <DropdownMenuContent align="center">
         <DropdownMenuLabel>{`${name} ${surname}`}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <Link href={`/tasks/${id}`}>
-          <DropdownMenuItem>
+        <DropdownMenuItem>
+          <button
+            onClick={() => {
+              setActiveTaskFilter(id);
+              router.push("/dashboard/tasks");
+            }}
+            className="flex items-center"
+            aria-label="show tasks of this user"
+          >
             <BsEye className="mr-2 h-4 w-4" />
             <span>Show tasks</span>
-          </DropdownMenuItem>
-        </Link>
+          </button>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <ButtonDelete openModal={openModal} />
