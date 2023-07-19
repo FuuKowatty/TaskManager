@@ -3,8 +3,6 @@ import type { ColumnDef } from "@tanstack/table-core";
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { Dropdown } from "@/components/table/UserDropdown";
 
-import { HashPasswordInput } from "../HashPasswordInput";
-
 export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "name",
@@ -19,9 +17,8 @@ export const columns: ColumnDef<User>[] = [
     header: ({ column }) => TableHeaderSort(column, "Email"),
   },
   {
-    accessorKey: "password",
-    header: ({ column }) => TableHeaderSort(column, "Password"),
-    cell: (props) => <HashPasswordInput value={props.getValue() as string} />,
+    accessorKey: "role",
+    header: ({ column }) => TableHeaderSort(column, "Role"),
   },
   {
     id: "actions",

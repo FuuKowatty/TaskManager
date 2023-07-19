@@ -36,7 +36,7 @@ export function UpdatePasswordForm({
   return (
     <form className="flex gap-1" onSubmit={handleSubmit}>
       <label>
-        Password
+        Password (Hashed)
         <HashPasswordInput
           value={isReadOnly ? readOnlyPasswordValue : passwordValue}
           handleChange={(event) => setPasswordValue(event.target.value)}

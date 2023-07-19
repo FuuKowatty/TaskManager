@@ -10,7 +10,7 @@ interface HashPasswordInputProps {
   value: string;
   readOnly?: boolean;
   styled?: boolean;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function HashPasswordInput({
