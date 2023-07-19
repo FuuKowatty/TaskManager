@@ -19,16 +19,18 @@ export async function GET(
   }
 }
 
-export async function POST(request: Request, response: Response) {
+export async function POST(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
-    const json: User = await request.json();
+    const { id: userId } = params;
+    const json = await request.json();
     const user = await prisma.user.update({
       where: {
-        id: json.id,
+        id: parseInt(userId),
       },
-      data: {
-        ...json,
-      },
+      data: json,
     });
 
     return NextResponse.json(user, { status: 201 });

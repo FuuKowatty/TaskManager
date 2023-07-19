@@ -3,7 +3,7 @@ import type { ColumnDef } from "@tanstack/table-core";
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { Dropdown } from "@/components/table/UserDropdown";
 
-import { HashPasswordInput } from "../hashPasswordInput";
+import { HashPasswordInput } from "../HashPasswordInput";
 
 export const columns: ColumnDef<User>[] = [
   {

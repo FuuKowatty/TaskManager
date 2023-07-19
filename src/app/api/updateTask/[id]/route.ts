@@ -41,7 +41,6 @@ export async function POST(
     const taskData: Task = await request.json();
 
     const endDateTime = `${taskData.endDate}T23:59:59Z`;
-    console.log(endDateTime);
 
     const task = await prisma.task.update({
       where: {
