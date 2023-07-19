@@ -4,7 +4,7 @@ import type { ChangeEvent } from "react";
 import React, { useEffect, useState } from "react";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { PlaceholderTable } from "@/components/PlaceholderTable";
 import { getTasksColumn } from "@/components/table/TaskColumns";
 import { TasksTable } from "@/components/table/TasksTable";
 
@@ -37,19 +37,17 @@ export default function TasksPage() {
   };
 
   if (error) return <p>Sorry, could not fetch data</p>;
+
   if (isLoading || isUserLoading) {
-    return (
-      <div className="flex h-full w-full items-center justify-center">
-        <LoadingSpinner />
-      </div>
-    );
+    return <PlaceholderTable />;
   }
+
   if (!usersList) return null;
 
   const columns = getTasksColumn(usersList);
 
   return (
-    <section className="relative flex w-full flex-col items-start pl-2 pr-6">
+    <section className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
       <h2 className="mb-8 text-5xl font-bold">Tasks</h2>
       <ButtonCreate redirectTo="create-task" text="Create Task" />
       <select

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   .visually-hidden {
     clip: rect(0 0 0 0);
@@ -26,22 +25,19 @@
 }
 
 @layer base {
-
   * {
-    @apply box-border m-0 p-0
+    @apply m-0 box-border p-0;
   }
 
-
   html {
-    @apply overflow-x-hidden mr-[calc(-1*(100vw-100%))] {
+    @apply mr-[calc(-1*(100vw-100%))] overflow-x-hidden {
       /*dont move scroll after open modal */
     }
   }
 
   body {
-    @apply bg-lightGray dark:bg-darkGray ;
+    @apply bg-lightGray dark:bg-darkGray;
     @apply text-black dark:text-white;
     @apply font-roboto;
   }
-
 }
