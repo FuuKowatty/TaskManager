@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { useUserList } from "@/hooks/api/useUserList";
+import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 
 import { LoadingSpinner } from "../LoadingSpinner";
@@ -22,7 +22,7 @@ export function SelectUserInput({ userId }: { userId: number }) {
   const [value, setValue] = useState(String(userId));
   setActiveStatsUserId(parseInt(value));
 
-  const { data: users, isLoading } = useUserList();
+  const { data: users, isLoading } = useEmployeesList();
 
   if (isLoading) {
     return <LoadingSpinner />;

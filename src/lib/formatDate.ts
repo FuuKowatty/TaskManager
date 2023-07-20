@@ -1,12 +1,13 @@
-export function formatDate(dateTime: string) {
+export function formatDate(dateTime: string): string {
   const date = new Date(dateTime);
-  const formattedDate = date
-    .toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .replace(/\//g, "-");
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  const formattedDate = date.toLocaleString("en-US", options);
 
   return formattedDate;
 }

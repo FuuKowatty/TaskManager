@@ -1,6 +1,6 @@
 import type { FormikProps } from "formik";
 
-import { useUserList } from "@/hooks/api/useUserList";
+import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 
 import { ErrorMessage } from "./ErrorMessage";
 import { ButtonCancel } from "../button/ButtonCancel";
@@ -13,8 +13,7 @@ interface TaskFormProps {
 }
 
 export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
-  const { data: usersList } = useUserList();
-
+  const { data: usersList } = useEmployeesList();
   if (!usersList) {
     return null;
   }

@@ -12,7 +12,7 @@ export function useCreateUserForm(
       email: "",
       password: "",
       role: "employee",
-    },
+    } as FormRegister,
     validationSchema: createUserValidation,
     onSubmit: async (formData) => {
       handleCreateUser(formData);

@@ -5,14 +5,14 @@ import prisma from "@/lib/prisma";
 export async function GET() {
   try {
     const usersWithCompletedTasks = await prisma.user.findMany({
+      where: {
+        role: "employee",
+      },
       select: {
         id: true,
         name: true,
         surname: true,
         tasks: {
-          select: {
-            isCompleted: true,
-          },
           where: {
             isCompleted: true,
           },

@@ -3,11 +3,12 @@ import type { FormikProps } from "formik";
 import { ErrorMessage } from "./ErrorMessage";
 import { FormButton } from "../button/ButtonForm";
 
-export function CreateUserForm({
-  formik,
-}: {
+interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
-}) {
+  createError: ErrorMessage;
+}
+
+export function CreateUserForm({ formik, createError }: CreateUserFormProps) {
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -59,10 +60,14 @@ export function CreateUserForm({
             placeholder="JohnCruise@gmail.com"
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.email}
-          touched={formik.touched.email}
-        />
+        <p className="min-h-[30px] text-sm text-red-500" role="alert">
+          {formik.touched.email && formik.errors.email ? (
+            <>{formik.errors.email}</>
+          ) : (
+            createError &&
+            createError.type === "email" && <>{createError.message}</>
+          )}
+        </p>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">

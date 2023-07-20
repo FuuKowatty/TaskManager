@@ -4,10 +4,7 @@ import type { ChangeEvent } from "react";
 import { FormButton } from "../button/ButtonForm";
 
 interface LoginFormProps {
-  loginError: {
-    type: string | null;
-    message: string | null;
-  };
+  loginError: ErrorMessage;
   formik: FormikProps<FormLogin>;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -15,7 +15,7 @@ interface FormRegister {
   surname: string;
   email: string;
   password: string;
-  role: string;
+  role: Role;
 }
 
 interface FormLogin {

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { apiClient } from "@/lib/apiClient";
 
-export function useUserList() {
+export function useUsersList() {
   return useQuery({
     queryKey: ["team"],
     queryFn: async () => {
