@@ -3,10 +3,21 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const posts = await prisma.task.findMany();
+    const { searchParams } = new URL(request.url);
+    const isCompleted = searchParams.get("isCompleted");
 
+    if (isCompleted === "true") {
+      const posts = await prisma.task.findMany({
+        where: {
+          isCompleted: true,
+        },
+      });
+      return NextResponse.json(posts);
+    }
+
+    const posts = await prisma.task.findMany();
     return NextResponse.json(posts);
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });

@@ -6,11 +6,10 @@ import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 export async function useActiveStatsUser() {
   const { activeStatsUserId } = useActiveUserId();
 
-  if (!activeStatsUserId) return null;
+  const completedTasks = activeStatsUserId
+    ? await apiClient.get(`getTasks/${activeStatsUserId}?isCompleted=true`)
+    : await apiClient.get(`getTasks?isCompleted=true`);
 
-  const completedTasks = await apiClient.get(
-    `getTasks/${activeStatsUserId}?isCompleted=true`
-  );
   const StatsData = getTaskCountPerMonth(completedTasks.data);
 
   return { activeStatsUserId, StatsData };

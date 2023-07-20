@@ -25,7 +25,11 @@ export const useAuth = () => {
     },
     onSuccess: (data) => {
       setSessionUser({ ...data, isLogged: true });
-      setActiveStatsUserId(data.id);
+
+      // if admin is logged set false value so then it will print stats for all
+      data.role === "admin" || data.role === "manager"
+        ? setActiveStatsUserId(0)
+        : setActiveStatsUserId(data.id);
     },
     onError: () => {
       router.push("/login");
@@ -46,11 +50,5 @@ export const useAuth = () => {
     };
 
     checkUser();
-  }, [
-    router,
-    setSessionUser,
-    setActiveStatsUserId,
-    sessionUser.isLogged,
-    authMutation,
-  ]);
+  }, [router, setSessionUser, sessionUser.isLogged, authMutation]);
 };

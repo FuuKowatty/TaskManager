@@ -4,16 +4,16 @@ import { ChartAreaLayout } from "./ChartLayout";
 import { SelectUserInput } from "./SelectUserInput";
 
 export async function AdminChartArea() {
-  const data = await useActiveStatsUser();
+  const data = await useActiveStatsUser(); // usun ze zwraca activestatsuserid
 
   if (!data) return null;
 
-  const { activeStatsUserId: userId, StatsData } = data;
+  const { StatsData } = data;
 
   return (
     <ChartAreaLayout StatsData={StatsData}>
       <div className="absolute right-0 top-[-40px]">
-        <SelectUserInput userId={userId} />
+        <SelectUserInput />
       </div>
     </ChartAreaLayout>
   );
