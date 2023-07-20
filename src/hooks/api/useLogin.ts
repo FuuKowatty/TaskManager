@@ -12,10 +12,13 @@ import { useAuth } from "./useAuth";
 export const useLogin = () => {
   useAuth();
   const router = useRouter();
-  const { sessionUser, setSessionUser } = useSession();
-  const { setActiveStatsUserId } = useActiveUserId();
+  const {
+    sessionUser: { role, id, isLogged },
+    setSessionUser,
+  } = useSession();
+  const { setStatsPermission } = useActiveUserId();
 
-  if (sessionUser.isLogged) router.push("/dashboard");
+  if (isLogged) router.push("/dashboard");
 
   const {
     mutate: loginMutate,
@@ -28,7 +31,7 @@ export const useLogin = () => {
     },
     onSuccess: (userData) => {
       setSessionUser({ ...userData, isLogged: true });
-      setActiveStatsUserId(userData.id);
+      setStatsPermission(role, id);
       router.push("/dashboard");
     },
   });

@@ -8,11 +8,11 @@ export function BestEmployess() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="row-start-4 w-full lg:col-start-2 lg:mt-[-60px]">
+    <>
       <div className="mb-4 w-full text-center text-xl font-bold">
         Employees of the month
       </div>
-      <ol>
+      <ol className="w-full">
         {bestEmployees ? (
           bestEmployees
             .slice(0, 5)
@@ -28,6 +28,6 @@ export function BestEmployess() {
           <p>No Employees found</p>
         )}
       </ol>
-    </div>
+    </>
   );
 }

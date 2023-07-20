@@ -10,8 +10,11 @@ import { useSession } from "@/hooks/state/useSession";
 
 export const useAuth = () => {
   const router = useRouter();
-  const { sessionUser, setSessionUser } = useSession();
-  const { setActiveStatsUserId } = useActiveUserId();
+  const {
+    sessionUser: { isLogged, role, id },
+    setSessionUser,
+  } = useSession();
+  const { setStatsPermission } = useActiveUserId();
 
   const userIdCookie = getCookie("userId");
 
@@ -25,11 +28,7 @@ export const useAuth = () => {
     },
     onSuccess: (data) => {
       setSessionUser({ ...data, isLogged: true });
-
-      // if admin is logged set false value so then it will print stats for all
-      data.role === "admin" || data.role === "manager"
-        ? setActiveStatsUserId(0)
-        : setActiveStatsUserId(data.id);
+      setStatsPermission(role, id);
     },
     onError: () => {
       router.push("/login");
@@ -37,7 +36,7 @@ export const useAuth = () => {
   });
 
   useEffect(() => {
-    if (sessionUser.isLogged) return;
+    if (isLogged) return;
 
     const checkUser = async () => {
       const userIdCookie = getCookie("userId");
@@ -50,5 +49,5 @@ export const useAuth = () => {
     };
 
     checkUser();
-  }, [router, setSessionUser, sessionUser.isLogged, authMutation]);
+  }, [router, setSessionUser, isLogged, authMutation]);
 };

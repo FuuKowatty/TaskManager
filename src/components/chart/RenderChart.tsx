@@ -15,12 +15,16 @@ export async function Charts() {
   return sessionUser.role === "employee" ? (
     <>
       <ChartArea />
-      <ListTasks />
+      <div className="relative flex h-full w-full flex-col items-center lg:col-start-2 lg:row-span-3 lg:row-start-4  lg:mt-[-60px]">
+        <ListTasks />
+      </div>
     </>
   ) : (
     <>
       <AdminChartArea />
-      <BestEmployess />
+      <div className="flex h-full w-full flex-col items-center lg:col-start-2 lg:row-span-3 lg:row-start-4  lg:mt-[-60px]">
+        <BestEmployess />
+      </div>
     </>
   );
 }

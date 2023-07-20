@@ -15,7 +15,7 @@ import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 
 import { LoadingSpinner } from "../LoadingSpinner";
 
-export function SelectUserInput() {
+export function SelectUserInput({ blocked }: { blocked?: boolean }) {
   const { activeStatsUserId, setActiveStatsUserId } = useActiveUserId();
   const { data: employeesList, isLoading } = useEmployeesList();
 
@@ -24,8 +24,10 @@ export function SelectUserInput() {
   }
   return (
     <Select
+      disabled={blocked ?? false}
       value={activeStatsUserId.toString()}
       onValueChange={(value: string) => setActiveStatsUserId(Number(value))}
+      aria-label={`filter tasks by employee`}
     >
       <SelectTrigger className="w-[180px]">
         <SelectValue>

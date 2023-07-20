@@ -22,7 +22,8 @@ export async function GET(
         id: Number(id),
       },
       data: {
-        isCompleted: !isCompleted.isCompleted,
+        isCompleted: true,
+        endDate: new Date(),
       },
     });
 
