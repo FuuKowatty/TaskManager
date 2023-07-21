@@ -4,21 +4,11 @@ import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/apiClient";
 import { getErrorMessage } from "@/lib/getErrorMessage";
 
-import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { useSession } from "@/hooks/state/useSession";
 
-import { useAuth } from "./useAuth";
-
 export const useLogin = () => {
-  useAuth();
   const router = useRouter();
-  const {
-    sessionUser: { role, id, isLogged },
-    setSessionUser,
-  } = useSession();
-  const { setStatsPermission } = useActiveUserId();
-
-  if (isLogged) router.push("/dashboard");
+  const { setSessionUser } = useSession();
 
   const {
     mutate: loginMutate,
@@ -31,7 +21,6 @@ export const useLogin = () => {
     },
     onSuccess: (userData) => {
       setSessionUser({ ...userData, isLogged: true });
-      setStatsPermission(role, id);
       router.push("/dashboard");
     },
   });

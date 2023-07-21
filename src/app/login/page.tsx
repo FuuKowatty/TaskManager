@@ -1,16 +1,29 @@
 "use client";
 
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 import { LoginForm } from "@/components/form/LoginForm";
 
 import { useLogin } from "@/hooks/api/useLogin";
 import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
-export default function FormLogin() {
+export default function LoginPage() {
   const { handleLogin, loginError, resetApiResponseErrors } = useLogin();
   const { formik, handleChange } = useLoginForm(
     handleLogin,
     resetApiResponseErrors
   );
+
+  const router = useRouter();
+  useEffect(() => {
+    const userIdCookies = getCookie("userId");
+    if (userIdCookies) {
+      router.push("/dashboard");
+      return;
+    }
+  }, [router]);
 
   const FormValues = {
     loginError,

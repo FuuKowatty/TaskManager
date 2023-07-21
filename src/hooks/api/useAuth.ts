@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { getCookie } from "cookies-next";
+import type { CookieValueTypes } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -11,26 +12,26 @@ import { useSession } from "@/hooks/state/useSession";
 export const useAuth = () => {
   const router = useRouter();
   const {
-    sessionUser: { isLogged, role, id },
+    sessionUser: { isLogged },
     setSessionUser,
   } = useSession();
   const { setStatsPermission } = useActiveUserId();
 
-  const userIdCookie = getCookie("userId");
-
   const authMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (userIdCookie: CookieValueTypes) => {
       const { data } = await apiClient.get<Omit<User, "isLogged">>(
         `getUsers/${Number(userIdCookie)}`
       );
 
       return data;
     },
-    onSuccess: (data) => {
-      setSessionUser({ ...data, isLogged: true });
-      setStatsPermission(role, id);
+    onSuccess: (userData) => {
+      setSessionUser({ ...userData, isLogged: true });
+      ``;
+      setStatsPermission(userData.role, userData.id);
     },
     onError: () => {
+      deleteCookie("userId");
       router.push("/login");
     },
   });
@@ -44,8 +45,7 @@ export const useAuth = () => {
         router.push("/login");
         return;
       }
-      setSessionUser((prev) => ({ ...prev, isLogged: true }));
-      authMutation.mutate();
+      authMutation.mutate(userIdCookie);
     };
 
     checkUser();

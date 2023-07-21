@@ -1,5 +1,7 @@
+import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
+import { SALT_ROUNDS } from "@/lib/constanst";
 import prisma from "@/lib/prisma";
 
 export async function GET(
@@ -26,11 +28,18 @@ export async function POST(
   try {
     const { id: userId } = params;
     const json = await request.json();
+
+    const hashedPassword = json.password
+      ? await bcrypt.hash(json.password, SALT_ROUNDS)
+      : null;
+
+    const data = hashedPassword ? { password: hashedPassword } : json;
+
     const user = await prisma.user.update({
       where: {
         id: parseInt(userId),
       },
-      data: json,
+      data,
     });
 
     return NextResponse.json(user, { status: 201 });

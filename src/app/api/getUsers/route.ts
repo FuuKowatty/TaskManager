@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
+import { SALT_ROUNDS } from "@/lib/constanst";
 import prisma from "@/lib/prisma";
 
 export async function GET(request: Request) {
@@ -25,8 +26,6 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });
   }
 }
-
-const SALT_ROUNDS = 10;
 
 export async function POST(request: Request, response: Response) {
   try {
