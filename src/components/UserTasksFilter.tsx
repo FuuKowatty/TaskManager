@@ -1,7 +1,17 @@
-import type { ChangeEvent } from "react";
 import { useEffect } from "react";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { useActiveTaskFilter } from "@/hooks/state/useActiveTaskFilter";
+import { useSession } from "@/hooks/state/useSession";
 
 interface UserTasksFilterProps {
   usersList: User[];
@@ -14,6 +24,9 @@ export function UserTasksFilter({
   tasksList,
   handleChangeData,
 }: UserTasksFilterProps) {
+  const {
+    sessionUser: { name, surname, role },
+  } = useSession();
   const { activeTaskFilter, setActiveTaskFilter } = useActiveTaskFilter();
 
   useEffect(() => {
@@ -31,27 +44,40 @@ export function UserTasksFilter({
     filterTasksByActiveUser();
   }, [activeTaskFilter, tasksList, usersList, handleChangeData]);
 
-  const handleUserChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setActiveTaskFilter(parseInt(e.target.value));
+  const handleUserChange = (value: number) => {
+    setActiveTaskFilter(value);
   };
 
   return (
-    <select
-      className="min-w-[256px] border-b-2 border-gray-400 bg-white p-2 text-black focus:border-blue-700 focus:outline-none"
-      onChange={handleUserChange}
+    <Select
+      disabled={role === "employee"}
+      value={activeTaskFilter !== null ? activeTaskFilter.toString() : "0"}
+      onValueChange={(value) => handleUserChange(Number(value))}
+      aria-label={`filter tasks by employee`}
     >
-      <option value={0} selected={!activeTaskFilter}>
-        All
-      </option>
-      {usersList.map((user) => (
-        <option
-          key={user.id}
-          value={user.id}
-          selected={activeTaskFilter === user.id}
-        >
-          {user.name} {user.surname}
-        </option>
-      ))}
-    </select>
+      <SelectTrigger className="w-[256px] border-b-2 border-gray-400 bg-white p-2 text-black focus:border-blue-700 focus:outline-none">
+        <SelectValue>
+          {activeTaskFilter
+            ? usersList.find((user) => user.id === activeTaskFilter)?.name +
+              " " +
+              usersList.find((user) => user.id === activeTaskFilter)?.surname
+            : role === "employee"
+            ? `${name} ${surname}`
+            : "All"}
+        </SelectValue>
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Employees</SelectLabel>
+          <SelectItem value="0">All</SelectItem>
+          {usersList.map((user) => (
+            <SelectItem
+              value={user.id.toString()}
+              key={user.id}
+            >{`${user.name} ${user.surname}`}</SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
 }
