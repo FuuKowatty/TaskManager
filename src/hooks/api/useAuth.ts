@@ -12,7 +12,7 @@ import { useSession } from "@/hooks/state/useSession";
 export const useAuth = () => {
   const router = useRouter();
   const {
-    sessionUser: { isLogged },
+    sessionUser: { isLogged, role, id },
     setSessionUser,
   } = useSession();
   const { setStatsPermission } = useActiveUserId();
@@ -27,7 +27,6 @@ export const useAuth = () => {
     },
     onSuccess: (userData) => {
       setSessionUser({ ...userData, isLogged: true });
-      ``;
       setStatsPermission(userData.role, userData.id);
     },
     onError: () => {
@@ -37,7 +36,10 @@ export const useAuth = () => {
   });
 
   useEffect(() => {
-    if (isLogged) return;
+    if (isLogged) {
+      setStatsPermission(role, id);
+      return;
+    }
 
     const checkUser = async () => {
       const userIdCookie = getCookie("userId");
@@ -49,5 +51,13 @@ export const useAuth = () => {
     };
 
     checkUser();
-  }, [router, setSessionUser, isLogged, authMutation]);
+  }, [
+    router,
+    setSessionUser,
+    isLogged,
+    role,
+    id,
+    authMutation,
+    setStatsPermission,
+  ]);
 };
