@@ -1,16 +1,22 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { apiClient } from "@/lib/apiClient";
 import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
 
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 
-export async function useActiveStatsUser() {
+export function useActiveStatsUser() {
   const { activeStatsUserId } = useActiveUserId();
 
-  const completedTasks = activeStatsUserId
-    ? await apiClient.get(`getTasks/${activeStatsUserId}?isCompleted=true`)
-    : await apiClient.get(`getTasks?isCompleted=true`);
-
-  const StatsData = getTaskCountPerMonth(completedTasks.data);
-
-  return { activeStatsUserId, StatsData };
+  return useQuery({
+    queryKey: ["tasks", activeStatsUserId],
+    queryFn: async () => {
+      const { data } = await apiClient.get<Task[]>(
+        `getTasks${
+          activeStatsUserId ? "/" + activeStatsUserId : ""
+        }?isCompleted=true`
+      );
+      return getTaskCountPerMonth(data);
+    },
+  });
 }

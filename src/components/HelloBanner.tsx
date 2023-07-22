@@ -5,10 +5,9 @@ import Image from "next/image";
 import { useSession } from "@/hooks/state/useSession";
 
 export function HelloBanner() {
-  const { sessionUser } = useSession();
-  const { name, surname } = sessionUser;
-
-  if (!sessionUser.isLogged) return null;
+  const {
+    sessionUser: { name, surname },
+  } = useSession();
 
   return (
     <div className="w-full">

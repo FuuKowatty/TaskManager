@@ -4,9 +4,9 @@ import { getTilesData } from "@/lib/getTilesData";
 
 import { Tile } from "./Tile";
 
-export function Tiles({ StatsData }: { StatsData: StatsData[] }) {
+export function Tiles({ statsData }: { statsData: StatsData[] }) {
   const { monthRate, currentMonth, currentYearTasksCount } =
-    getTilesData(StatsData);
+    getTilesData(statsData);
   const { icon, difference } = monthRate;
   return (
     <div className="flex h-[30%] items-stretch justify-center gap-6 lg:items-center">

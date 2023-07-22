@@ -14,3 +14,8 @@ interface FormAddTask {
   endDate: string;
   userId: number;
 }
+
+interface TaskCountPerMonth {
+  monthName: string;
+  taskCount: number;
+}

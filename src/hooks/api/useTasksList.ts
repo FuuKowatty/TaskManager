@@ -2,20 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 
 import { apiClient } from "@/lib/apiClient";
 
-import { useSession } from "@/hooks/state/useSession";
+import { useActiveTaskFilter } from "../state/useActiveTaskFilter";
 
 export function useTasksList() {
-  const { sessionUser } = useSession();
+  const { activeTaskFilter } = useActiveTaskFilter();
   return useQuery({
-    queryKey: ["tasks", sessionUser.id],
+    queryKey: ["tasks", activeTaskFilter],
     queryFn: async () => {
-      const role = sessionUser.role;
-      const isRoleCorrect = role === "manager" || role === "admin";
-      const urlEnd = isRoleCorrect ? "/" : `/${sessionUser.id}`;
+      const urlEnd = activeTaskFilter ? `/${activeTaskFilter ?? ""}` : "";
 
       const { data } = await apiClient.get<Task[]>(`getTasks${urlEnd}`);
       return data;
     },
-    enabled: Boolean(sessionUser.id),
   });
 }

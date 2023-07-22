@@ -3,13 +3,9 @@ import type { ColumnDef } from "@tanstack/table-core";
 import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 
 import { formatDate } from "@/lib/formatDate";
+import { getEmployeeFullNameById } from "@/lib/getEmployeeByName";
 
 import { TaskDropdown } from "./TaskDropdown";
-
-function getFullName(usersList: User[], userId: number) {
-  const userData = usersList.find((user) => user.id === userId) as User;
-  return `${userData.name} ${userData.surname}`;
-}
 
 export function getTasksColumn(usersList: User[]) {
   const columns: ColumnDef<Task>[] = [
@@ -25,7 +21,8 @@ export function getTasksColumn(usersList: User[]) {
     {
       accessorKey: "userId",
       header: ({ column }) => TableHeaderSort(column, "Assigned To"),
-      cell: (props) => getFullName(usersList, props.getValue() as number),
+      cell: (props) =>
+        getEmployeeFullNameById(usersList, props.getValue() as number),
     },
     {
       accessorKey: "startDate",
@@ -43,7 +40,7 @@ export function getTasksColumn(usersList: User[]) {
         <TaskDropdown
           taskData={{
             ...taskData,
-            assignedTo: getFullName(usersList, taskData.userId as number),
+            assignedTo: getEmployeeFullNameById(usersList, taskData.userId),
           }}
         />
       ),

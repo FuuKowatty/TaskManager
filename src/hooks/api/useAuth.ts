@@ -12,12 +12,13 @@ import { useSession } from "@/hooks/state/useSession";
 export const useAuth = () => {
   const router = useRouter();
   const {
-    sessionUser: { isLogged, role, id },
+    sessionUser: { isLogged },
     setSessionUser,
   } = useSession();
   const { setStatsPermission } = useActiveUserId();
 
   const authMutation = useMutation({
+    mutationKey: ["auth"],
     mutationFn: async (userIdCookie: CookieValueTypes) => {
       const { data } = await apiClient.get<Omit<User, "isLogged">>(
         `getUsers/${Number(userIdCookie)}`
@@ -37,27 +38,17 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (isLogged) {
-      setStatsPermission(role, id);
       return;
     }
 
     const checkUser = async () => {
       const userIdCookie = getCookie("userId");
       if (!userIdCookie) {
-        router.push("/login");
-        return;
+        return router.push("/login");
       }
       authMutation.mutate(userIdCookie);
     };
 
     checkUser();
-  }, [
-    router,
-    setSessionUser,
-    isLogged,
-    role,
-    id,
-    authMutation,
-    setStatsPermission,
-  ]);
+  }, [isLogged, router, authMutation]);
 };

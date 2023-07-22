@@ -9,13 +9,23 @@ export async function GET(
   try {
     const { searchParams } = new URL(request.url);
     const isCompleted = searchParams.get("isCompleted");
+
+    const whereClause: { userId: number; isCompleted?: boolean } = {
+      userId: Number(params.id),
+    };
+
+    if (isCompleted === "true") {
+      whereClause.isCompleted = true;
+    }
+
     const tasks = await prisma.task.findMany({
-      where: {
-        userId: Number(params.id),
-        isCompleted: isCompleted ? true : false,
-      },
+      where: whereClause,
     });
-    if (!tasks) return NextResponse.json({ message: "No tasks found" });
+
+    if (!tasks) {
+      return NextResponse.json({ message: "No tasks found" });
+    }
+
     return NextResponse.json(tasks);
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });

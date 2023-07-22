@@ -1,5 +1,8 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
+
 import {
   Select,
   SelectContent,
@@ -15,27 +18,38 @@ import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 
 import { LoadingSpinner } from "../LoadingSpinner";
 
-export function SelectUserInput({ blocked }: { blocked?: boolean }) {
+export function SelectUserInput() {
+  const queryClient = useQueryClient();
   const { activeStatsUserId, setActiveStatsUserId } = useActiveUserId();
   const { data: employeesList, isLoading } = useEmployeesList();
+
+  useEffect(() => {
+    queryClient.invalidateQueries(["tasks"]);
+  }, [queryClient, activeStatsUserId]);
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
+  if (!employeesList) return null;
+
+  const handleChange = (value: number) => {
+    setActiveStatsUserId(value);
+  };
+
+  const { name, surname } =
+    (employeesList.find(
+      (employee) => employee.id === activeStatsUserId
+    ) as User) ?? "";
   return (
     <Select
-      disabled={blocked ?? false}
       value={activeStatsUserId.toString()}
-      onValueChange={(value: string) => setActiveStatsUserId(Number(value))}
+      onValueChange={(value: string) => handleChange(Number(value))}
       aria-label={`filter tasks by employee`}
     >
       <SelectTrigger className="w-[180px]">
         <SelectValue>
-          {activeStatsUserId
-            ? employeesList?.find(
-                (employee) => employee.id === activeStatsUserId
-              )?.name
-            : "All"}
+          {activeStatsUserId ? `${name} ${surname}` : "All"}
         </SelectValue>
       </SelectTrigger>
       <SelectContent>
