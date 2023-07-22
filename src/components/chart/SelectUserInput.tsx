@@ -12,10 +12,14 @@ import {
 
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
+import { useSession } from "@/hooks/state/useSession";
 
 import { LoadingSpinner } from "../LoadingSpinner";
 
 export function SelectUserInput() {
+  const {
+    sessionUser: { role },
+  } = useSession();
   const { activeStatsUserId, setActiveStatsUserId } = useActiveUserId();
   const { data: employeesList, isLoading } = useEmployeesList();
 
@@ -35,6 +39,7 @@ export function SelectUserInput() {
     ) as User) ?? "";
   return (
     <Select
+      disabled={role === "employee"}
       value={activeStatsUserId.toString()}
       onValueChange={(value: string) => handleChange(Number(value))}
       aria-label={`filter tasks by employee`}

@@ -9,7 +9,7 @@ export function useActiveStatsTasks() {
   return useQuery({
     queryKey: ["tasks", activeStatsUserId],
     queryFn: async () => {
-      const { data } = await getTasksList(activeStatsUserId);
+      const { data } = await getTasksList(activeStatsUserId, true);
       return data;
     },
   });

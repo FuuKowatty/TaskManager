@@ -6,9 +6,14 @@ import { getErrorMessage } from "@/lib/getErrorMessage";
 
 import { useSession } from "@/hooks/state/useSession";
 
+import { useActiveUserId } from "../state/useActiveStatsUser";
+import { useActiveTaskFilter } from "../state/useActiveTaskFilter";
+
 export const useLogin = () => {
   const router = useRouter();
   const { setSessionUser } = useSession();
+  const { setStatsPermission: setChartFilter } = useActiveUserId();
+  const { setStatsPermission: setTaskFilter } = useActiveTaskFilter();
 
   const {
     mutate: loginMutate,
@@ -21,6 +26,8 @@ export const useLogin = () => {
     },
     onSuccess: (userData) => {
       setSessionUser({ ...userData, isLogged: true });
+      setChartFilter(userData.role, userData.id);
+      setTaskFilter(userData.role, userData.id);
       router.push("/dashboard");
     },
   });

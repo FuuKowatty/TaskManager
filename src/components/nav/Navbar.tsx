@@ -4,13 +4,11 @@ import Link from "next/link";
 
 import { NavLink } from "@/components/nav/NavLink";
 
-import { useAuth } from "@/hooks/api/useAuth";
 import { useNavdata } from "@/hooks/useNavData";
 
 import { ButtonLogout } from "../button/ButtonLogout";
 
 export function Navbar() {
-  useAuth();
   const navData = useNavdata();
 
   return (

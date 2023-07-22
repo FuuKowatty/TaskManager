@@ -4,10 +4,9 @@ import { apiClient } from "@/lib/apiClient";
 
 export function useUserTasks(userId: number) {
   return useQuery({
-    queryKey: ["tasks", userId],
+    queryKey: ["taskToComplete"],
     queryFn: async () => {
       const { data } = await apiClient.get<Task[]>(`getTasks/${userId}`);
-
       return data;
     },
   });

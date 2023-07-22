@@ -14,9 +14,10 @@ import { useActiveTaskFilter } from "@/hooks/state/useActiveTaskFilter";
 
 interface UserTasksFilterProps {
   usersList: User[];
+  role: string;
 }
 
-export function UserTasksFilter({ usersList }: UserTasksFilterProps) {
+export function UserTasksFilter({ usersList, role }: UserTasksFilterProps) {
   const { activeTaskFilter, setActiveTaskFilter } = useActiveTaskFilter();
 
   const handleUserChange = (value: number) => {
@@ -27,6 +28,7 @@ export function UserTasksFilter({ usersList }: UserTasksFilterProps) {
 
   return (
     <Select
+      disabled={role === "employee"}
       value={activeTaskFilter !== null ? activeTaskFilter.toString() : "0"}
       onValueChange={(value) => handleUserChange(Number(value))}
       aria-label={`filter tasks by employee`}

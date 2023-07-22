@@ -9,13 +9,16 @@ import { apiClient } from "@/lib/apiClient";
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { useSession } from "@/hooks/state/useSession";
 
+import { useActiveTaskFilter } from "../state/useActiveTaskFilter";
+
 export const useAuth = () => {
   const router = useRouter();
   const {
     sessionUser: { isLogged },
     setSessionUser,
   } = useSession();
-  const { setStatsPermission } = useActiveUserId();
+  const { setStatsPermission: setChartFilter } = useActiveUserId();
+  const { setStatsPermission: setTaskFilter } = useActiveTaskFilter();
 
   const authMutation = useMutation({
     mutationKey: ["auth"],
@@ -28,7 +31,8 @@ export const useAuth = () => {
     },
     onSuccess: (userData) => {
       setSessionUser({ ...userData, isLogged: true });
-      setStatsPermission(userData.role, userData.id);
+      setChartFilter(userData.role, userData.id);
+      setTaskFilter(userData.role, userData.id);
     },
     onError: () => {
       deleteCookie("userId");
