@@ -43,22 +43,6 @@ function filterCurrentYear(tasks: Task[]) {
 
 function getTasksPerMonth(filteredTasks: Task[]): { [month: string]: number } {
   const taskCountByMonth: { [month: string]: number } = {};
-
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
   monthNames.forEach((monthName) => {
     taskCountByMonth[monthName] = 0;
   });

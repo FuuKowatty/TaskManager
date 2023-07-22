@@ -1,6 +1,8 @@
 "use client";
 
-import { useActiveStatsUser } from "@/hooks/api/useActiveStatsUser";
+import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
+
+import { useActiveStatsTasks } from "@/hooks/api/useActiveStatsUser";
 
 import { ChartArea } from "./ChartArea";
 import { BestEmployess } from "../BestEmployess";
@@ -13,23 +15,24 @@ interface ChartsProps {
 }
 
 export function RenderCharts({ role, id }: ChartsProps) {
-  const { data: statsData, isLoading, error } = useActiveStatsUser();
+  const { data, isLoading, error } = useActiveStatsTasks();
 
   if (isLoading) return <LoadingCharts />;
   if (error) return <p>could not fetch data </p>;
 
+  const taskCountPerMonth = getTaskCountPerMonth(data ?? []);
+  const userTasks = data?.filter((task) => task.userId === id) ?? [];
   return (
     <>
-      <ChartArea statsData={statsData} />
-      {role === "employee" ? (
-        <div className="relative flex h-full w-full flex-col items-center lg:col-start-2 lg:row-span-3 lg:row-start-4  lg:mt-[-60px]">
-          <ListTasks userId={id} />
-        </div>
-      ) : (
-        <div className="flex h-full w-full flex-col items-center lg:col-start-2 lg:row-span-3 lg:row-start-4  lg:mt-[-60px]">
+      <ChartArea statsData={taskCountPerMonth} />
+
+      <div className="relative flex h-full w-full flex-col items-center lg:col-start-2 lg:row-span-3 lg:row-start-4  lg:mt-[-60px]">
+        {role === "employee" ? (
+          <ListTasks userTasks={userTasks} />
+        ) : (
           <BestEmployess />
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

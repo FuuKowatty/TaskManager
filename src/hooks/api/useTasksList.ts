@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { apiClient } from "@/lib/apiClient";
+import { getTasksList } from "@/lib/getTasksList";
 
 import { useActiveTaskFilter } from "../state/useActiveTaskFilter";
 
@@ -9,9 +9,7 @@ export function useTasksList() {
   return useQuery({
     queryKey: ["tasks", activeTaskFilter],
     queryFn: async () => {
-      const urlEnd = activeTaskFilter ? `/${activeTaskFilter ?? ""}` : "";
-
-      const { data } = await apiClient.get<Task[]>(`getTasks${urlEnd}`);
+      const { data } = await getTasksList(activeTaskFilter);
       return data;
     },
   });

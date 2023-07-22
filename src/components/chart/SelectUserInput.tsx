@@ -1,8 +1,5 @@
 "use client";
 
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
-
 import {
   Select,
   SelectContent,
@@ -19,13 +16,8 @@ import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 export function SelectUserInput() {
-  const queryClient = useQueryClient();
   const { activeStatsUserId, setActiveStatsUserId } = useActiveUserId();
   const { data: employeesList, isLoading } = useEmployeesList();
-
-  useEffect(() => {
-    queryClient.invalidateQueries(["tasks"]);
-  }, [queryClient, activeStatsUserId]);
 
   if (isLoading) {
     return <LoadingSpinner />;
