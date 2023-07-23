@@ -26,7 +26,7 @@ import { EditUserModal } from "../modals/EditUserModal";
 export function Dropdown({ userData }: { userData: User }) {
   const router = useRouter();
   const { setActiveTaskFilter } = useActiveTaskFilter();
-  const { id, name, surname } = userData;
+  const { id, name, surname, role } = userData;
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
   const handleDeleteUser = useDeleteUser(id, closeModal);
 
@@ -41,19 +41,21 @@ export function Dropdown({ userData }: { userData: User }) {
       <DropdownMenuContent align="center">
         <DropdownMenuLabel>{`${name} ${surname}`}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <button
-            onClick={() => {
-              setActiveTaskFilter(id);
-              router.push("/dashboard/tasks");
-            }}
-            className="flex items-center"
-            aria-label="show tasks of this user"
-          >
-            <BsEye className="mr-2 h-4 w-4" />
-            <span>Show tasks</span>
-          </button>
-        </DropdownMenuItem>
+        {role === "employee" && (
+          <DropdownMenuItem>
+            <button
+              onClick={() => {
+                setActiveTaskFilter(id);
+                router.push("/dashboard/tasks");
+              }}
+              className="flex items-center"
+              aria-label="show tasks of this user"
+            >
+              <BsEye className="mr-2 h-4 w-4" />
+              <span>Show tasks</span>
+            </button>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <ButtonDelete openModal={openModal} />

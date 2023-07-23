@@ -33,7 +33,7 @@ export default function TasksPage() {
         <section className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
           <h2 className="mb-8 text-5xl font-bold">Tasks</h2>
           {role !== "employee" && (
-            <ButtonCreate redirectTo="create-task" text="Create Task" />
+            <ButtonCreate redirectTo="create-task">Create Task</ButtonCreate>
           )}
           <UserTasksFilter usersList={usersList} role={role} />
           <TasksTable columns={getTasksColumn(usersList)} data={tasksList} />

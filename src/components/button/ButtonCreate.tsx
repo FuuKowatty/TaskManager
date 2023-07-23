@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 import { BsPersonFillAdd } from "react-icons/bs";
 
 interface Props {
+  children: React.ReactNode;
   redirectTo: string;
-  text: string;
 }
 
-export function ButtonCreate({ redirectTo, text }: Props) {
+export function ButtonCreate({ children, redirectTo }: Props) {
   const router = useRouter();
 
   return (
@@ -17,7 +17,7 @@ export function ButtonCreate({ redirectTo, text }: Props) {
       onClick={() => router.push(redirectTo)}
     >
       <BsPersonFillAdd color="white" />
-      {text}
+      {children}
     </button>
   );
 }

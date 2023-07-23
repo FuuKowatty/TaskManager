@@ -17,7 +17,7 @@ export default function Team() {
   return (
     <section className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
       <h2 className="mb-8 text-5xl font-bold">Team</h2>
-      <ButtonCreate redirectTo="create-user" text="Create User" />
+      <ButtonCreate redirectTo="create-user">Create User</ButtonCreate>
       <UsersList
         columns={columns}
         data={data?.filter((user) => user.role !== "admin") ?? []}
