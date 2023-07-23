@@ -8,26 +8,26 @@ export async function GET(
 ) {
   try {
     const { id } = params;
-    const isCompleted = await prisma.task.findUnique({
+    const task = await prisma.task.findUnique({
       where: {
         id: Number(id),
       },
     });
 
-    if (!isCompleted) {
+    if (!task) {
       return NextResponse.json({ message: "None of task with such id" });
     }
-    const posts = await prisma.task.update({
+    const updatedTask = await prisma.task.update({
       where: {
         id: Number(id),
       },
       data: {
-        isCompleted: true,
+        isCompleted: !task.isCompleted,
         endDate: new Date(),
       },
     });
 
-    return NextResponse.json(posts);
+    return NextResponse.json(updatedTask);
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });
   }
