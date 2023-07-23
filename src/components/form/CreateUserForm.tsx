@@ -2,6 +2,7 @@ import type { FormikProps } from "formik";
 
 import { ErrorMessage } from "./ErrorMessage";
 import { FormButton } from "../button/ButtonForm";
+import { HashPasswordInput } from "../HashPasswordInput";
 
 interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
@@ -72,13 +73,10 @@ export function CreateUserForm({ formik, createError }: CreateUserFormProps) {
       <fieldset>
         <label className="flex flex-col gap-1">
           Password
-          <input
-            type="password"
-            name="password"
+          <HashPasswordInput
             value={formik.values.password}
-            onChange={formik.handleChange}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
-            placeholder="Must have at least 6 characters"
+            handleChange={formik.handleChange}
+            styled="createUser"
           />
         </label>
         <ErrorMessage

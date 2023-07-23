@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { HashPasswordInput } from "@/components/hashPasswordInput";
+import { HashPasswordInput } from "@/components/HashPasswordInput";
 import { Button } from "@/components/ui/button";
 
 import { useUpdateUser } from "@/hooks/api/useUpdateUser";
@@ -41,7 +41,7 @@ export function UpdatePasswordForm({
           value={isReadOnly ? readOnlyPasswordValue : passwordValue}
           handleChange={(event) => setPasswordValue(event.target.value)}
           readOnly={isReadOnly}
-          styled={true}
+          styled="settings"
         />
       </label>
       {!isReadOnly ? (

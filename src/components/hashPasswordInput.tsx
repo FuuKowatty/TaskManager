@@ -9,7 +9,7 @@ import {
 interface HashPasswordInputProps {
   value: string;
   readOnly?: boolean;
-  styled?: boolean;
+  styled?: "settings" | "createUser" | "";
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -20,6 +20,8 @@ export function HashPasswordInput({
   handleChange,
 }: HashPasswordInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const isSettings = styled === "settings";
+  const isCreateUser = styled === "createUser";
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -29,32 +31,43 @@ export function HashPasswordInput({
   };
 
   return (
-    <div className={clsx("flex items-center", { "bg-white": styled })}>
+    <div
+      className={clsx("flex items-center", {
+        "bg-white": isSettings,
+        relative: isCreateUser,
+      })}
+    >
       <input
         className={clsx(
           "w-[100px] appearance-none bg-transparent focus:outline-none",
           {
-            "min-w-[216px] p-2": styled,
+            "min-w-[216px] p-2": isSettings,
+            "min-w-[216px w-full border-b-2 border-gray-400 p-1 text-black focus:border-blue-700 focus:outline-none":
+              isCreateUser,
           }
         )}
         type={isPasswordVisible ? "text" : "password"}
         value={value}
         onChange={handleChange}
-        readOnly={readOnly ?? true}
+        readOnly={readOnly ?? false}
         name="password"
+        placeholder="Must have at least 6 characters"
       />
       <button
-        className={clsx("", {
-          "flex h-[40px] w-[40px] items-center justify-center": styled,
+        className={clsx("h-[40px] w-[40px]", {
+          "": isSettings,
+          "absolute right-0 top-0 h-full": isCreateUser,
         })}
         onClick={(event) => handleClick(event)}
         type="button"
       >
-        {isPasswordVisible ? (
-          <VisiblePassword className="pointer-events-none" />
-        ) : (
-          <InvisiblePassword className="pointer-events-none" />
-        )}
+        <span className="flex w-full items-center justify-center bg-white">
+          {isPasswordVisible ? (
+            <VisiblePassword className="pointer-events-none" />
+          ) : (
+            <InvisiblePassword className="pointer-events-none" />
+          )}
+        </span>
       </button>
     </div>
   );
