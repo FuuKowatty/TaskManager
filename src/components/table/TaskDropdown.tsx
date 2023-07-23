@@ -3,6 +3,9 @@
 import { BiDotsVerticalRounded, BiEdit, BiTrash } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
 
+import { DeleteModal } from "@/components/modals/DeleteModal";
+import { DetailsTaskModal } from "@/components/modals/DetailsTaskModal";
+import { EditTaskModal } from "@/components/modals/EditTaskModal";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,17 +19,14 @@ import {
 import { useDeleteTask } from "@/hooks/api/useDeleteTask";
 import { useModal } from "@/hooks/useModal";
 
-import { DeleteModal } from "../modals/DeleteModal";
-import { DetailsTaskModal } from "../modals/DetailsTaskModal";
-import { EditTaskModal } from "../modals/EditTaskModal";
-
 export function TaskDropdown({
   taskData,
 }: {
   taskData: Task & { assignedTo: string };
 }) {
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
-  const handleDeleteTask = useDeleteTask(taskData.id, closeModal);
+  const { mutate: handleDeleteTask } = useDeleteTask(taskData.id, closeModal);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
