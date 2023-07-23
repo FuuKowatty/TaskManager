@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
+import { HashPasswordInput } from "@/components/hashPasswordInput";
+import { Button } from "@/components/ui/button";
+
 import { useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useSession } from "@/hooks/state/useSession";
-
-import { HashPasswordInput } from "../HashPasswordInput";
-import { Button } from "../ui/button";
 
 interface UpdatePasswordFormProps {
   password: string;
