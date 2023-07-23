@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useSession } from "@/hooks/state/useSession";
 
+import { ButtonCancel } from "../button/ButtonCancel";
+
 interface UpdatePasswordFormProps {
   password: string;
   id: number;
@@ -46,9 +48,7 @@ export function UpdatePasswordForm({
       </label>
       {!isReadOnly ? (
         <div>
-          <button type="button" onClick={() => setIsReadOnly(true)}>
-            cancel
-          </button>
+          <ButtonCancel handleCancel={() => setIsReadOnly(true)} />
           <button>confirm</button>
         </div>
       ) : (

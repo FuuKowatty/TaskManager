@@ -15,6 +15,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableHeader,
   TableRow,
@@ -37,6 +38,11 @@ export function TasksTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 9,
+      },
+    },
     onSortingChange: setSorting,
     state: {
       sorting,
@@ -45,7 +51,7 @@ export function TasksTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="rounded-md border">
+      <TableContainer>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -84,17 +90,16 @@ export function TasksTable<TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
+                <TableCell colSpan={columns.length}>
+                  <div className="flex h-full items-center justify-center">
+                    No results.
+                  </div>
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
-      </div>
+      </TableContainer>
       <div className="mt-4 flex items-center justify-center space-x-6 py-4">
         <Button
           variant="outline"

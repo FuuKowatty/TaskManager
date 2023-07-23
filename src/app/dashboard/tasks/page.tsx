@@ -1,10 +1,10 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
-import { PlaceholderTable } from "@/components/PlaceholderTable";
+import { LoadingTable } from "@/components/LoadingTable";
 import { getTasksColumn } from "@/components/table/TaskColumns";
 import { TasksTable } from "@/components/table/TasksTable";
-import { UserTasksFilter } from "@/components/UserTasksFilter";
+import { UserTasksFilter } from "@/components/table/UserTasksFilter";
 
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import { useTasksList } from "@/hooks/api/useTasksList";
@@ -24,7 +24,7 @@ export default function TasksPage() {
   if (error || userError) return <p>Sorry, could not fetch data</p>;
 
   if (isLoading || isUserLoading) {
-    return <PlaceholderTable />;
+    return <LoadingTable />;
   }
 
   return (

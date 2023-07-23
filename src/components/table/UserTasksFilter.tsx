@@ -33,10 +33,10 @@ export function UserTasksFilter({ usersList, role }: UserTasksFilterProps) {
       onValueChange={(value) => handleUserChange(Number(value))}
       aria-label={`filter tasks by employee`}
     >
-      <SelectTrigger className="w-[256px] border-b-2 border-gray-400 bg-white p-2 text-black focus:border-blue-700 focus:outline-none">
+      <SelectTrigger className="w-[256px] border-b-2 border-gray-400 bg-lightGray p-2 text-black focus:border-blue-700">
         <SelectValue>{activeTaskFilter ? fullName : "All"}</SelectValue>
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-lightGray">
         <SelectGroup>
           <SelectLabel>Employees</SelectLabel>
           <SelectItem value="0">All</SelectItem>

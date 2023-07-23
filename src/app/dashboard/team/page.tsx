@@ -1,9 +1,9 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
-import { PlaceholderTable } from "@/components/PlaceholderTable";
+import { LoadingTable } from "@/components/LoadingTable";
 import { columns } from "@/components/table/UserColumns";
-import { UsersList } from "@/components/table/UsersList";
+import { UsersList } from "@/components/table/UsersTable";
 
 import { useUsersList } from "@/hooks/api/useUsersList";
 
@@ -11,7 +11,7 @@ export default function Team() {
   const { data, isLoading } = useUsersList();
 
   if (isLoading) {
-    return <PlaceholderTable />;
+    return <LoadingTable />;
   }
 
   return (

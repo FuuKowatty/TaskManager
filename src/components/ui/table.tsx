@@ -102,11 +102,16 @@ const TableCaption = React.forwardRef<
 ));
 TableCaption.displayName = "TableCaption";
 
+const TableContainer = ({ children }: { children: React.ReactNode }) => (
+  <main className="rounded-md border lg:h-[660px]">{children}</main>
+);
+
 export {
   Table,
   TableBody,
   TableCaption,
   TableCell,
+  TableContainer,
   TableFooter,
   TableHead,
   TableHeader,

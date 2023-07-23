@@ -34,7 +34,7 @@ function Calendar({
           nav: "space-x-1 flex items-center",
           nav_button: cn(
             buttonVariants({ variant: "destructive" }),
-            "bg-slate-950 hover:bg-slate-800"
+            "bg-slate-950 hover:bg-slate-800 text-white"
           ),
           nav_button_previous: "absolute left-0",
           nav_button_next: "absolute right-0",
