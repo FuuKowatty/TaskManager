@@ -2,16 +2,22 @@ import { useFormik } from "formik";
 
 import { createUserValidation } from "@/lib/validation";
 
-import { useUpdateUser } from "../api/useUpdateUser";
-
-export function useUpdateUserForm(userData: User, closeModal: () => void) {
-  const editMutation = useUpdateUser(userData.id, closeModal);
-
+export function useUpdateUserForm(
+  userData: User,
+  handleSubmit: (formData: FormRegister) => void
+) {
+  const { name, surname, email, password, role } = userData;
   const formik = useFormik({
-    initialValues: userData,
+    initialValues: {
+      name,
+      surname,
+      email,
+      password,
+      role,
+    } as FormRegister,
     validationSchema: createUserValidation,
     onSubmit: async (formData) => {
-      editMutation.mutate(formData);
+      handleSubmit(formData);
     },
   });
 

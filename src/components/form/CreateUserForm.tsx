@@ -1,15 +1,21 @@
 import type { FormikProps } from "formik";
 
 import { ErrorMessage } from "./ErrorMessage";
+import { ButtonBack } from "../button/ButtonBack";
 import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
 interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
-  createError: ErrorMessage;
+  createError?: ErrorMessage;
+  handleClose: () => void;
 }
 
-export function CreateUserForm({ formik, createError }: CreateUserFormProps) {
+export function CreateUserForm({
+  formik,
+  createError,
+  handleClose,
+}: CreateUserFormProps) {
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -104,6 +110,7 @@ export function CreateUserForm({ formik, createError }: CreateUserFormProps) {
           touched={formik.touched.role}
         />
       </fieldset>
+      <ButtonBack handleClose={handleClose}>Cancel</ButtonBack>
       <FormButton>Create User</FormButton>
     </form>
   );
