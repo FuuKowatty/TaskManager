@@ -29,7 +29,7 @@ export async function POST({ json }: Request) {
     response.cookies.set({
       name: "userId",
       value: user.id.toString(),
-      sameSite: true,
+      sameSite: "strict",
     });
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
