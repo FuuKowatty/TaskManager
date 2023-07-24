@@ -22,9 +22,8 @@ model Task {
   title       String
   description String?
   isCompleted Boolean  @default(false)
-  startDate   DateTime @default(now())
-  endDate     DateTime
   userId      Int
+  endDate     DateTime
+  startDate   DateTime @default(now())
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
