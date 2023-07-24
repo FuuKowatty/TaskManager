@@ -27,7 +27,6 @@ export async function GET() {
         surname: user.surname,
         numberOfCompletedTasks: user.tasks.length,
       }))
-      // it sort
       .sort(
         (a: UserWithCompletedTasks, b: UserWithCompletedTasks) =>
           b.numberOfCompletedTasks - a.numberOfCompletedTasks

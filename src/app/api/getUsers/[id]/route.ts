@@ -33,7 +33,7 @@ export async function POST(
       ? await bcrypt.hash(json.password, SALT_ROUNDS)
       : null;
 
-    const data = hashedPassword ? { password: hashedPassword } : json;
+    const data = hashedPassword ? { ...json, password: hashedPassword } : json;
 
     const user = await prisma.user.update({
       where: {
@@ -68,7 +68,6 @@ export async function DELETE(
 
     return NextResponse.json("Post has been deleted");
   } catch (err) {
-    console.log(err);
     return NextResponse.json({ message: "DELETE Error", err }, { status: 500 });
   }
 }

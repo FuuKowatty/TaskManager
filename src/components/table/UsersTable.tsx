@@ -38,6 +38,11 @@ export function UsersList<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 9,
+      },
+    },
     onSortingChange: setSorting,
     state: {
       sorting,
