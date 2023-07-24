@@ -1,46 +1,43 @@
-"use client"
+"use client";
 
-import { login } from "@/redux/featrues/userSlice"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { getUsers } from "@/redux/services/fetchUsers"
-import { useRouter } from "next/navigation"
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
+import { LoginForm } from "@/components/form/LoginForm";
 
+import { useLogin } from "@/hooks/api/useLogin";
+import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
-export default function Login() {
-    const router = useRouter()
-    const response = useAppSelector(state => state.usersReducer)
-    const dispatch = useAppDispatch()
-    console.log(response)
-    const handleSubmit = async(e: React.FormEvent) => {
-        e.preventDefault()
-        await dispatch(getUsers())
-        dispatch(login({
-            email: 'emily.smith@example.com',
-            password: 'securepass'
-        }))
+export default function LoginPage() {
+  const { handleLogin, loginError, resetApiResponseErrors } = useLogin();
+  const { formik, handleChange } = useLoginForm(
+    handleLogin,
+    resetApiResponseErrors
+  );
+
+  const router = useRouter();
+  useEffect(() => {
+    const userIdCookies = getCookie("userId");
+    if (userIdCookies) {
+      router.push("/dashboard");
+      return;
     }
+  }, [router]);
 
-    if(response.loggedUser) {
-        router.push('/dashboard')
-      }
+  const FormValues = {
+    loginError,
+    formik,
+    handleChange,
+  };
 
-
-    return(
-        <form 
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-4 max-w-md bg-gray-700 p-8"
-        >
-            <label className="flex flex-col gap-1">
-                Email
-                <input type="text" placeholder="Email" className="p-1 rounded-sm" />
-            </label>
-            <label className="flex flex-col gap-1">
-                Passowrd
-                <input type="password" placeholder="Password" className="p-1 rounded-sm" />
-            </label>
-
-            <button className="bg-blue-700 py-1">Login</button>
-        </form>
-    )
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-lightGray">
+      <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
+        <h1 className="text-center text-3xl font-bold">Welcome</h1>
+        <span className="block min-h-[50px] w-full py-8 text-center">LOGO</span>
+        <LoginForm {...FormValues} />
+      </div>
+    </div>
+  );
 }

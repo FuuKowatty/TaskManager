@@ -1,13 +1,21 @@
 interface Task {
-    id: number,
-    title:  string,
-    description?: string,
-    isCompleted: boolean,
-    userId: number | undefined,
+  id: number;
+  title: string;
+  description: string | null;
+  isCompleted: boolean;
+  startDate: string;
+  endDate: string;
+  userId: number;
 }
 
 interface FormAddTask {
-    title: string,
-    description?: string,
-    userId: number
+  title: string;
+  description: string | null;
+  endDate: string;
+  userId: number;
+}
+
+interface TaskCountPerMonth {
+  monthName: string;
+  taskCount: number;
 }

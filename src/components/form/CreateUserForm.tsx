@@ -1,0 +1,117 @@
+import type { FormikProps } from "formik";
+
+import { ErrorMessage } from "./ErrorMessage";
+import { ButtonBack } from "../button/ButtonBack";
+import { FormButton } from "../button/ButtonForm";
+import { HashPasswordInput } from "../HashPasswordInput";
+
+interface CreateUserFormProps {
+  formik: FormikProps<FormRegister>;
+  createError?: ErrorMessage;
+  handleClose: () => void;
+}
+
+export function CreateUserForm({
+  formik,
+  createError,
+  handleClose,
+}: CreateUserFormProps) {
+  return (
+    <form
+      onSubmit={formik.handleSubmit}
+      className="flex max-w-xl flex-col gap-8"
+    >
+      <fieldset>
+        <label className="flex flex-col gap-1">
+          Name
+          <input
+            type="text"
+            name="name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            placeholder="John"
+          />
+        </label>
+        <ErrorMessage
+          error={formik.errors.name}
+          touched={formik.touched.name}
+        />
+      </fieldset>
+      <fieldset>
+        <label className="flex flex-col gap-1">
+          Surname
+          <input
+            type="text"
+            name="surname"
+            value={formik.values.surname}
+            onChange={formik.handleChange}
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            placeholder="Cruise"
+          />
+        </label>
+        <ErrorMessage
+          error={formik.errors.surname}
+          touched={formik.touched.surname}
+        />
+      </fieldset>
+      <fieldset>
+        <label className="flex flex-col gap-1">
+          Email
+          <input
+            type="email"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            placeholder="JohnCruise@gmail.com"
+          />
+        </label>
+        <p className="min-h-[30px] text-sm text-red-500" role="alert">
+          {formik.touched.email && formik.errors.email ? (
+            <>{formik.errors.email}</>
+          ) : (
+            createError &&
+            createError.type === "email" && <>{createError.message}</>
+          )}
+        </p>
+      </fieldset>
+      <fieldset>
+        <label className="flex flex-col gap-1">
+          Password
+          <HashPasswordInput
+            value={formik.values.password}
+            handleChange={formik.handleChange}
+            styled="createUser"
+          />
+        </label>
+        <ErrorMessage
+          error={formik.errors.password}
+          touched={formik.touched.password}
+        />
+      </fieldset>
+      <fieldset>
+        <label className="flex flex-col gap-1">
+          Select a role
+          <select
+            className="border-b-2 border-gray-400 bg-white p-2 focus:border-blue-700 focus:outline-none"
+            name="role"
+            value={formik.values.role}
+            onChange={(e) => formik.handleChange(e)}
+          >
+            <option selected value={"employee"}>
+              {"employee"}
+            </option>
+            <option value={"manager"}>{"manager"}</option>
+          </select>
+        </label>
+        <ErrorMessage
+          error={formik.errors.role}
+          touched={formik.touched.role}
+        />
+      </fieldset>
+      <ButtonBack handleClose={handleClose}>Cancel</ButtonBack>
+      <FormButton>Create User</FormButton>
+    </form>
+  );
+}
