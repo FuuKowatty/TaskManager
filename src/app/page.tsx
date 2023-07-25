@@ -4,7 +4,9 @@ import { RedirectButton } from "@/components/button/ButtonRedirect";
 
 export default function Home() {
   return (
-    <main className={"flex h-screen flex-1 flex-col bg-gray-200 md:flex-row"}>
+    <main
+      className={"flex h-screen flex-1 flex-col dark:bg-darkGray md:flex-row"}
+    >
       <div className={"flex w-full flex-1 flex-col justify-center space-y-12"}>
         <div
           className={
@@ -20,20 +22,14 @@ export default function Home() {
             >
               <span className="">Task Manager App</span>
 
-              <span
-                className={
-                  "bg-gradient-to-br bg-clip-text text-black" +
-                  " from-primary-500 to-primary-400" +
-                  " to-primary-400 leading-[1.2]"
-                }
-              >
+              <span className="dark:text-white">
                 for personal task management
               </span>
             </h1>
 
             <div
               className={
-                "text-center text-base text-gray-500 dark:text-gray-400 lg:text-left lg:text-lg xl:text-xl " +
+                "text-center text-base text-gray-500 dark:text-gray-300 lg:text-left lg:text-lg xl:text-xl " +
                 " font-heading flex flex-col space-y-1.5 md:w-full"
               }
             >
@@ -52,7 +48,7 @@ export default function Home() {
               }
             >
               <RedirectButton>Login</RedirectButton>
-              <button className="rounded-md bg-blue-700 px-8 py-4 text-center font-bold text-white lg:min-w-[162px]">
+              <button className="rounded-md bg-blue-700 px-8  py-4 text-center font-bold text-white hover:bg-blue-800 lg:min-w-[162px]">
                 View Demo
               </button>
             </div>
