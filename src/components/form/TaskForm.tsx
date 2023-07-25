@@ -25,7 +25,7 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex max-w-xl flex-col gap-8"
+      className="flex max-w-xl flex-col gap-8 text-left"
     >
       <fieldset>
         <label className="flex flex-col gap-1">

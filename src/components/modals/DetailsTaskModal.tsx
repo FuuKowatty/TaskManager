@@ -24,8 +24,10 @@ export function DetailsTaskModal({
   return (
     <Modal>
       <div className="flex h-full flex-col items-center gap-8">
-        <h2 className="text-2xl font-bold text-gray-600">{title}</h2>
-        <p className="text-gray-500">
+        <h2 className="text-2xl font-bold text-gray-600 dark:text-white">
+          {title}
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
           {description || "No description available"}
         </p>
         <div className="flex flex-col gap-4">

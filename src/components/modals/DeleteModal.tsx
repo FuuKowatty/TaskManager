@@ -16,7 +16,7 @@ export function DeleteModal({ handleDelete, closeModal }: ModalProps) {
           <p className="text-2xl">Are you sure?</p>
         </div>
 
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-gray-600 dark:text-gray-400">
           <span className="block">Do you really want to delete? </span>
           <span>This process cannot be undone</span>
         </p>
