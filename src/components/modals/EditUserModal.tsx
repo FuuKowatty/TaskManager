@@ -2,6 +2,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 import { useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useUpdateUserForm } from "@/hooks/formik/useUpdateUserForm";
+import type { User } from "@/types/users";
 
 import { Modal } from "./Modal";
 import { CreateUserForm } from "../form/CreateUserForm";

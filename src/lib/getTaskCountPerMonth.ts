@@ -1,3 +1,5 @@
+import type { Task, TaskCountPerMonth } from "@/types/task";
+
 const monthNames = [
   "January",
   "February",

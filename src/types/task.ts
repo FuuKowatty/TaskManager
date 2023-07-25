@@ -1,4 +1,4 @@
-interface Task {
+export interface Task {
   id: number;
   title: string;
   description: string | null;
@@ -8,14 +8,14 @@ interface Task {
   userId: number;
 }
 
-interface FormAddTask {
+export interface FormAddTask {
   title: string;
   description: string | null;
   endDate: string;
   userId: number;
 }
 
-interface TaskCountPerMonth {
+export interface TaskCountPerMonth {
   monthName: string;
   taskCount: number;
 }

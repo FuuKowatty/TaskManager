@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
 
-export async function POST({ json }: Request) {
-  const { email, password } = await json();
+export async function POST(request: Request) {
+  const { email, password } = await request.json();
 
   if (typeof email !== "string" && typeof password !== "string") {
     return NextResponse.json({ message: "Bad request" }, { status: 400 });

@@ -11,6 +11,7 @@ import {
 import { getEmployeeFullNameById } from "@/lib/getEmployeeByName";
 
 import { useActiveTaskFilter } from "@/hooks/state/useActiveTaskFilter";
+import type { User } from "@/types/users";
 
 interface UserTasksFilterProps {
   usersList: User[];

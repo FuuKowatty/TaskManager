@@ -18,6 +18,7 @@ import {
 import { useDeleteUser } from "@/hooks/api/useDeleteUser";
 import { useActiveTaskFilter } from "@/hooks/state/useActiveTaskFilter";
 import { useModal } from "@/hooks/useModal";
+import type { User } from "@/types/users";
 
 import { ButtonEdit } from "../button/ButtonEdit";
 import { DeleteModal } from "../modals/DeleteModal";

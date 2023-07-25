@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { apiClient } from "@/lib/apiClient";
 
+import type { UserWithCompletedTasks } from "@/types/users";
+
 export function useBestEmployees() {
   return useQuery({
     queryKey: ["best employees"],

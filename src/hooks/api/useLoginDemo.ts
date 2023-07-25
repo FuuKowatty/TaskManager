@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/apiClient";
 
 import { useSession } from "@/hooks/state/useSession";
+import type { User } from "@/types/users";
 
 export function useLoginDemo() {
   const { setSessionUser } = useSession();

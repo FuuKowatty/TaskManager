@@ -2,12 +2,14 @@ import type { FormikProps } from "formik";
 import type { ChangeEvent } from "react";
 
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
+import type { ErrorMessageType } from "@/types/errorMessage";
+import type { FormLogin } from "@/types/users";
 
 import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
 interface LoginFormProps {
-  loginError: ErrorMessage;
+  loginError: ErrorMessageType;
   formik: FormikProps<FormLogin>;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }

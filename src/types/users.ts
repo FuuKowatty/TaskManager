@@ -1,6 +1,6 @@
-type Role = "employee" | "admin" | "manager" | "";
+export type Role = "employee" | "admin" | "manager" | "";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   surname: string;
@@ -9,7 +9,7 @@ interface User {
   isLogged: boolean;
 }
 
-interface FormRegister {
+export interface FormRegister {
   name: string;
   surname: string;
   email: string;
@@ -17,12 +17,12 @@ interface FormRegister {
   role: Role;
 }
 
-interface FormLogin {
+export interface FormLogin {
   email: string;
   password: string;
 }
 
-interface UserWithCompletedTasks {
+export interface UserWithCompletedTasks {
   id: number;
   name: string;
   surname: string;

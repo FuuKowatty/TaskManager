@@ -7,6 +7,7 @@ import {
 } from "react-icons/im";
 
 import { useUpdateTaskStatus } from "@/hooks/api/useUpdateTaskStatus";
+import type { Task } from "@/types/task";
 
 export function Task({
   id,

@@ -18,6 +18,7 @@ import {
 
 import { useDeleteTask } from "@/hooks/api/useDeleteTask";
 import { useModal } from "@/hooks/useModal";
+import type { Task } from "@/types/task";
 
 export function TaskDropdown({
   taskData,

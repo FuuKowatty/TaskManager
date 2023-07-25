@@ -1,3 +1,5 @@
+import type { Task } from "@/types/task";
+
 import { apiClient } from "./apiClient";
 
 export function getTasksList(filterType: number, isCompleted?: boolean) {

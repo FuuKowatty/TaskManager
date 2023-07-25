@@ -5,6 +5,9 @@ import { TableHeaderSort } from "@/components/table/TableHeaderSort";
 import { formatDate } from "@/lib/formatDate";
 import { getEmployeeFullNameById } from "@/lib/getEmployeeByName";
 
+import type { Task } from "@/types/task";
+import type { User } from "@/types/users";
+
 import { TaskDropdown } from "./TaskDropdown";
 
 export function getTasksColumn(usersList: User[]) {

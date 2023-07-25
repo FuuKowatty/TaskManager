@@ -4,6 +4,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 import { useUpdateTask } from "@/hooks/api/useUpdateTask";
 import { useUpdateTaskForm } from "@/hooks/formik/useUpdateTaskForm";
+import type { Task } from "@/types/task";
 
 import { Modal } from "./Modal";
 import { TaskForm } from "../form/TaskForm";

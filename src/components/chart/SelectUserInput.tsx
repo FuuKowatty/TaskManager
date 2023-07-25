@@ -13,6 +13,7 @@ import {
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { useSession } from "@/hooks/state/useSession";
+import type { User } from "@/types/users";
 
 import { LoadingSelectChart } from "../ui/LoadingSelectChart";
 

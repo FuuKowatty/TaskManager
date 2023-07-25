@@ -2,11 +2,7 @@
 
 import { useEffect } from "react";
 
-interface ModalProps {
-  children: React.ReactNode;
-}
-
-export function Modal({ children }: ModalProps) {
+export function Modal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.style.overflowY = "hidden";
 

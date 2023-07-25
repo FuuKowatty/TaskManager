@@ -12,6 +12,8 @@ import {
 
 import { Tiles } from "@/components/tiles/Tiles";
 
+import type { TaskCountPerMonth } from "@/types/task";
+
 import { SelectUserInput } from "./SelectUserInput";
 
 export function ChartArea({

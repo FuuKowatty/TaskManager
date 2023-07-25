@@ -1,6 +1,8 @@
 import { deleteCookie } from "cookies-next";
 import { atom, useAtom } from "jotai";
 
+import type { User } from "@/types/users";
+
 const initialUserValue: User = {
   id: 0,
   name: "",

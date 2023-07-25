@@ -2,6 +2,8 @@
 
 import { BiTrash } from "react-icons/bi";
 
+import type { OpenModal } from "@/types/modal";
+
 export function ButtonDelete({ openModal }: { openModal: OpenModal }) {
   return (
     <button onClick={() => openModal("delete")} className="flex items-center">

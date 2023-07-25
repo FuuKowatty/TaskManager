@@ -1,5 +1,7 @@
 import { BiEdit } from "react-icons/bi";
 
+import type { OpenModal } from "@/types/modal";
+
 export function ButtonEdit({ openModal }: { openModal: OpenModal }) {
   return (
     <button

@@ -1,5 +1,8 @@
 import type { FormikProps } from "formik";
 
+import type { ErrorMessageType } from "@/types/errorMessage";
+import type { FormRegister } from "@/types/users";
+
 import { ErrorMessage } from "./ErrorMessage";
 import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
@@ -7,7 +10,7 @@ import { HashPasswordInput } from "../HashPasswordInput";
 
 interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
-  createError?: ErrorMessage;
+  createError?: ErrorMessageType;
   handleClose: () => void;
 }
 

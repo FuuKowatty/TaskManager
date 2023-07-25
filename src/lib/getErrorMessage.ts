@@ -1,6 +1,8 @@
 import { AxiosError } from "axios";
 
-export function getErrorMessage(error: unknown): ErrorMessage {
+import type { ErrorMessageType } from "@/types/errorMessage";
+
+export function getErrorMessage(error: unknown): ErrorMessageType {
   if (error instanceof AxiosError) {
     const errorData = error.response?.data;
 

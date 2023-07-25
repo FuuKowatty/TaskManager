@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 
 import { createUserValidation } from "@/lib/validation";
 
+import type { FormRegister, User } from "@/types/users";
+
 export function useUpdateUserForm(
   userData: User,
   handleSubmit: (formData: FormRegister) => void
@@ -12,6 +14,7 @@ export function useUpdateUserForm(
       name,
       surname,
       email,
+      password: "[USER-PASSWORD]",
       role,
     } as FormRegister,
     validationSchema: createUserValidation,

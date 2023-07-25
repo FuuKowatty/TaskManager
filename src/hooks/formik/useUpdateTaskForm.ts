@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import { formatToIsoDate } from "@/lib/formatDate";
 import { createTaskValidation } from "@/lib/validation";
 
+import type { FormAddTask, Task } from "@/types/task";
+
 export function useUpdateTaskForm(
   taskData: Task,
   handleEditTask: (data: FormAddTask) => void

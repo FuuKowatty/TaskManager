@@ -1,4 +1,5 @@
 import { navDataAdmin, navDataEmployee, navDataManager } from "@/data/navData";
+import type { Role } from "@/types/users";
 
 const roleToData = {
   employee: navDataEmployee,

@@ -2,7 +2,9 @@
 
 import { TfiStatsDown, TfiStatsUp } from "react-icons/tfi";
 
-export function getTilesData(statsData: StatsData[]) {
+import type { ChartStats } from "@/types/ChartStats";
+
+export function getTilesData(statsData: ChartStats[]) {
   const currentDate = new Date();
   const currentMonthNumber = currentDate.getMonth();
   const Last6MonthsTasksCount = statsData.reduce(

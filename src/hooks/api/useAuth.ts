@@ -8,6 +8,7 @@ import { apiClient } from "@/lib/apiClient";
 
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { useSession } from "@/hooks/state/useSession";
+import type { User } from "@/types/users";
 
 import { useActiveTaskFilter } from "../state/useActiveTaskFilter";
 

@@ -1,5 +1,7 @@
 import { atom, useAtom } from "jotai";
 
+import type { Role } from "@/types/users";
+
 type userId = number;
 
 const activeStatsAtom = atom<userId>(0);
