@@ -2,11 +2,9 @@
 
 import { BiLogOut } from "react-icons/bi";
 
-import { useAuth } from "@/hooks/api/useAuth";
 import { useSession } from "@/hooks/state/useSession";
 
 export function ButtonLogout() {
-  useAuth();
   const { logout } = useSession();
 
   return (

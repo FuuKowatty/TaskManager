@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
 import { SALT_ROUNDS } from "@/lib/constanst";
+import { getPrismaError } from "@/lib/getPrismaError";
 import prisma from "@/lib/prisma";
 import { prismaExclude } from "@/lib/prismaExclude";
 
@@ -45,13 +46,19 @@ export async function POST(
     });
 
     return NextResponse.json(user, { status: 201 });
-  } catch (error: any) {
-    if (error.code === "P2002") {
+  } catch (error: unknown) {
+    const prismaError = getPrismaError(error);
+
+    if (!prismaError) {
+      return;
+    }
+
+    if (prismaError.code === "P2002") {
       return new NextResponse("User with email already exists", {
         status: 409,
       });
     }
-    return new NextResponse(error.message, { status: 500 });
+    return new NextResponse(prismaError.message, { status: 500 });
   }
 }
 

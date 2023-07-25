@@ -1,3 +1,4 @@
+import type { Task } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
@@ -51,7 +52,9 @@ export async function POST(
     });
 
     return NextResponse.json(task, { status: 201 });
-  } catch (error: any) {
-    return new NextResponse(error.message, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return new NextResponse(error.message, { status: 500 });
+    }
   }
 }
