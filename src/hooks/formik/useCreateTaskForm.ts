@@ -10,7 +10,7 @@ export function useCreateTaskForm(
   const formik = useFormik({
     initialValues: {
       title: "",
-      description: "",
+      description: "" as string | null,
       endDate: "",
       userId: 0,
     },
