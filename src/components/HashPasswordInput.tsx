@@ -38,14 +38,11 @@ export function HashPasswordInput({
       })}
     >
       <input
-        className={clsx(
-          "w-[100px] appearance-none bg-transparent focus:outline-none ",
-          {
-            "min-w-[216px] p-2 dark:bg-midnightBlue": isSettings,
-            "min-w-[216px w-full border-b-2 border-gray-600 p-1 text-black focus:border-blue-700 focus:outline-none dark:text-white dark:focus:border-red-500":
-              isCreateUser,
-          }
-        )}
+        className={clsx("w-[100px] appearance-none bg-transparent", {
+          "min-w-[216px] p-2 dark:bg-midnightBlue": isSettings,
+          "min-w-[216px w-full border-b-2 border-gray-600 p-1 text-black focus:border-blue-700 focus:outline-none dark:text-white dark:focus:border-red-500":
+            isCreateUser,
+        })}
         type={isPasswordVisible ? "text" : "password"}
         value={value}
         onChange={handleChange}

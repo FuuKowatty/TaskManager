@@ -55,7 +55,7 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
 
       {type === "password" && (
         <label>
-          Password (Hashed)
+          Password
           <HashPasswordInput
             value={isReadOnly ? defaultValue : value}
             handleChange={(event) => setValue(event.target.value)}
