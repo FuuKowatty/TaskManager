@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
+import { prismaExclude } from "@/lib/prismaExclude";
 
 export async function GET(
   request: Request,
@@ -13,6 +14,7 @@ export async function GET(
       where: {
         id: userId,
       },
+      select: prismaExclude("User", ["password"]),
     });
     return NextResponse.json(user);
   } catch (err) {

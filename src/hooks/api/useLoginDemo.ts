@@ -9,7 +9,7 @@ export function useLoginDemo() {
   const { setSessionUser } = useSession();
   const router = useRouter();
 
-  return useMutation({
+  const { mutate: handleLoginDemo, ...mutation } = useMutation({
     mutationFn: async (): Promise<User> => {
       const { data } = await apiClient.get("login/demo");
       return data;
@@ -19,4 +19,6 @@ export function useLoginDemo() {
       router.push("/dashboard");
     },
   });
+
+  return { handleLoginDemo, ...mutation };
 }

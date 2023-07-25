@@ -7,7 +7,7 @@ import { RedirectButton } from "@/components/button/ButtonRedirect";
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
 
 export default function Home() {
-  const { mutate: handleLoginDemo } = useLoginDemo();
+  const { handleLoginDemo } = useLoginDemo();
 
   return (
     <main className={"flex h-screen flex-1 flex-col bg-gray-200 md:flex-row"}>

@@ -1,6 +1,8 @@
 import type { FormikProps } from "formik";
 import type { ChangeEvent } from "react";
 
+import { useLoginDemo } from "@/hooks/api/useLoginDemo";
+
 import { FormButton } from "../button/ButtonForm";
 
 interface LoginFormProps {
@@ -14,6 +16,8 @@ export function LoginForm({
   formik,
   handleChange,
 }: LoginFormProps) {
+  const { handleLoginDemo } = useLoginDemo();
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -68,7 +72,10 @@ export function LoginForm({
       </fieldset>
       <FormButton>Login</FormButton>
       <div className="mt-8 text-sm">
-        Don&apos;t want login? <span className="font-bold">View Demo</span>
+        Don&apos;t want login?{" "}
+        <span className="font-bold" onClick={() => handleLoginDemo()}>
+          View Demo
+        </span>
       </div>
     </form>
   );
