@@ -15,7 +15,7 @@ export function useLoginDemo() {
       return data;
     },
     onSuccess: (data) => {
-      setSessionUser(data);
+      setSessionUser({ ...data, isLogged: true });
       router.push("/dashboard");
     },
   });
