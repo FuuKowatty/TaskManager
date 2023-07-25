@@ -6,13 +6,12 @@ export function useUpdateUserForm(
   userData: User,
   handleSubmit: (formData: FormRegister) => void
 ) {
-  const { name, surname, email, password, role } = userData;
+  const { name, surname, email, role } = userData;
   const formik = useFormik({
     initialValues: {
       name,
       surname,
       email,
-      password,
       role,
     } as FormRegister,
     validationSchema: createUserValidation,
