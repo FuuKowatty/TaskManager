@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { SALT_ROUNDS } from "@/lib/constanst";
 import prisma from "@/lib/prisma";
+import { prismaExclude } from "@/lib/prismaExclude";
 
 export async function GET(
   request: Request,
@@ -13,6 +14,7 @@ export async function GET(
       where: {
         id: Number(params.id),
       },
+      select: prismaExclude("User", ["password"]),
     });
 
     return NextResponse.json(posts);

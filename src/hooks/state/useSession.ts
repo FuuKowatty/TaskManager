@@ -6,7 +6,6 @@ const initialUserValue: User = {
   name: "",
   surname: "",
   email: "",
-  password: "",
   role: "",
   isLogged: false,
 };

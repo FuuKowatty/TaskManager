@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { SALT_ROUNDS } from "@/lib/constanst";
 import prisma from "@/lib/prisma";
+import { prismaExclude } from "@/lib/prismaExclude";
 
 export async function GET(request: Request) {
   try {
@@ -15,11 +16,14 @@ export async function GET(request: Request) {
         where: {
           role: "employee",
         },
+        select: prismaExclude("User", ["password"]),
       });
       return NextResponse.json(employees);
     }
 
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      select: prismaExclude("User", ["password"]),
+    });
 
     return NextResponse.json(users);
   } catch (err) {
