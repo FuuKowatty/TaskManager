@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useDeleteTask } from "@/hooks/api/useDeleteTask";
+import { useSession } from "@/hooks/state/useSession";
 import { useModal } from "@/hooks/useModal";
 import type { Task } from "@/types/task";
 
@@ -27,6 +28,9 @@ export function TaskDropdown({
 }) {
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
   const { mutate: handleDeleteTask } = useDeleteTask(taskData.id, closeModal);
+  const {
+    sessionUser: { role },
+  } = useSession();
 
   return (
     <DropdownMenu>
@@ -47,26 +51,31 @@ export function TaskDropdown({
             <span>Show details</span>
           </button>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <button
-            className="flex items-center"
-            onClick={() => openModal("edit")}
-          >
-            <BiEdit className="mr-2 h-4 w-4" />
-            <span>Edit task</span>
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <button
-            className="flex items-center"
-            onClick={() => openModal("delete")}
-          >
-            <BiTrash className="mr-2 h-4 w-4" />
-            <span>Delete task</span>
-          </button>
-        </DropdownMenuItem>
+
+        {role !== "employee" && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <button
+                className="flex items-center"
+                onClick={() => openModal("edit")}
+              >
+                <BiEdit className="mr-2 h-4 w-4" />
+                <span>Edit task</span>
+              </button>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <button
+                className="flex items-center"
+                onClick={() => openModal("delete")}
+              >
+                <BiTrash className="mr-2 h-4 w-4" />
+                <span>Delete task</span>
+              </button>
+            </DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
       {isModalOpen &&
         (() => {
