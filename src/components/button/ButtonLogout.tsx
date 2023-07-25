@@ -12,7 +12,7 @@ export function ButtonLogout() {
   return (
     <button
       onClick={logout}
-      className="flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-white hover:bg-slate-950/90 lg:static"
+      className="flex items-center gap-2 rounded-md  bg-blue-700 px-4  py-2 text-white hover:bg-blue-800 dark:bg-red-500 dark:hover:bg-red-600 lg:static"
     >
       <BiLogOut /> Logout
     </button>

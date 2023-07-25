@@ -3,6 +3,7 @@
 import { ButtonLogout } from "@/components/button/ButtonLogout";
 import { UpdateForm } from "@/components/form/UpdateForm";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { LoadingSettings } from "@/components/ui/LoadingSettings";
 
 import { useSession } from "@/hooks/state/useSession";
 
@@ -11,7 +12,7 @@ export default function SettingsPage() {
     sessionUser: { email, password, id },
   } = useSession();
 
-  if (!email || !password) return null;
+  if (!email || !password) return <LoadingSettings />;
 
   return (
     <main className="flex w-full max-w-xl flex-col justify-start gap-12 lg:gap-20 lg:px-20">

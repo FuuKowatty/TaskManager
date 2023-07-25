@@ -1,10 +1,10 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
-import { LoadingTable } from "@/components/LoadingTable";
 import { getTasksColumn } from "@/components/table/TaskColumns";
 import { TasksTable } from "@/components/table/TasksTable";
 import { UserTasksFilter } from "@/components/table/UserTasksFilter";
+import { LoadingTable } from "@/components/ui/LoadingTable";
 
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import { useTasksList } from "@/hooks/api/useTasksList";

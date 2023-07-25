@@ -14,7 +14,7 @@ import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { useSession } from "@/hooks/state/useSession";
 
-import { LoadingSpinner } from "../LoadingSpinner";
+import { LoadingSelectChart } from "../ui/LoadingSelectChart";
 
 export function SelectUserInput() {
   const {
@@ -24,7 +24,7 @@ export function SelectUserInput() {
   const { data: employeesList, isLoading } = useEmployeesList();
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <LoadingSelectChart />;
   }
 
   if (!employeesList) return null;
@@ -44,12 +44,12 @@ export function SelectUserInput() {
       onValueChange={(value: string) => handleChange(Number(value))}
       aria-label={`filter tasks by employee`}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] dark:bg-midnightBlue dark:text-white">
         <SelectValue>
           {activeStatsUserId ? `${name} ${surname}` : "All"}
         </SelectValue>
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="dark:bg-midnightBlue">
         <SelectGroup>
           <SelectLabel>Employees</SelectLabel>
           <SelectItem value="0">All</SelectItem>

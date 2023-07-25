@@ -55,7 +55,7 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      "data-[state=selected]:bg-mute border-b transition-colors hover:bg-muted/50 dark:border-midnightBlue",
       className
     )}
     {...props}
@@ -103,7 +103,9 @@ const TableCaption = React.forwardRef<
 TableCaption.displayName = "TableCaption";
 
 const TableContainer = ({ children }: { children: React.ReactNode }) => (
-  <main className="rounded-md border lg:h-[660px]">{children}</main>
+  <main className="rounded-md border dark:border-midnightBlue lg:h-[660px]">
+    {children}
+  </main>
 );
 
 export {

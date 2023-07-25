@@ -41,7 +41,7 @@ export function HashPasswordInput({
         className={clsx(
           "w-[100px] appearance-none bg-transparent focus:outline-none",
           {
-            "min-w-[216px] p-2": isSettings,
+            "min-w-[216px] p-2 dark:bg-midnightBlue": isSettings,
             "min-w-[216px w-full border-b-2 border-gray-400 p-1 text-black focus:border-blue-700 focus:outline-none":
               isCreateUser,
           }
@@ -55,13 +55,13 @@ export function HashPasswordInput({
       />
       <button
         className={clsx("h-[40px] w-[40px]", {
-          "": isSettings,
+          "dark:bg-midnightBlue": isSettings,
           "absolute right-0 top-0 h-full": isCreateUser,
         })}
         onClick={(event) => handleClick(event)}
         type="button"
       >
-        <span className="flex w-full items-center justify-center bg-white">
+        <span className="flex w-full items-center justify-center bg-white dark:bg-midnightBlue">
           {isPasswordVisible ? (
             <VisiblePassword className="pointer-events-none" />
           ) : (

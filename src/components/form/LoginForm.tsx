@@ -17,7 +17,7 @@ export function LoginForm({
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex max-w-md flex-col gap-8"
+      className="flex max-w-md flex-col gap-8 "
     >
       <fieldset>
         <label className="flex flex-col gap-1">
@@ -30,7 +30,7 @@ export function LoginForm({
             onBlur={formik.handleBlur}
             value={formik.values.email}
             className="min-w-[256px] border-b-2 border-gray-400 p-1
-            text-black focus:border-b-blue-700 focus:outline-none  dark:border-gray-600 dark:bg-darkGray
+            text-black focus:border-b-blue-700 focus:outline-none  dark:border-gray-600 dark:bg-darkGray dark:text-white
             "
           />
         </label>
@@ -54,7 +54,7 @@ export function LoginForm({
             onBlur={formik.handleBlur}
             value={formik.values.password}
             className="min-w-[256px] border-b-2 border-gray-400 p-1
-            text-black focus:border-b-blue-700 focus:outline-none dark:border-gray-600 dark:bg-darkGray"
+            text-black focus:border-b-blue-700 focus:outline-none dark:border-gray-600 dark:bg-darkGray dark:text-white"
           />
         </label>
         <p className="min-h-[30px] text-sm text-red-500" role="alert">

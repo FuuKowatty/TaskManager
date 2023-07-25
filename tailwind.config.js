@@ -18,6 +18,8 @@ module.exports = {
         lightGray: "#f2f2f2",
         darkGray: "#1b1d21",
         graY: "#222326",
+        midnightBlue: "#1d232c",
+        deepSlate: "#161b21",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
