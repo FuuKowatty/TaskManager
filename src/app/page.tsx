@@ -1,8 +1,14 @@
+"use client";
+
 import Image from "next/image";
 
 import { RedirectButton } from "@/components/button/ButtonRedirect";
 
+import { useLoginDemo } from "@/hooks/api/useLoginDemo";
+
 export default function Home() {
+  const { mutate: handleLoginDemo } = useLoginDemo();
+
   return (
     <main className={"flex h-screen flex-1 flex-col bg-gray-200 md:flex-row"}>
       <div className={"flex w-full flex-1 flex-col justify-center space-y-12"}>
@@ -52,7 +58,10 @@ export default function Home() {
               }
             >
               <RedirectButton>Login</RedirectButton>
-              <button className="rounded-md bg-blue-700 px-8 py-4 text-center font-bold text-white lg:min-w-[162px]">
+              <button
+                className="rounded-md bg-blue-700 px-8 py-4 text-center font-bold text-white lg:min-w-[162px]"
+                onClick={() => handleLoginDemo()}
+              >
                 View Demo
               </button>
             </div>
