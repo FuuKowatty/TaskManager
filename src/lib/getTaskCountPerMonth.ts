@@ -13,24 +13,25 @@ const monthNames = [
   "December",
 ] as const;
 
-interface TaskCountPerMonth {
-  monthName: string;
-  taskCount: number;
-}
-
 export function getTaskCountPerMonth(tasks: Task[]) {
-  const currentYear = String(new Date().getFullYear());
-  const actuallYearTasks = tasks.filter((task) =>
-    task.endDate.toString().includes(currentYear)
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const sixMonthsAgo = new Date(currentYear, currentMonth - 5, 1); // Calculate date 6 months ago
+
+  const actualYearTasks = tasks.filter(
+    (task) => new Date(task.endDate) >= sixMonthsAgo
   );
-  const tasksCount = countTaskPerMonth(actuallYearTasks);
+  const tasksCount = countTaskPerMonth(actualYearTasks);
 
   const taskCountPerMonth: TaskCountPerMonth[] = [];
-  for (const monthName of monthNames) {
-    const tasksPerMonth = tasksCount[monthName] || 0; // add 0 to month if there were 0 tasks
+  for (let i = 0; i <= 5; i++) {
+    const monthDate = new Date(currentYear, currentMonth - i, 1);
+    const monthName = monthNames[monthDate.getMonth()];
+    const tasksPerMonth = tasksCount[monthName] || 0;
     taskCountPerMonth.push({ monthName, taskCount: tasksPerMonth });
   }
-  return taskCountPerMonth;
+  return taskCountPerMonth.reverse(); // Reverse the array to show data in chronological order
 }
 
 function countTaskPerMonth(tasks: Task[]) {

@@ -25,7 +25,7 @@ export function Task({
   };
 
   return (
-    <div className="mb-8 w-[320px] rounded-md bg-slate-950 p-4 text-white">
+    <div className="mb-8 w-[320px] rounded-md bg-slate-950 p-4 text-white dark:bg-midnightBlue">
       <h1 className="font-golos-text text-lg font-bold">{title}</h1>
       <p className="text-md w-[80%] text-gray-300">{description}</p>
       <p>{formattedDate.toLocaleString("en-US")}</p>

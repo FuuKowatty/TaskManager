@@ -4,15 +4,13 @@ import { TfiStatsDown, TfiStatsUp } from "react-icons/tfi";
 
 export function getTilesData(statsData: StatsData[]) {
   const currentDate = new Date();
-
   const currentMonthNumber = currentDate.getMonth();
-
-  const currentYearTasksCount = statsData.reduce(
+  const Last6MonthsTasksCount = statsData.reduce(
     (acc, v) => acc + v.taskCount,
     0
   );
-  const previousMonth = statsData[currentMonthNumber - 1];
-  const currentMonth = statsData[currentMonthNumber];
+  const previousMonth = statsData[currentMonthNumber - 2];
+  const currentMonth = statsData[currentMonthNumber - 1];
 
   const monthRate = getMonthRate(
     currentMonth.taskCount,
@@ -20,7 +18,7 @@ export function getTilesData(statsData: StatsData[]) {
   );
 
   return {
-    currentYearTasksCount,
+    Last6MonthsTasksCount,
     currentMonth: currentMonth.taskCount,
     monthRate,
   };

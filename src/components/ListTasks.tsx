@@ -17,7 +17,9 @@ export function ListTasks() {
 
   return (
     <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col items-center">
-      <span className="mb-4 shrink-0 text-xl font-bold">Your Tasks:</span>
+      <span className="mb-4 shrink-0 text-xl font-bold dark:text-white">
+        Your Tasks:
+      </span>
       {userTasks.length ? (
         <div className="flex w-full flex-col items-center overflow-y-auto">
           {userTasks.map((task) => (

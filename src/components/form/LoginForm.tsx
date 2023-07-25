@@ -4,6 +4,7 @@ import type { ChangeEvent } from "react";
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
 
 import { FormButton } from "../button/ButtonForm";
+import { HashPasswordInput } from "../HashPasswordInput";
 
 interface LoginFormProps {
   loginError: ErrorMessage;
@@ -34,7 +35,7 @@ export function LoginForm({
             onBlur={formik.handleBlur}
             value={formik.values.email}
             className="min-w-[256px] border-b-2 border-gray-400 p-1
-            text-black focus:border-b-blue-700 focus:outline-none  dark:border-gray-600 dark:bg-midnightBlue dark:text-white
+            text-black focus:border-b-blue-700 focus:outline-none dark:border-gray-600  dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500
             "
           />
         </label>
@@ -50,7 +51,7 @@ export function LoginForm({
       <fieldset>
         <label className="flex flex-col gap-1">
           <span className="dark:text-white">Password</span>
-          <input
+          {/* <input
             type="password"
             name="password"
             placeholder="Must have at least 6 characters"
@@ -58,7 +59,12 @@ export function LoginForm({
             onBlur={formik.handleBlur}
             value={formik.values.password}
             className="min-w-[256px] border-b-2 border-gray-400 p-1
-            text-black focus:border-b-blue-700 focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white"
+            text-black focus:border-b-blue-700 focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
+          /> */}
+          <HashPasswordInput
+            styled="createUser"
+            value={formik.values.password}
+            handleChange={formik.handleChange}
           />
         </label>
         <p className="min-h-[30px] text-sm text-red-500" role="alert">

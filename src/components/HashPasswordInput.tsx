@@ -42,7 +42,7 @@ export function HashPasswordInput({
           "w-[100px] appearance-none bg-transparent focus:outline-none ",
           {
             "min-w-[216px] p-2 dark:bg-midnightBlue": isSettings,
-            "min-w-[216px w-full border-b-2 border-gray-600 p-1 text-black focus:border-blue-700 focus:outline-none dark:focus:border-red-500":
+            "min-w-[216px w-full border-b-2 border-gray-600 p-1 text-black focus:border-blue-700 focus:outline-none dark:text-white dark:focus:border-red-500":
               isCreateUser,
           }
         )}
@@ -61,7 +61,7 @@ export function HashPasswordInput({
         onClick={(event) => handleClick(event)}
         type="button"
       >
-        <span className="flex w-full items-center justify-center bg-white dark:bg-midnightBlue">
+        <span className="flex w-full items-center justify-center bg-white dark:bg-midnightBlue dark:text-white">
           {isPasswordVisible ? (
             <VisiblePassword className="pointer-events-none" />
           ) : (
