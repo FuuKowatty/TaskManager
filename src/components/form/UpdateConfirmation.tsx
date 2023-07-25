@@ -10,7 +10,11 @@ interface Props {
 export function UpdateConfirmation({ isReadOnly, setIsReadOnly }: Props) {
   if (isReadOnly) {
     return (
-      <Button type="submit" onClick={() => setIsReadOnly(false)}>
+      <Button
+        type="submit"
+        onClick={() => setIsReadOnly(false)}
+        className="bg-midnightBlue"
+      >
         Update
       </Button>
     );
@@ -21,12 +25,13 @@ export function UpdateConfirmation({ isReadOnly, setIsReadOnly }: Props) {
       <Button
         type="button"
         variant={"destructive"}
+        className="dark: bg-red-500 hover:bg-red-600"
         onClick={() => setIsReadOnly(true)}
       >
         <BiX size={24} className="mr-1" />
         Cancel
       </Button>
-      <Button type="submit">
+      <Button type="submit" className="bg-blue-700 hover:bg-blue-800">
         <BiCheck size={24} className="mr-1" />
         Confirm
       </Button>

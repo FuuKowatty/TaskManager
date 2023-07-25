@@ -45,7 +45,7 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
             name="email"
             type="email"
             placeholder="JohnCruise@gmail.com"
-            className="min-w-[256px] rounded-sm p-2"
+            className="min-w-[256px] rounded-sm p-2 dark:bg-midnightBlue"
             readOnly={isReadOnly}
             value={isReadOnly ? defaultValue : value}
             onChange={(event) => setValue(event.target.value)}

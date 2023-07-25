@@ -22,19 +22,20 @@ function Calendar({
         fixedWeeks
         showOutsideDays={showOutsideDays}
         className={cn(
-          "mx-auto w-[300px] border-[1px] border-gray-200 lg:w-[340px]",
+          "mx-auto w-[300px] border-[1px] border-gray-200 dark:border-midnightBlue dark:bg-midnightBlue lg:w-[340px]",
           className
         )}
         classNames={{
           months:
             "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
           month: "space-y-4",
-          caption: "w-full flex justify-center py-2 relative items-center",
+          caption:
+            "w-full flex justify-center py-2 relative items-center dark:text-white",
           caption_label: "text-xl font-medium",
           nav: "space-x-1 flex items-center",
           nav_button: cn(
             buttonVariants({ variant: "destructive" }),
-            "bg-slate-950 hover:bg-slate-800 text-white"
+            "bg-slate-950 dark:bg-deepSlate hover:bg-slate-800/90 text-white"
           ),
           nav_button_previous: "absolute left-0",
           nav_button_next: "absolute right-0",
@@ -45,9 +46,9 @@ function Calendar({
           row: "flex w-full mt-2",
           day: cn(
             buttonVariants({ variant: "ghost" }),
-            "h-10 w-10 lg:h-10 lg:w-12 p-0 font-lg hover:bg-slate-950 hover:text-white"
+            "h-10 w-10 lg:h-10 lg:w-12 p-0 font-lg hover:bg-slate-950 hover:text-white dark:text-white"
           ),
-          day_today: "bg-slate-950 text-white",
+          day_today: "bg-slate-950 dark:bg-deepSlate text-white",
           day_outside: "text-muted-foreground opacity-50",
           day_disabled: "text-muted-foreground opacity-50",
           day_range_middle:

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     container: {
@@ -13,11 +13,13 @@ module.exports = {
     extend: {
       fontFamily: {
         roboto: ["var(--font-roboto)"],
-        "golos-text": ["var(--font-golos-text)"],
       },
       colors: {
         lightGray: "#f2f2f2",
-        darkGray: "#333333",
+        darkGray: "#1b1d21",
+        graY: "#222326",
+        midnightBlue: "#1d232c",
+        deepSlate: "#161b21",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

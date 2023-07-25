@@ -1,7 +1,7 @@
 import type { FormikProps } from "formik";
 
 import { ErrorMessage } from "./ErrorMessage";
-import { ButtonBack } from "../button/ButtonBack";
+import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
@@ -29,7 +29,8 @@ export function CreateUserForm({
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="John"
           />
         </label>
@@ -46,7 +47,8 @@ export function CreateUserForm({
             name="surname"
             value={formik.values.surname}
             onChange={formik.handleChange}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Cruise"
           />
         </label>
@@ -63,7 +65,8 @@ export function CreateUserForm({
             name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="JohnCruise@gmail.com"
           />
         </label>
@@ -94,7 +97,8 @@ export function CreateUserForm({
         <label className="flex flex-col gap-1">
           Select a role
           <select
-            className="border-b-2 border-gray-400 bg-white p-2 focus:border-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             name="role"
             value={formik.values.role}
             onChange={(e) => formik.handleChange(e)}
@@ -110,7 +114,7 @@ export function CreateUserForm({
           touched={formik.touched.role}
         />
       </fieldset>
-      <ButtonBack handleClose={handleClose}>Cancel</ButtonBack>
+      <ButtonCancel handleCancel={handleClose} />
       <FormButton>Create User</FormButton>
     </form>
   );

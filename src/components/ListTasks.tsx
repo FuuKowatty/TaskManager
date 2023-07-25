@@ -4,7 +4,7 @@ import { useIncompletedTasks } from "@/hooks/api/useIncompletedTasks";
 import { useSession } from "@/hooks/state/useSession";
 
 import { Task } from "./Task";
-import { LoadingTasksList } from "./ui/LoadingTasksList";
+import { LoadingEmployeesContent } from "./ui/LoadingEmployeesContent";
 
 export function ListTasks() {
   const {
@@ -12,7 +12,7 @@ export function ListTasks() {
   } = useSession();
   const { data: userTasks, isLoading } = useIncompletedTasks(id);
 
-  if (isLoading) return <LoadingTasksList />;
+  if (isLoading) return <LoadingEmployeesContent />;
   if (!userTasks) return null;
 
   return (

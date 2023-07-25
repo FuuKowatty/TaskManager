@@ -1,9 +1,9 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
-import { LoadingTable } from "@/components/LoadingTable";
 import { columns } from "@/components/table/UserColumns";
 import { UsersList } from "@/components/table/UsersTable";
+import { LoadingTable } from "@/components/ui/LoadingTable";
 
 import { useUsersList } from "@/hooks/api/useUsersList";
 

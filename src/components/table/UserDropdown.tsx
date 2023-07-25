@@ -42,21 +42,24 @@ export function Dropdown({ userData }: { userData: User }) {
         <DropdownMenuLabel>{`${name} ${surname}`}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {role === "employee" && (
-          <DropdownMenuItem>
-            <button
-              onClick={() => {
-                setActiveTaskFilter(id);
-                router.push("/dashboard/tasks");
-              }}
-              className="flex items-center"
-              aria-label="show tasks of this user"
-            >
-              <BsEye className="mr-2 h-4 w-4" />
-              <span>Show tasks</span>
-            </button>
-          </DropdownMenuItem>
+          <>
+            <DropdownMenuItem>
+              <button
+                onClick={() => {
+                  setActiveTaskFilter(id);
+                  router.push("/dashboard/tasks");
+                }}
+                className="flex items-center"
+                aria-label="show tasks of this user"
+              >
+                <BsEye className="mr-2 h-4 w-4" />
+                <span>Show tasks</span>
+              </button>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </>
         )}
-        <DropdownMenuSeparator />
+
         <DropdownMenuItem>
           <ButtonDelete openModal={openModal} />
         </DropdownMenuItem>

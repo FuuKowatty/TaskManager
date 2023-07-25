@@ -13,12 +13,12 @@ export default function CreateTask() {
   const { formik } = useCreateTaskForm(handleCreateTask);
 
   return (
-    <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-darkGray shadow-md shadow-gray-300">
+    <div className="focus-within: rounded-md bg-white px-16 pb-8 pt-24 text-black dark:bg-midnightBlue dark:text-white">
       <h1 className="text-center text-3xl font-bold">Create Task</h1>
       <TaskForm
         formik={formik}
         submitText="Create Task"
-        handleCancel={() => router.back()}
+        handleCancel={() => router.push("/dashboard/tasks")}
       />
     </div>
   );

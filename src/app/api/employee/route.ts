@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
+import { prismaExclude } from "@/lib/prismaExclude";
 
 export async function GET() {
   try {
@@ -8,6 +9,7 @@ export async function GET() {
       where: {
         role: "employee",
       },
+      select: prismaExclude("User", ["password"]),
       orderBy: {
         tasks: {
           _count: "desc",

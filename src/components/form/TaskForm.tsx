@@ -35,7 +35,8 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             name="title"
             value={formik.values.title}
             onChange={formik.handleChange}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Analyze our sales data"
           />
         </label>
@@ -48,7 +49,8 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
         <label className="flex flex-col gap-1">
           Description
           <textarea
-            className="resize-none border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            className="min-w-[256px] resize-none border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             name="description"
             cols={30}
             rows={5}
@@ -70,7 +72,8 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             name="endDate"
             value={formik.values.endDate}
             onChange={formik.handleChange}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             min={blockPreviousDates()}
           />
         </label>
@@ -83,7 +86,8 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
         <label className="flex flex-col gap-1">
           Assign task to:
           <select
-            className="min-w-[256px] border-b-2 border-gray-400 bg-white p-2 focus:border-blue-700 focus:outline-none"
+            className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
+            focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             name="userId"
             value={formik.values.userId}
             onChange={formik.handleChange}
