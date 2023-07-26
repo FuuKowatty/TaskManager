@@ -109,8 +109,10 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
           touched={formik.touched.userId}
         />
       </fieldset>
-      <ButtonCancel handleCancel={handleCancel} />
-      <FormButton>{submitText}</FormButton>
+      <div className="flex flex-col gap-2">
+        <ButtonCancel handleCancel={handleCancel} />
+        <FormButton>{submitText}</FormButton>
+      </div>
     </form>
   );
 }
