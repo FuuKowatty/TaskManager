@@ -12,6 +12,16 @@ export async function GET() {
       select: prismaExclude("User", ["password"]),
     });
 
+    if (!user) return NextResponse.json({ message: "User not found" });
+
+    const response = NextResponse.json(user, { status: 200 });
+
+    response.cookies.set({
+      name: "userId",
+      value: user.id.toString(),
+      sameSite: "strict",
+    });
+
     return NextResponse.json(user);
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });
