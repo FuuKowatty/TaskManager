@@ -32,23 +32,24 @@ function getMonthRate(current: number, previous: number) {
       icon: null,
       difference: 0,
     };
-  } else if (current > previous) {
+  }
+  if (current > previous) {
     return {
       icon: <TfiStatsUp />,
       difference: getDifference(current, previous),
     };
-  } else {
-    return {
-      icon: <TfiStatsDown />,
-      difference: getDifference(current, previous),
-    };
   }
+  return {
+    icon: <TfiStatsDown />,
+    difference: getDifference(current, previous),
+  };
 }
 
 function getDifference(current: number, previous: number) {
   if (previous === 0) {
     return 100;
-  } else if (current === 0) {
+  }
+  if (current === 0) {
     return -100;
   }
   const div = current / previous;

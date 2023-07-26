@@ -14,7 +14,9 @@ export default function TasksPage() {
   const {
     sessionUser: { role },
   } = useSession();
+
   const { data: tasksList, isLoading, error } = useTasksList();
+
   const {
     data: usersList,
     isLoading: isUserLoading,
