@@ -117,8 +117,10 @@ export function CreateUserForm({
           touched={formik.touched.role}
         />
       </fieldset>
-      <ButtonCancel handleCancel={handleClose} />
-      <FormButton>Create User</FormButton>
+      <div className="flex flex-col gap-2">
+        <ButtonCancel handleCancel={handleClose} />
+        <FormButton>Create User</FormButton>
+      </div>
     </form>
   );
 }

@@ -6,7 +6,7 @@ import type { User } from "@/types/users";
 
 export function useUsersList() {
   return useQuery({
-    queryKey: ["team"],
+    queryKey: ["team", "admins"],
     queryFn: async () => {
       const { data } = await apiClient.get<User[]>(`getUsers`);
       return data;
