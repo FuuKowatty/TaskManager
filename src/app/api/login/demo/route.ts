@@ -12,17 +12,21 @@ export async function GET() {
       select: prismaExclude("User", ["password"]),
     });
 
-    if (!user) return NextResponse.json({ message: "User not found" });
+    if (!user) {
+      return NextResponse.json(
+        { type: "log in", message: "User not found" },
+        { status: 404 }
+      );
+    }
 
     const response = NextResponse.json(user, { status: 200 });
-
     response.cookies.set({
       name: "userId",
       value: user.id.toString(),
       sameSite: "strict",
     });
 
-    return NextResponse.json(user);
+    return response;
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });
   }
