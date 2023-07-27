@@ -25,7 +25,6 @@ export async function POST(request: Request) {
     }
 
     const response = NextResponse.json(user, { status: 200 });
-
     response.cookies.set({
       name: "userId",
       value: user.id.toString(),
