@@ -25,7 +25,7 @@ export const useAuth = () => {
     mutationKey: ["auth"],
     mutationFn: async (userIdCookie: CookieValueTypes) => {
       const { data } = await apiClient.get<Omit<User, "isLogged">>(
-        `getUsers/${Number(userIdCookie)}`
+        `users/${Number(userIdCookie)}`
       );
 
       return data;

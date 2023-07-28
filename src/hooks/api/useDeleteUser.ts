@@ -1,14 +1,18 @@
-import { useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export function useDeleteUser(id: number, closeModal: () => void) {
+import { apiClient } from "@/lib/apiClient";
+
+export function useDeleteUser(userId: number, closeModal: () => void) {
   const queryClient = useQueryClient();
-  const handleDeleteUser = () => {
-    axios.delete(`/api/getUsers/${id}`).finally(() => {
-      closeModal();
+  const deleteMutation = useMutation({
+    mutationFn: () => {
+      return apiClient.delete(`/users/${userId}`);
+    },
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["team"] });
-    });
-  };
+    },
+    onSettled: closeModal,
+  });
 
-  return handleDeleteUser;
+  return deleteMutation;
 }

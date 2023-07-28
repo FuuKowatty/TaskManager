@@ -10,7 +10,7 @@ export function useUpdateUser(userId: number, closeModal?: () => void) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (formData: UpdateUser): Promise<User> => {
-      const { data } = await apiClient.post(`getUsers/${userId}`, formData);
+      const { data } = await apiClient.put(`users/${userId}`, formData);
       return data;
     },
     onSettled: () => {

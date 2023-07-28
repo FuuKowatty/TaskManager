@@ -9,7 +9,7 @@ export function useDeleteTask(taskId: number, closeModal: () => void) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: () => {
-      return apiClient.delete(`/getTasks/${taskId}`);
+      return apiClient.delete(`/tasks/${taskId}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["tasks", activeTaskFilter]);

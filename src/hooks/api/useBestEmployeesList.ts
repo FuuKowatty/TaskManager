@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 
 import { apiClient } from "@/lib/apiClient";
 
-import type { UserWithCompletedTasks } from "@/types/users";
+import type { UsersWithCompletedTasks } from "@/types/users";
 
 export function useBestEmployees() {
   return useQuery({
     queryKey: ["best employees"],
     queryFn: async () => {
-      const { data } = await apiClient.get<UserWithCompletedTasks[]>(
-        "/getUsersByTaskCount"
+      const { data } = await apiClient.get<UsersWithCompletedTasks[]>(
+        "/tasks/bestEmployees"
       );
       return data;
     },

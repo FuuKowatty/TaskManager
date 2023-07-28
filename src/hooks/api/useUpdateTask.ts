@@ -10,7 +10,7 @@ export function useUpdateTask(taskId: number, closeModal: () => void) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: FormAddTask) => {
-      return apiClient.post(`/updateTask/${taskId}`, data);
+      return apiClient.put(`/tasks/${taskId}`, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["tasks", activeTaskFilter]);

@@ -22,7 +22,7 @@ export interface FormLogin {
   password: string;
 }
 
-export interface UserWithCompletedTasks {
+export interface UsersWithCompletedTasks {
   id: number;
   name: string;
   surname: string;

@@ -8,7 +8,7 @@ export function useUsersList() {
   return useQuery({
     queryKey: ["team", "admins"],
     queryFn: async () => {
-      const { data } = await apiClient.get<User[]>(`getUsers`);
+      const { data } = await apiClient.get<User[]>(`users`);
       return data;
     },
   });

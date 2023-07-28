@@ -8,7 +8,7 @@ export function useUserTasks(userId: number) {
   return useQuery({
     queryKey: ["taskToComplete"],
     queryFn: async () => {
-      const { data } = await apiClient.get<Task[]>(`getTasks/${userId}`);
+      const { data } = await apiClient.get<Task[]>(`tasks/${userId}`);
       return data;
     },
   });

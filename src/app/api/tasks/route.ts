@@ -6,20 +6,41 @@ import prisma from "@/lib/prisma";
 import type { FormAddTask } from "@/types/task";
 
 export async function GET(request: Request) {
+  const getFilteredTasks = async (isCompleted: boolean) => {
+    const posts = await prisma.task.findMany({
+      where: {
+        isCompleted,
+      },
+    });
+
+    return posts;
+  };
+
+  const getTasks = async () => {
+    const posts = await prisma.task.findMany();
+    return posts;
+  };
+
   try {
     const { searchParams } = new URL(request.url);
-    const isCompleted = searchParams.get("isCompleted");
+    let isCompleted;
 
-    if (isCompleted === "true") {
-      const posts = await prisma.task.findMany({
-        where: {
-          isCompleted: true,
-        },
-      });
-      return NextResponse.json(posts);
+    switch (searchParams.get("completed")) {
+      case "true":
+        isCompleted = true;
+        break;
+      case "false":
+        isCompleted = false;
+        break;
+      default:
+        isCompleted = undefined;
+        break;
     }
 
-    const posts = await prisma.task.findMany();
+    const posts =
+      typeof isCompleted === "boolean"
+        ? await getFilteredTasks(isCompleted)
+        : await getTasks();
     return NextResponse.json(posts);
   } catch (err) {
     return NextResponse.json({ message: "GET Error", err }, { status: 500 });

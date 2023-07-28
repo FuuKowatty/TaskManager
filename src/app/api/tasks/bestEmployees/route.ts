@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getPrismaError } from "@/lib/getPrismaError";
 import prisma from "@/lib/prisma";
 
-import type { UserWithCompletedTasks } from "@/types/users";
+import type { UsersWithCompletedTasks } from "@/types/users";
 
 export async function GET() {
   try {
@@ -23,7 +23,7 @@ export async function GET() {
       },
     });
 
-    const formattedUsers: UserWithCompletedTasks[] = usersWithCompletedTasks
+    const formattedUsers: UsersWithCompletedTasks[] = usersWithCompletedTasks
       .map((user) => ({
         id: user.id,
         name: user.name,
@@ -31,7 +31,7 @@ export async function GET() {
         numberOfCompletedTasks: user.tasks.length,
       }))
       .sort(
-        (a: UserWithCompletedTasks, b: UserWithCompletedTasks) =>
+        (a: UsersWithCompletedTasks, b: UsersWithCompletedTasks) =>
           b.numberOfCompletedTasks - a.numberOfCompletedTasks
       );
 

@@ -6,7 +6,7 @@ export function useUpdateTaskStatus(taskId: number) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: () => {
-      return apiClient.get(`updateTask/${taskId}`);
+      return apiClient.patch(`tasks/${taskId}`);
     },
 
     onSuccess: () => {

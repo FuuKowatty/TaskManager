@@ -10,7 +10,7 @@ export function useCreateTask() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: FormAddTask) => {
-      return apiClient.post("getTasks", data);
+      return apiClient.post("tasks", data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["tasks"]);

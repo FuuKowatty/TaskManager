@@ -11,7 +11,7 @@ export function useCreateUser() {
   const queryClient = useQueryClient();
   const { mutate: handleCreateUser, error: createError } = useMutation({
     mutationFn: (data: FormRegister) => {
-      return apiClient.post("getUsers", data);
+      return apiClient.post("users", data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["team"]);

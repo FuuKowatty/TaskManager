@@ -9,7 +9,7 @@ export function useIncompletedTasks(userId: number) {
     queryKey: ["incompleted-tasks-user"],
     queryFn: async () => {
       const { data } = await apiClient.get<Task[]>(
-        `getIncompletedTasks/${userId}`
+        `tasks/${userId}?completed=false`
       );
       return data;
     },

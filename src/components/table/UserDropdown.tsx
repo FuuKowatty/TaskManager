@@ -29,7 +29,7 @@ export function Dropdown({ userData }: { userData: User }) {
   const { setActiveTaskFilter } = useActiveTaskFilter();
   const { id, name, surname, role } = userData;
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
-  const handleDeleteUser = useDeleteUser(id, closeModal);
+  const deleteMutation = useDeleteUser(id, closeModal);
 
   return (
     <DropdownMenu>
@@ -73,7 +73,7 @@ export function Dropdown({ userData }: { userData: User }) {
         <>
           {modalType === "delete" && (
             <DeleteModal
-              handleDelete={handleDeleteUser}
+              handleDelete={deleteMutation.mutate}
               closeModal={closeModal}
             />
           )}
