@@ -1,11 +1,13 @@
 import { useBestEmployees } from "@/hooks/api/useBestEmployeesList";
 
+import { ErrorMessage } from "./form/ErrorMessage";
 import { LoadingEmployeesContent } from "./ui/LoadingEmployeesContent";
 
 export function BestEmployess() {
-  const { data: bestEmployees, isLoading } = useBestEmployees();
+  const { data: bestEmployees, isLoading, error } = useBestEmployees();
 
   if (isLoading) return <LoadingEmployeesContent />;
+  if (error) return <ErrorMessage error="Could not fetch employees data" />;
 
   return (
     <>

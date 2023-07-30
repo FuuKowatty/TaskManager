@@ -1,6 +1,7 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
+import { ErrorMessage } from "@/components/form/ErrorMessage";
 import { columns } from "@/components/table/UserColumns";
 import { UsersList } from "@/components/table/UsersTable";
 import { LoadingTable } from "@/components/ui/LoadingTable";
@@ -8,11 +9,10 @@ import { LoadingTable } from "@/components/ui/LoadingTable";
 import { useUsersList } from "@/hooks/api/useUsersList";
 
 export default function Team() {
-  const { data, isLoading } = useUsersList();
+  const { data, isLoading, error } = useUsersList();
 
-  if (isLoading) {
-    return <LoadingTable />;
-  }
+  if (isLoading) return <LoadingTable />;
+  if (error) return <ErrorMessage error="Could not fetch users" />;
 
   return (
     <section className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
