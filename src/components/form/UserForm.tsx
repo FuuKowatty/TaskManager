@@ -15,7 +15,7 @@ interface CreateUserFormProps {
   buttonText: string;
 }
 
-export function CreateUserForm({
+export function UserForm({
   formik,
   createError,
   handleClose,
