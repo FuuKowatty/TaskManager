@@ -13,7 +13,7 @@ export async function GET(
     const posts = await prisma.task.findMany({
       where: {
         isCompleted,
-        userId: parseInt(id),
+        userId: Number(id),
       },
     });
 
@@ -23,7 +23,7 @@ export async function GET(
   const getTasks = async () => {
     const posts = await prisma.task.findMany({
       where: {
-        userId: parseInt(id),
+        userId: Number(id),
       },
     });
     return posts;
@@ -65,7 +65,7 @@ export async function PUT(
 
     const updatedTask = await prisma.task.update({
       where: {
-        id: parseInt(id),
+        id: Number(id),
       },
       data: { ...taskData, endDate: new Date(endDate) },
     });
@@ -84,7 +84,7 @@ export async function PATCH(
     const { id } = params;
     const updatedTask = await prisma.task.update({
       where: {
-        id: parseInt(id),
+        id: Number(id),
       },
       data: {
         isCompleted: true,

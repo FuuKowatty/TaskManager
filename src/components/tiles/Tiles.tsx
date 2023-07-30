@@ -11,7 +11,7 @@ export function Tiles({ statsData }: { statsData: ChartStats[] }) {
     getTilesData(statsData);
   const { icon, difference } = monthRate;
   return (
-    <div className="flex h-[30%] items-stretch justify-center gap-6 lg:items-center">
+    <div className="flex h-[30%] flex-wrap justify-center gap-6 md:items-center lg:flex-nowrap">
       <Tile>
         <span className="font-golos-text text-3xl font-bold">
           {Last6MonthsTasksCount}

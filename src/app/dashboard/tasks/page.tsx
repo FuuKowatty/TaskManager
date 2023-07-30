@@ -1,6 +1,7 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
+import { ErrorMessage } from "@/components/form/ErrorMessage";
 import { getTasksColumn } from "@/components/table/TaskColumns";
 import { TasksTable } from "@/components/table/TasksTable";
 import { UserTasksFilter } from "@/components/table/UserTasksFilter";
@@ -23,7 +24,7 @@ export default function TasksPage() {
     error: userError,
   } = useEmployeesList();
 
-  if (error || userError) return <p>Sorry, could not fetch data</p>;
+  if (error || userError) return <ErrorMessage error="Could not fetch tasks" />;
 
   if (isLoading || isUserLoading) {
     return <LoadingTable />;

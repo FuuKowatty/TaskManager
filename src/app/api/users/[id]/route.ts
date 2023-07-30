@@ -40,7 +40,7 @@ export async function PUT(
 
     const user = await prisma.user.update({
       where: {
-        id: parseInt(userId),
+        id: Number(userId),
       },
       data,
     });

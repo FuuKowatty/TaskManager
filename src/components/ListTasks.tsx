@@ -3,6 +3,7 @@
 import { useIncompletedTasks } from "@/hooks/api/useIncompletedTasks";
 import { useSession } from "@/hooks/state/useSession";
 
+import { ErrorMessage } from "./form/ErrorMessage";
 import { Task } from "./Task";
 import { LoadingEmployeesContent } from "./ui/LoadingEmployeesContent";
 
@@ -10,10 +11,11 @@ export function ListTasks() {
   const {
     sessionUser: { id },
   } = useSession();
-  const { data: userTasks, isLoading } = useIncompletedTasks(id);
+  const { data: userTasks, isLoading, error } = useIncompletedTasks(id);
 
   if (isLoading) return <LoadingEmployeesContent />;
   if (!userTasks) return null;
+  if (error) return <ErrorMessage error="Could not fetch tasks" />;
 
   return (
     <div className="absolute bottom-0 left-0 right-0 top-0 flex h-full flex-col items-center">

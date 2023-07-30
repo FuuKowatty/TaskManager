@@ -1,5 +1,5 @@
 interface ErrorMessageProps {
-  touched: boolean | undefined;
+  touched?: boolean | undefined;
   error: string | undefined;
 }
 

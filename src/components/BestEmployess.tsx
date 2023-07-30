@@ -1,16 +1,18 @@
 import { useBestEmployees } from "@/hooks/api/useBestEmployeesList";
 
+import { ErrorMessage } from "./form/ErrorMessage";
 import { LoadingEmployeesContent } from "./ui/LoadingEmployeesContent";
 
 export function BestEmployess() {
-  const { data: bestEmployees, isLoading } = useBestEmployees();
+  const { data: bestEmployees, isLoading, error } = useBestEmployees();
 
   if (isLoading) return <LoadingEmployeesContent />;
+  if (error) return <ErrorMessage error="Could not fetch employees data" />;
 
   return (
     <>
       <div className="mb-4 w-full text-center text-xl font-bold dark:text-white">
-        Employees of the month
+        Best Employees
       </div>
       <ol className="w-full">
         {bestEmployees ? (

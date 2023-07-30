@@ -16,7 +16,7 @@ export default function Dashboard() {
   if (!isLogged) return <LoadingHomePage />;
 
   return (
-    <main className="flex w-full flex-col justify-items-center gap-5 text-black md:grid md:grid-cols-DASHBOARD md:gap-x-6 md:gap-y-0 xl:grid-cols-DASHBOARD-BIG xl:grid-rows-6">
+    <main className="flex w-full flex-col justify-items-center gap-5 px-4 py-8 text-black md:grid md:grid-cols-DASHBOARD md:gap-x-6 md:gap-y-0  xl:grid-cols-DASHBOARD-BIG xl:grid-rows-6">
       <HelloBanner />
       <Calendar />
       <RenderCharts />

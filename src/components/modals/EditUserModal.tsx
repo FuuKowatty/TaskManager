@@ -5,7 +5,7 @@ import { useUpdateUserForm } from "@/hooks/formik/useUpdateUserForm";
 import type { User } from "@/types/users";
 
 import { Modal } from "./Modal";
-import { CreateUserForm } from "../form/CreateUserForm";
+import { UserForm } from "../form/UserForm";
 
 interface ModalProps {
   closeModal: () => void;
@@ -21,9 +21,13 @@ export function EditUserModal({ closeModal, userData }: ModalProps) {
       <div className="flex h-full flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-2">
           <AiOutlineExclamationCircle className="text-6xl text-blue-700" />
-          <p className="text-2xl">Update User</p>
+          <p className="text-2xl">Update Task</p>
         </div>
-        <CreateUserForm formik={formik} handleClose={closeModal} />
+        <UserForm
+          formik={formik}
+          handleClose={closeModal}
+          buttonText="Update User"
+        />
       </div>
     </Modal>
   );
