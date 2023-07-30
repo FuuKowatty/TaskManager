@@ -62,7 +62,7 @@ export async function POST(request: Request) {
         title,
         description,
         endDate: endDateTime,
-        userId: parseInt(userId),
+        userId: Number(userId),
       },
     });
 

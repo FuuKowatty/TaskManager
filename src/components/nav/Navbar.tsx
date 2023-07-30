@@ -21,7 +21,7 @@ export function Navbar() {
   if (!isLogged) return <LoadingNavbar />;
 
   return (
-    <nav className="fixed bottom-2 left-0 right-0 z-10 mx-4 flex flex-shrink-0 gap-4 rounded-xl bg-slate-950 px-4 py-4 text-primary-foreground text-white dark:bg-midnightBlue lg:static lg:ml-0 lg:mr-4 lg:w-64 lg:flex-col lg:gap-0 lg:rounded-3xl lg:py-14 lg:pl-8 lg:pr-12">
+    <nav className="fixed bottom-2 left-0 right-0 z-10 mx-4 flex flex-shrink-0 gap-4 rounded-xl bg-slate-950 px-4 py-4 text-primary-foreground text-white dark:bg-midnightBlue lg:static lg:ml-0 lg:mr-2 lg:flex-col lg:gap-0 lg:rounded-3xl lg:py-14 lg:pl-8 lg:pr-12 xl:mr-4 xl:w-64">
       <Link
         href="/"
         className="font-golos-text mb-24 ml-2 hidden rounded-lg p-2 text-5xl font-black focus:outline-none focus:ring-2 focus:ring-gray-200 lg:inline-block"
@@ -33,7 +33,7 @@ export function Navbar() {
           return <NavLink key={text} href={href} icon={icon} text={text} />;
         })}
       </ul>
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <ButtonLogout />
       </div>
     </nav>

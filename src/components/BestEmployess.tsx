@@ -10,7 +10,7 @@ export function BestEmployess() {
   return (
     <>
       <div className="mb-4 w-full text-center text-xl font-bold dark:text-white">
-        Employees of the month
+        Best Employees
       </div>
       <ol className="w-full">
         {bestEmployees ? (

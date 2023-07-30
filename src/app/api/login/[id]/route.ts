@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const userId = parseInt(params.id);
+    const userId = Number(params.id);
 
     const user = await prisma.user.findFirst({
       where: {
