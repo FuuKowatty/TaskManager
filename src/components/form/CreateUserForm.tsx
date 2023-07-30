@@ -12,17 +12,19 @@ interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
   createError?: ErrorMessageType;
   handleClose: () => void;
+  buttonText: string;
 }
 
 export function CreateUserForm({
   formik,
   createError,
   handleClose,
+  buttonText,
 }: CreateUserFormProps) {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex max-w-xl flex-col gap-8 text-left"
+      className="flex w-full flex-col gap-8 text-left lg:max-w-xl"
     >
       <fieldset>
         <label className="flex flex-col gap-1">
@@ -119,7 +121,7 @@ export function CreateUserForm({
       </fieldset>
       <div className="flex flex-col gap-2">
         <ButtonCancel handleCancel={handleClose} />
-        <FormButton>Create User</FormButton>
+        <FormButton>{buttonText}</FormButton>
       </div>
     </form>
   );
