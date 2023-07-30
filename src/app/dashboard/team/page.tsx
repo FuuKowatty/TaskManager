@@ -9,10 +9,10 @@ import { LoadingTable } from "@/components/ui/LoadingTable";
 import { useUsersList } from "@/hooks/api/useUsersList";
 
 export default function Team() {
-  const { data, isLoading, error } = useUsersList();
+  const { data, status } = useUsersList();
 
-  if (isLoading) return <LoadingTable />;
-  if (error) return <ErrorMessage error="Could not fetch users" />;
+  if (status === "loading") return <LoadingTable />;
+  if (status === "error") return <ErrorMessage error="Could not fetch users" />;
 
   return (
     <section className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
@@ -20,7 +20,7 @@ export default function Team() {
       <ButtonCreate redirectTo="create-user">Create User</ButtonCreate>
       <UsersList
         columns={columns}
-        data={data?.filter((user) => user.role !== "admin") ?? []}
+        data={data.filter((user) => user.role !== "admin")}
       />
     </section>
   );

@@ -4,10 +4,11 @@ import { ErrorMessage } from "./form/ErrorMessage";
 import { LoadingEmployeesContent } from "./ui/LoadingEmployeesContent";
 
 export function BestEmployess() {
-  const { data: bestEmployees, isLoading, error } = useBestEmployees();
+  const { data: bestEmployees, status } = useBestEmployees();
 
-  if (isLoading) return <LoadingEmployeesContent />;
-  if (error) return <ErrorMessage error="Could not fetch employees data" />;
+  if (status === "loading") return <LoadingEmployeesContent />;
+  if (status === "error")
+    return <ErrorMessage error="Could not fetch employees data" />;
 
   return (
     <>
@@ -15,7 +16,7 @@ export function BestEmployess() {
         Best Employees
       </div>
       <ol className="w-full">
-        {bestEmployees ? (
+        {bestEmployees.length ? (
           bestEmployees
             .slice(0, 5)
             .map(({ id, name, numberOfCompletedTasks, surname }) => (

@@ -9,10 +9,10 @@ import { ErrorMessage } from "../form/ErrorMessage";
 import { LoadingCharts } from "../ui/LoadingCharts";
 
 export function RenderCharts() {
-  const { data, isLoading, error } = useActiveStatsTasks();
-  if (isLoading) return <LoadingCharts />;
-  if (error) return <ErrorMessage error="Could not fetch chart data" />;
-  if (!data) return null;
+  const { data, status } = useActiveStatsTasks();
+  if (status === "loading") return <LoadingCharts />;
+  if (status === "error")
+    return <ErrorMessage error="Could not fetch chart data" />;
 
   const taskCountPerMonth = getTaskCountPerMonth(data);
   return <ChartArea statsData={taskCountPerMonth} />;

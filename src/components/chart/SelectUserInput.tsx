@@ -15,6 +15,7 @@ import { useActiveUserId } from "@/hooks/state/useActiveStatsUser";
 import { useSession } from "@/hooks/state/useSession";
 import type { User } from "@/types/users";
 
+import { ErrorMessage } from "../form/ErrorMessage";
 import { LoadingSelectChart } from "../ui/LoadingSelectChart";
 
 export function SelectUserInput() {
@@ -22,13 +23,15 @@ export function SelectUserInput() {
     sessionUser: { role },
   } = useSession();
   const { activeStatsUserId, setActiveStatsUserId } = useActiveUserId();
-  const { data: employeesList, isLoading } = useEmployeesList();
+  const { data: employeesList, status } = useEmployeesList();
 
-  if (isLoading) {
+  if (status === "loading") {
     return <LoadingSelectChart />;
   }
 
-  if (!employeesList) return null;
+  if (status === "error") {
+    return <ErrorMessage error="Could not fetch employees" />;
+  }
 
   const handleChange = (value: number) => {
     setActiveStatsUserId(value);

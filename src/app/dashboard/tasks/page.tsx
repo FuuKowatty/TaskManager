@@ -7,8 +7,7 @@ import { TasksTable } from "@/components/table/TasksTable";
 import { UserTasksFilter } from "@/components/table/UserTasksFilter";
 import { LoadingTable } from "@/components/ui/LoadingTable";
 
-import { useEmployeesList } from "@/hooks/api/useEmployeesList";
-import { useTasksList } from "@/hooks/api/useTasksList";
+import { useUsersAndEmployeesLists } from "@/hooks/api/useUsersAndEmployeesLists";
 import { useSession } from "@/hooks/state/useSession";
 
 export default function TasksPage() {
@@ -16,19 +15,16 @@ export default function TasksPage() {
     sessionUser: { role },
   } = useSession();
 
-  const { data: tasksList, isLoading, error } = useTasksList();
+  const [
+    { status: tasksStatus, data: tasksList },
+    { status: usersStatus, data: usersList },
+  ] = useUsersAndEmployeesLists();
 
-  const {
-    data: usersList,
-    isLoading: isUserLoading,
-    error: userError,
-  } = useEmployeesList();
-
-  if (error || userError) return <ErrorMessage error="Could not fetch tasks" />;
-
-  if (isLoading || isUserLoading) {
+  if (tasksStatus === "loading" || usersStatus === "loading")
     return <LoadingTable />;
-  }
+
+  if (tasksStatus === "error" || usersStatus === "error")
+    return <ErrorMessage error="Could not fetch tasks" />;
 
   return (
     <>
