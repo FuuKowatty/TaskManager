@@ -1,19 +1,5 @@
+import { monthNames } from "@/data/monthNames";
 import type { Task, TaskCountPerMonth } from "@/types/task";
-
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-] as const;
 
 export function getTaskCountPerMonth(tasks: Task[]) {
   const currentDate = new Date();

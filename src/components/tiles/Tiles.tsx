@@ -2,7 +2,7 @@
 
 import { getTilesData } from "@/lib/getTilesData";
 
-import type { ChartStats } from "@/types/ChartStats";
+import type { ChartStats } from "@/types/chartStats";
 
 import { Tile } from "./Tile";
 
