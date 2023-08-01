@@ -3,6 +3,7 @@
 import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
 
 import { useActiveStatsTasks } from "@/hooks/api/useActiveStatsUser";
+import type { ChartStats } from "@/types/chartStats";
 
 import { ChartArea } from "./ChartArea";
 import { ErrorMessage } from "../form/ErrorMessage";
@@ -15,5 +16,5 @@ export function RenderCharts() {
     return <ErrorMessage error="Could not fetch chart data" />;
 
   const taskCountPerMonth = getTaskCountPerMonth(data);
-  return <ChartArea statsData={taskCountPerMonth} />;
+  return <ChartArea statsData={taskCountPerMonth as ChartStats} />;
 }

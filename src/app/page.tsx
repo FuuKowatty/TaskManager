@@ -19,11 +19,11 @@ export default function Home() {
             "flex flex-1 flex-col items-center gap-5 pb-10 lg:flex-row lg:gap-0 lg:pb-0"
           }
         >
-          <div className={"flex flex-col space-y-8 px-8 lg:w-7/12"}>
+          <div className={"flex flex-col space-y-8 px-16 lg:w-7/12"}>
             <div className={"flex justify-center lg:justify-start"}></div>
             <h1
               className={
-                "flex flex-col text-center  text-3xl font-bold lg:text-left xl:text-5xl 2xl:text-6xl"
+                "flex flex-col text-left text-3xl font-bold xl:text-5xl 2xl:text-6xl"
               }
             >
               <span className="">Task Manager App</span>
@@ -33,18 +33,12 @@ export default function Home() {
               </span>
             </h1>
 
-            <div
-              className={
-                "text-center text-base text-gray-500 dark:text-gray-300 lg:text-left lg:text-lg xl:text-xl " +
-                " font-heading flex flex-col space-y-1.5 md:w-full"
-              }
-            >
-              <span>TaskManager is a powerful app designed for teams</span>
-
-              <span>
-                allowing admins to manage users, managers to assign tasks
+            <div className="text-left text-base text-gray-500 dark:text-gray-300 md:w-full lg:text-left lg:text-lg xl:text-xl">
+              <span className="block">
+                TaskManager is a powerful application designed for teams
               </span>
-
+              <span>allowing admins to manage users,</span>
+              <span className="block"> managers to assign tasks</span>
               <span>and employees to track their progress.</span>
             </div>
 

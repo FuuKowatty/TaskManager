@@ -1,5 +1,6 @@
 import { monthNames } from "@/data/monthNames";
-import type { Task, TaskCountPerMonth } from "@/types/task";
+import type { MonthNames } from "@/types/chartStats";
+import type { Task } from "@/types/task";
 
 export function getTaskCountPerMonth(tasks: Task[]) {
   const currentDate = new Date();
@@ -11,15 +12,18 @@ export function getTaskCountPerMonth(tasks: Task[]) {
     (task) => new Date(task.endDate) >= sixMonthsAgo
   );
   const tasksCount = countTaskPerMonth(actualYearTasks);
+  const taskCountPerMonth = Object.entries(tasksCount).map(
+    ([monthName, taskCount]) => ({
+      monthName: monthName as MonthNames,
+      taskCount,
+    })
+  );
 
-  const taskCountPerMonth: TaskCountPerMonth[] = [];
-  for (let i = 0; i <= 5; i++) {
-    const monthDate = new Date(currentYear, currentMonth - i, 1);
-    const monthName = monthNames[monthDate.getMonth()];
-    const tasksPerMonth = tasksCount[monthName] || 0;
-    taskCountPerMonth.push({ monthName, taskCount: tasksPerMonth });
-  }
-  return taskCountPerMonth.reverse(); // Reverse the array to show data in chronological order
+  const sortedTaskCountPerMonth = taskCountPerMonth.sort(
+    (a, b) => monthNames.indexOf(a.monthName) - monthNames.indexOf(b.monthName)
+  );
+
+  return sortedTaskCountPerMonth;
 }
 
 function countTaskPerMonth(tasks: Task[]) {

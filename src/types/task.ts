@@ -14,8 +14,3 @@ export interface FormAddTask {
   endDate: string;
   userId: number;
 }
-
-export interface TaskCountPerMonth {
-  monthName: string;
-  taskCount: number;
-}
