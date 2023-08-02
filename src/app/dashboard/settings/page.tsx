@@ -19,7 +19,7 @@ export default function SettingsPage() {
       <h2 className="text-6xl font-black">Settings</h2>
       <div className="flex flex-col gap-10">
         <UpdateForm defaultValue={email} type="email" id={id} />
-        <UpdateForm defaultValue="[YOUR_PASSWORD]" type="password" id={id} />
+        <UpdateForm defaultValue="" type="password" id={id} />
       </div>
       <ThemeSwitcher />
       <div className="block lg:hidden">

@@ -48,7 +48,9 @@ export function HashPasswordInput({
         onChange={handleChange}
         readOnly={readOnly ?? false}
         name="password"
-        placeholder="Must have at least 6 characters"
+        placeholder={
+          readOnly ? "Must have at least 6 characters" : "Enter your password"
+        }
       />
       <button
         className={clsx("h-[40px] w-[40px]", {
