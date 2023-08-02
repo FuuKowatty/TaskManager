@@ -11,9 +11,15 @@ interface TaskFormProps {
   formik: FormikProps<FormAddTask>;
   submitText: string;
   handleCancel: () => void;
+  error?: string;
 }
 
-export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
+export function TaskForm({
+  formik,
+  submitText,
+  handleCancel,
+  error,
+}: TaskFormProps) {
   const { data: usersList } = useEmployeesList();
   if (!usersList) {
     return null;
@@ -28,6 +34,11 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
       onSubmit={formik.handleSubmit}
       className="flex w-full flex-col gap-8 text-left lg:max-w-xl"
     >
+      {error && (
+        <div className="mt-4 text-center">
+          <ErrorMessage error={error} isRequestError={true} />
+        </div>
+      )}
       <fieldset>
         <label className="flex flex-col gap-1">
           Title

@@ -57,6 +57,20 @@ export async function POST(request: Request) {
     }: FormAddTask & { userId: string } = await request.json();
     const endDateTime = `${endDate}T23:59:59Z`;
 
+    const exsistingTask = await prisma.task.findFirst({
+      where: {
+        title,
+        userId: parseInt(userId),
+      },
+    });
+
+    if (exsistingTask) {
+      return NextResponse.json(
+        { type: "error", message: "Task already exists." },
+        { status: 409 }
+      );
+    }
+
     const task = await prisma.task.create({
       data: {
         title,
@@ -78,6 +92,7 @@ export async function POST(request: Request) {
         status: 409,
       });
     }
+
     return new NextResponse(prismaError.message, { status: 500 });
   }
 }

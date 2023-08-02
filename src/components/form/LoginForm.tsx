@@ -53,16 +53,6 @@ export function LoginForm({
       <fieldset>
         <label className="flex flex-col gap-1">
           <span className="dark:text-white">Password</span>
-          {/* <input
-            type="password"
-            name="password"
-            placeholder="Must have at least 6 characters"
-            onChange={handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-            className="min-w-[256px] border-b-2 border-gray-400 p-1
-            text-black focus:border-b-blue-700 focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
-          /> */}
           <HashPasswordInput
             styled="createUser"
             value={formik.values.password}

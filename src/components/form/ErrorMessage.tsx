@@ -1,12 +1,32 @@
-interface ErrorMessageProps {
-  touched?: boolean | undefined;
-  error: string | undefined;
-}
+import { cn } from "@/lib/utils";
 
-export function ErrorMessage({ touched, error }: ErrorMessageProps) {
+type ErrorMessageProps =
+  | {
+      touched?: boolean | undefined;
+      error: string | undefined;
+      isRequestError?: never;
+    }
+  | {
+      touched?: never;
+      error: string | undefined;
+      isRequestError: boolean;
+    };
+
+export function ErrorMessage({
+  touched,
+  error,
+  isRequestError,
+}: ErrorMessageProps) {
   return (
-    <p className="min-h-[30px] text-sm text-red-500" role="alert">
-      {touched && error && <>{error}</>}
+    <p
+      className={cn(
+        "min-h-[30px]  text-red-500",
+        isRequestError ? "mt-4 text-center text-xl" : "text-sm"
+      )}
+      role="alert"
+    >
+      {isRequestError && !touched && error}
+      {touched && error && error}
     </p>
   );
 }
