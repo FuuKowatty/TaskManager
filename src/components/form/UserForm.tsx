@@ -4,6 +4,7 @@ import type { ErrorMessageType } from "@/types/errorMessage";
 import type { FormRegister } from "@/types/users";
 
 import { ErrorMessage } from "./ErrorMessage";
+import { LabelText } from "./LabelText";
 import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
@@ -28,7 +29,7 @@ export function UserForm({
     >
       <fieldset>
         <label className="flex flex-col gap-1">
-          Name
+          <LabelText required>Name</LabelText>
           <input
             type="text"
             name="name"
@@ -37,16 +38,16 @@ export function UserForm({
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="John"
+            required
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.name}
-          touched={formik.touched.name}
-        />
+        <ErrorMessage>
+          {formik.errors.name && formik.touched.name ? formik.errors.name : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          Surname
+          <LabelText required>Surname</LabelText>
           <input
             type="text"
             name="surname"
@@ -55,16 +56,18 @@ export function UserForm({
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Cruise"
+            required
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.surname}
-          touched={formik.touched.surname}
-        />
+        <ErrorMessage>
+          {formik.errors.surname && formik.touched.surname
+            ? formik.errors.surname
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          Email
+          <LabelText required>Email</LabelText>
           <input
             type="email"
             name="email"
@@ -73,40 +76,43 @@ export function UserForm({
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="JohnCruise@gmail.com"
+            required
           />
         </label>
-        <p className="min-h-[30px] text-sm text-red-500" role="alert">
-          {formik.touched.email && formik.errors.email ? (
-            <>{formik.errors.email}</>
-          ) : (
-            createError &&
-            createError.type === "email" && <>{createError.message}</>
-          )}
-        </p>
+        <ErrorMessage>
+          {formik.errors.email && formik.touched.email
+            ? formik.errors.email
+            : createError && createError.type === "email"
+            ? createError.message
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          Password
+          <LabelText required>Password</LabelText>
           <HashPasswordInput
             value={formik.values.password}
             handleChange={formik.handleChange}
             styled="createUser"
+            aria-required
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.password}
-          touched={formik.touched.password}
-        />
+        <ErrorMessage>
+          {formik.errors.password && formik.touched.password
+            ? formik.errors.password
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          Select a role
+          <LabelText required>Select a role</LabelText>
           <select
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             name="role"
             value={formik.values.role}
             onChange={(e) => formik.handleChange(e)}
+            required
           >
             <option selected value={"employee"}>
               {"employee"}
@@ -114,10 +120,9 @@ export function UserForm({
             <option value={"manager"}>{"manager"}</option>
           </select>
         </label>
-        <ErrorMessage
-          error={formik.errors.role}
-          touched={formik.touched.role}
-        />
+        <ErrorMessage>
+          {formik.errors.role && formik.touched.role ? formik.errors.role : ""}
+        </ErrorMessage>
       </fieldset>
       <div className="flex flex-col gap-2">
         <ButtonCancel handleCancel={handleClose} />

@@ -12,16 +12,17 @@ export default function Team() {
   const { data, status } = useUsersList();
 
   if (status === "loading") return <LoadingTable />;
-  if (status === "error") return <ErrorMessage error="Could not fetch users" />;
+  if (status === "error")
+    return <ErrorMessage>Could not fetch users</ErrorMessage>;
 
   return (
-    <section className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
+    <main className="relative flex w-full flex-col items-start lg:pl-2 lg:pr-6">
       <h2 className="mb-8 text-5xl font-bold">Team</h2>
       <ButtonCreate redirectTo="create-user">Create User</ButtonCreate>
       <UsersList
         columns={columns}
         data={data.filter((user) => user.role !== "admin")}
       />
-    </section>
+    </main>
   );
 }

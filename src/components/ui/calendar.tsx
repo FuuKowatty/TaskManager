@@ -17,7 +17,7 @@ function Calendar({
   ...props
 }: CalendarProps) {
   return (
-    <div className=" md:col-start-2 md:row-span-3 md:row-start-1">
+    <section className=" md:col-start-2 md:row-span-3 md:row-start-1">
       <DayPicker
         fixedWeeks
         showOutsideDays={showOutsideDays}
@@ -66,7 +66,7 @@ function Calendar({
         }}
         {...props}
       />
-    </div>
+    </section>
   );
 }
 Calendar.displayName = "Calendar";
