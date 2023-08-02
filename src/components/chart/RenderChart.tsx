@@ -13,7 +13,7 @@ export function RenderCharts() {
   const { data, status } = useActiveStatsTasks();
   if (status === "loading") return <LoadingCharts />;
   if (status === "error")
-    return <ErrorMessage error="Could not fetch chart data" />;
+    return <ErrorMessage>Could not fetch chart data</ErrorMessage>;
 
   const taskCountPerMonth = getTaskCountPerMonth(data);
   return <ChartArea statsData={taskCountPerMonth as ChartStats} />;

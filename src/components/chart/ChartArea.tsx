@@ -18,7 +18,7 @@ import { SelectUserInput } from "./SelectUserInput";
 
 export function ChartArea({ statsData }: { statsData: ChartStats }) {
   return (
-    <div className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:gap-10">
+    <section className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:gap-10">
       {statsData.length && <Tiles statsData={statsData} />}
       <div className="relative h-96 w-full lg:h-[65%]">
         <div className="absolute right-0 top-[-40px]">
@@ -43,6 +43,6 @@ export function ChartArea({ statsData }: { statsData: ChartStats }) {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </section>
   );
 }

@@ -17,14 +17,14 @@ export default function SettingsPage() {
   return (
     <main className="flex w-full max-w-xl flex-col justify-start gap-12 lg:gap-20 lg:px-20">
       <h2 className="text-6xl font-black">Settings</h2>
-      <div className="flex flex-col gap-10">
+      <section className="flex flex-col gap-10">
         <UpdateForm defaultValue={email} type="email" id={id} />
         <UpdateForm defaultValue="[YOUR_PASSWORD]" type="password" id={id} />
-      </div>
+      </section>
       <ThemeSwitcher />
-      <div className="block lg:hidden">
+      <section className="block lg:hidden">
         <ButtonLogout />
-      </div>
+      </section>
     </main>
   );
 }

@@ -101,12 +101,16 @@ export function UsersList<TData, TValue>({
           </TableBody>
         </Table>
       </TableContainer>
-      <div className="mt-4 flex items-center justify-center space-x-6 py-4">
+      <div
+        className="mt-4 flex items-center justify-center space-x-6 py-4"
+        role="navigation"
+      >
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          aria-label="Go to Previous Page"
         >
           Previous
         </Button>
@@ -116,6 +120,7 @@ export function UsersList<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          aria-label="Go to Next Page"
         >
           Next
         </Button>

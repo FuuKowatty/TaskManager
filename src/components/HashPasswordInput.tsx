@@ -6,18 +6,16 @@ import {
   AiFillEyeInvisible as VisiblePassword,
   AiOutlineEye as InvisiblePassword,
 } from "react-icons/ai";
-interface HashPasswordInputProps {
-  value: string;
-  readOnly?: boolean;
+interface HashPasswordInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   styled?: "settings" | "createUser" | "";
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function HashPasswordInput({
-  value,
-  readOnly,
   styled,
   handleChange,
+  ...rest
 }: HashPasswordInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const isSettings = styled === "settings";
@@ -44,11 +42,10 @@ export function HashPasswordInput({
             isCreateUser,
         })}
         type={isPasswordVisible ? "text" : "password"}
-        value={value}
         onChange={handleChange}
-        readOnly={readOnly ?? false}
         name="password"
         placeholder="Must have at least 6 characters"
+        {...rest}
       />
       <button
         className={clsx("h-[40px] w-[40px]", {

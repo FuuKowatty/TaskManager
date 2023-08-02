@@ -32,7 +32,7 @@ export function ThemeSwitcher({ isHidden }: Props) {
   }
 
   return (
-    <div>
+    <section>
       <h2 className="mb-2 text-3xl font-black">Change Theme</h2>
       <Select value={theme} onValueChange={(val) => setTheme(val)}>
         <SelectTrigger>
@@ -44,6 +44,6 @@ export function ThemeSwitcher({ isHidden }: Props) {
           <SelectItem value="system">System</SelectItem>
         </SelectContent>
       </Select>
-    </div>
+    </section>
   );
 }

@@ -30,7 +30,7 @@ export function SelectUserInput() {
   }
 
   if (status === "error") {
-    return <ErrorMessage error="Could not fetch employees" />;
+    return <ErrorMessage>Could not fetch employees</ErrorMessage>;
   }
 
   const handleChange = (value: number) => {
