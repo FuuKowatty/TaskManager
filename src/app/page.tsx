@@ -6,6 +6,12 @@ import { RedirectButton } from "@/components/button/ButtonRedirect";
 
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
 
+export const metadata = {
+  title: "TaskManager - Homepage",
+  description:
+    "You can choose between login or if you dont have account just click view demo and login as admin",
+};
+
 export default function Home() {
   const { handleLoginDemo } = useLoginDemo();
 

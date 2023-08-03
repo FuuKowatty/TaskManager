@@ -11,16 +11,18 @@ import { HashPasswordInput } from "../HashPasswordInput";
 
 interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
-  createError?: ErrorMessageType;
+  createError: ErrorMessageType | undefined;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClose: () => void;
-  buttonText: string;
+  submitText: string;
 }
 
 export function UserForm({
   formik,
   createError,
+  handleChange,
   handleClose,
-  buttonText,
+  submitText,
 }: CreateUserFormProps) {
   return (
     <form
@@ -72,7 +74,7 @@ export function UserForm({
             type="email"
             name="email"
             value={formik.values.email}
-            onChange={formik.handleChange}
+            onChange={handleChange}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="JohnCruise@gmail.com"
@@ -126,7 +128,7 @@ export function UserForm({
       </fieldset>
       <div className="flex flex-col gap-2">
         <ButtonCancel handleCancel={handleClose} />
-        <FormButton>{buttonText}</FormButton>
+        <FormButton>{submitText}</FormButton>
       </div>
     </form>
   );

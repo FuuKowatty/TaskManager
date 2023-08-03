@@ -5,7 +5,8 @@ import { createUserValidation } from "@/lib/validation";
 import type { FormRegister, Role } from "@/types/users";
 
 export function useCreateUserForm(
-  handleCreateUser: (formData: FormRegister) => void
+  handleCreateUser: (formData: FormRegister) => void,
+  resetApiResponseError: () => void
 ) {
   const formik = useFormik({
     initialValues: {
@@ -21,7 +22,13 @@ export function useCreateUserForm(
     },
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    resetApiResponseError();
+    formik.handleChange(e);
+  };
+
   return {
     formik,
+    handleChange,
   };
 }
