@@ -34,7 +34,11 @@ export function ThemeSwitcher({ isHidden }: Props) {
   return (
     <section>
       <h2 className="mb-2 text-3xl font-black">Change Theme</h2>
-      <Select value={theme} onValueChange={(val) => setTheme(val)}>
+      <Select
+        value={theme}
+        onValueChange={(val) => setTheme(val)}
+        aria-labelledby="choose theme"
+      >
         <SelectTrigger>
           <SelectValue placeholder="Theme" />
         </SelectTrigger>

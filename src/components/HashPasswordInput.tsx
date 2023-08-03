@@ -54,6 +54,7 @@ export function HashPasswordInput({
         })}
         onClick={(event) => handleClick(event)}
         type="button"
+        aria-label="Toggle password visibility"
       >
         <span className="flex w-full items-center justify-center bg-white dark:bg-midnightBlue dark:text-white">
           {isPasswordVisible ? (
