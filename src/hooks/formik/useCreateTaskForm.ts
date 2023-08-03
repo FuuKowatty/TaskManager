@@ -5,7 +5,8 @@ import { createTaskValidation } from "@/lib/validation";
 import type { FormAddTask } from "@/types/task";
 
 export function useCreateTaskForm(
-  handleCreateTask: (formData: FormAddTask) => void
+  handleCreateTask: (formData: FormAddTask) => void,
+  resetApiResponseError: () => void
 ) {
   const formik = useFormik({
     initialValues: {
@@ -20,7 +21,13 @@ export function useCreateTaskForm(
     },
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    resetApiResponseError();
+    formik.handleChange(e);
+  };
+
   return {
     formik,
+    handleChange,
   };
 }

@@ -11,13 +11,13 @@ import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
 interface LoginFormProps {
-  loginError: ErrorMessageType;
+  responseError: ErrorMessageType;
   formik: FormikProps<FormLogin>;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function LoginForm({
-  loginError,
+  responseError,
   formik,
   handleChange,
 }: LoginFormProps) {
@@ -47,8 +47,8 @@ export function LoginForm({
         <ErrorMessage>
           {formik.errors.email && formik.touched.email
             ? formik.errors.email
-            : loginError && loginError.type === "email"
-            ? loginError.message
+            : responseError && responseError.type === "email"
+            ? responseError.message
             : ""}
         </ErrorMessage>
       </div>
@@ -65,8 +65,8 @@ export function LoginForm({
         <ErrorMessage>
           {formik.errors.password && formik.touched.password
             ? formik.errors.password
-            : loginError && loginError.type === "password"
-            ? loginError.message
+            : responseError && responseError.type === "password"
+            ? responseError.message
             : ""}
         </ErrorMessage>
       </div>

@@ -22,17 +22,16 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
   const [value, setValue] = useState(defaultValue);
   const { mutate: handleUpdateUser } = useUpdateUser(id);
 
+  const updateValue =
+    type === "password" ? { password: value } : { email: value };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleUpdateUser(
-      { email: value },
-      {
-        onSuccess: () => {
-          setIsReadOnly(true);
-          logout();
-        },
-      }
-    );
+    handleUpdateUser(updateValue, {
+      onSuccess: () => {
+        logout();
+      },
+    });
   };
 
   return (

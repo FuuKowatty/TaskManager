@@ -1,6 +1,7 @@
 import type { FormikProps } from "formik";
 
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
+import type { ErrorMessageType } from "@/types/errorMessage";
 import type { FormAddTask } from "@/types/task";
 
 import { ErrorMessage } from "./ErrorMessage";
@@ -12,9 +13,17 @@ interface TaskFormProps {
   formik: FormikProps<FormAddTask>;
   submitText: string;
   handleCancel: () => void;
+  responseError?: ErrorMessageType;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
+export function TaskForm({
+  formik,
+  submitText,
+  handleCancel,
+  responseError,
+  handleChange,
+}: TaskFormProps) {
   const { data: usersList } = useEmployeesList();
   if (!usersList) {
     return null;
@@ -36,7 +45,7 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
             type="text"
             name="title"
             value={formik.values.title}
-            onChange={formik.handleChange}
+            onChange={handleChange}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Analyze our sales data"
@@ -46,6 +55,8 @@ export function TaskForm({ formik, submitText, handleCancel }: TaskFormProps) {
         <ErrorMessage>
           {formik.errors.title && formik.touched.title
             ? formik.errors.title
+            : responseError
+            ? responseError.message ?? ""
             : ""}
         </ErrorMessage>
       </div>

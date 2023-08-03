@@ -7,11 +7,17 @@ import { useEffect } from "react";
 import { LoginForm } from "@/components/form/LoginForm";
 import { Logo } from "@/components/Logo";
 
+import { getErrorMessage } from "@/lib/getErrorMessage";
+
 import { useLogin } from "@/hooks/api/useLogin";
 import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
 export default function LoginPage() {
-  const { handleLogin, loginError, resetApiResponseErrors } = useLogin();
+  const {
+    mutate: handleLogin,
+    error: responseError,
+    reset: resetApiResponseErrors,
+  } = useLogin();
   const { formik, handleChange } = useLoginForm(
     handleLogin,
     resetApiResponseErrors
@@ -27,7 +33,7 @@ export default function LoginPage() {
   }, [router]);
 
   const FormValues = {
-    loginError,
+    responseError: getErrorMessage(responseError),
     formik,
     handleChange,
   };

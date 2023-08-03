@@ -1,11 +1,12 @@
+import type { UseMutateFunction } from "@tanstack/react-query";
 import { useFormik } from "formik";
 
 import { loginValidationSchema } from "@/lib/validation";
 
-import type { FormLogin } from "@/types/users";
+import type { FormLogin, User } from "@/types/users";
 
 export function useLoginForm(
-  handleLogin: (formData: FormLogin) => Promise<void>,
+  handleLogin: UseMutateFunction<User, unknown, FormLogin, unknown>,
   resetApiResponseErrors: () => void
 ) {
   const formik = useFormik({
