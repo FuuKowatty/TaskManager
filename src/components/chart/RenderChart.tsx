@@ -1,13 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { getTaskCountPerMonth } from "@/lib/getTaskCountPerMonth";
 
 import { useActiveStatsTasks } from "@/hooks/api/useActiveStatsUser";
 import type { ChartStats } from "@/types/chartStats";
 
-import { ChartArea } from "./ChartArea";
 import { ErrorMessage } from "../form/ErrorMessage";
 import { LoadingCharts } from "../ui/LoadingCharts";
+
+const DynamiChartArea = dynamic(
+  () => import("@/components/chart/ChartArea").then((m) => m.ChartArea),
+  { loading: () => <LoadingCharts /> }
+);
 
 export function RenderCharts() {
   const { data, status } = useActiveStatsTasks();
@@ -16,5 +22,5 @@ export function RenderCharts() {
     return <ErrorMessage>Could not fetch chart data</ErrorMessage>;
 
   const taskCountPerMonth = getTaskCountPerMonth(data);
-  return <ChartArea statsData={taskCountPerMonth as ChartStats} />;
+  return <DynamiChartArea statsData={taskCountPerMonth as ChartStats} />;
 }
