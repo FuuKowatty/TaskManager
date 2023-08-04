@@ -4,6 +4,7 @@ import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import type { FormAddTask } from "@/types/task";
 
 import { ErrorMessage } from "./ErrorMessage";
+import { LabelText } from "./LabelText";
 import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
 
@@ -36,12 +37,12 @@ export function TaskForm({
     >
       {error && (
         <div className="mt-4 text-center">
-          <ErrorMessage error={error} isRequestError={true} />
+          <ErrorMessage>{error}</ErrorMessage>
         </div>
       )}
       <fieldset>
         <label className="flex flex-col gap-1">
-          Title
+          <LabelText required>Title</LabelText>
           <input
             type="text"
             name="title"
@@ -50,16 +51,18 @@ export function TaskForm({
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Analyze our sales data"
+            aria-required
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.title}
-          touched={formik.touched.title}
-        />
+        <ErrorMessage>
+          {formik.errors.title && formik.touched.title
+            ? formik.errors.title
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          Description
+          <LabelText>Description</LabelText>
           <textarea
             className="min-w-[256px] resize-none border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
@@ -71,14 +74,15 @@ export function TaskForm({
             onChange={formik.handleChange}
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.description}
-          touched={formik.touched.description}
-        />
+        <ErrorMessage>
+          {formik.errors.description && formik.touched.description
+            ? formik.errors.description
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          End Date
+          <LabelText required>End Date</LabelText>
           <input
             type="date"
             name="endDate"
@@ -87,22 +91,25 @@ export function TaskForm({
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             min={blockPreviousDates()}
+            aria-required
           />
         </label>
-        <ErrorMessage
-          error={formik.errors.endDate}
-          touched={formik.touched.endDate}
-        />
+        <ErrorMessage>
+          {formik.errors.endDate && formik.touched.endDate
+            ? formik.errors.endDate
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <fieldset>
         <label className="flex flex-col gap-1">
-          Assign task to:
+          <LabelText required>Assign task to:</LabelText>
           <select
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             name="userId"
             value={formik.values.userId}
             onChange={formik.handleChange}
+            aria-required
           >
             <option value={0} hidden>
               -- Please choose an employee --
@@ -115,10 +122,11 @@ export function TaskForm({
               ))}
           </select>
         </label>
-        <ErrorMessage
-          error={formik.errors.userId}
-          touched={formik.touched.userId}
-        />
+        <ErrorMessage>
+          {formik.errors.userId && formik.touched.userId
+            ? formik.errors.userId
+            : ""}
+        </ErrorMessage>
       </fieldset>
       <div className="flex flex-col gap-2">
         <ButtonCancel handleCancel={handleCancel} />

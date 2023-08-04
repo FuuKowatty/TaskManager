@@ -12,18 +12,14 @@ import {
 
 import { Tiles } from "@/components/tiles/Tiles";
 
-import type { TaskCountPerMonth } from "@/types/task";
+import type { ChartStats } from "@/types/chartStats";
 
 import { SelectUserInput } from "./SelectUserInput";
 
-export function ChartArea({
-  statsData,
-}: {
-  statsData: TaskCountPerMonth[] | undefined;
-}) {
+export function ChartArea({ statsData }: { statsData: ChartStats }) {
   return (
-    <div className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:gap-10">
-      {statsData && <Tiles statsData={statsData} />}
+    <section className="relative row-start-2 row-end-7 flex h-full w-full flex-col gap-20 lg:gap-10">
+      {statsData.length && <Tiles statsData={statsData} />}
       <div className="relative h-96 w-full lg:h-[65%]">
         <div className="absolute right-0 top-[-40px]">
           <SelectUserInput />
@@ -47,6 +43,6 @@ export function ChartArea({
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </section>
   );
 }

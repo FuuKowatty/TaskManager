@@ -15,7 +15,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Task manager",
+  title: "TaskManager - Homepage",
+  description:
+    "You can choose between login or if you dont have account just click view demo and login as admin",
 };
 
 export default function RootLayout({

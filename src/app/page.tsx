@@ -23,7 +23,6 @@ export default function Home() {
           <ButtonDemo />
         </div>
       </section>
-
       <figure className="relative -order-10 h-full w-full justify-end lg:order-last lg:flex lg:w-5/12">
         <Image
           fill

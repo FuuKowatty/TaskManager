@@ -8,6 +8,8 @@ import { HashPasswordInput } from "@/components/HashPasswordInput";
 import { useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useSession } from "@/hooks/state/useSession";
 
+import { LabelText } from "./LabelText";
+
 interface UpdateForm {
   defaultValue: string;
   id: number;
@@ -40,7 +42,7 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
     >
       {type === "email" && (
         <label className="flex flex-col gap-1">
-          Update Email
+          <LabelText>Update Email</LabelText>
           <input
             name="email"
             type="email"
@@ -49,18 +51,20 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
             readOnly={isReadOnly}
             value={isReadOnly ? defaultValue : value}
             onChange={(event) => setValue(event.target.value)}
+            aria-required
           />
         </label>
       )}
 
       {type === "password" && (
         <label>
-          Password
+          <LabelText>Update Password</LabelText>
           <HashPasswordInput
             value={isReadOnly ? defaultValue : value}
             handleChange={(event) => setValue(event.target.value)}
             readOnly={isReadOnly}
             styled="settings"
+            aria-required
           />
         </label>
       )}

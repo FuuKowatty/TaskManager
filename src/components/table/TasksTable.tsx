@@ -10,7 +10,6 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -20,6 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import { Button } from "../ui/button";
 
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -100,12 +101,16 @@ export function TasksTable<TData, TValue>({
           </TableBody>
         </Table>
       </TableContainer>
-      <div className="mt-4 flex items-center justify-center space-x-6 py-4">
+      <div
+        className="mt-4 flex items-center justify-center space-x-6 py-4"
+        role="navigation"
+      >
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          aria-label="Go to Previous Page"
         >
           Previous
         </Button>
@@ -115,6 +120,7 @@ export function TasksTable<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          aria-label="Go to Next Page"
         >
           Next
         </Button>

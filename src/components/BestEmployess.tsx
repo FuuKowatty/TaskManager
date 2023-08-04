@@ -8,7 +8,7 @@ export function BestEmployess() {
 
   if (status === "loading") return <LoadingEmployeesContent />;
   if (status === "error")
-    return <ErrorMessage error="Could not fetch employees data" />;
+    return <ErrorMessage>Could not fetch employees data</ErrorMessage>;
 
   return (
     <>

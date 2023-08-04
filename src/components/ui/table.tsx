@@ -103,9 +103,9 @@ const TableCaption = React.forwardRef<
 TableCaption.displayName = "TableCaption";
 
 const TableContainer = ({ children }: { children: React.ReactNode }) => (
-  <main className="rounded-md border dark:border-midnightBlue lg:h-[660px]">
+  <div className="rounded-md border dark:border-midnightBlue lg:h-[655px]">
     {children}
-  </main>
+  </div>
 );
 
 export {

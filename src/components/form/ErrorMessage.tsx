@@ -1,32 +1,10 @@
-import { cn } from "@/lib/utils";
-
-type ErrorMessageProps =
-  | {
-      touched?: boolean | undefined;
-      error: string | undefined;
-      isRequestError?: never;
-    }
-  | {
-      touched?: never;
-      error: string | undefined;
-      isRequestError: boolean;
-    };
-
-export function ErrorMessage({
-  touched,
-  error,
-  isRequestError,
-}: ErrorMessageProps) {
+export function ErrorMessage({ children }: { children: React.ReactNode }) {
   return (
     <p
-      className={cn(
-        "min-h-[30px]  text-red-500",
-        isRequestError ? "mt-4 text-center text-xl" : "text-sm"
-      )}
-      role="alert"
+      className="min-h-[30px] text-sm text-red-500"
+      aria-invalid={children ? true : false}
     >
-      {isRequestError && !touched && error}
-      {touched && error && error}
+      {children}
     </p>
   );
 }
