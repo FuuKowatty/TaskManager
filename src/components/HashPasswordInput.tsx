@@ -23,12 +23,16 @@ export function HashPasswordInput({
   const isSettings = styled === "settings";
   const isCreateUser = styled === "createUser";
 
-  const handleClick = (
+  const togglePasswordVisibility = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     setIsPasswordVisible((prev) => !prev);
     event.stopPropagation();
   };
+
+  const settingsPlaceholder = readOnly
+    ? "Click button to edit"
+    : "Enter new password";
 
   return (
     <div
@@ -49,7 +53,7 @@ export function HashPasswordInput({
         readOnly={readOnly ?? false}
         name="password"
         placeholder={
-          readOnly ? "Must have at least 6 characters" : "Enter your password"
+          isSettings ? settingsPlaceholder : "Must have at least 6 characters"
         }
       />
       <button
@@ -57,7 +61,7 @@ export function HashPasswordInput({
           "dark:bg-midnightBlue": isSettings,
           "absolute right-0 top-0 h-full": isCreateUser,
         })}
-        onClick={(event) => handleClick(event)}
+        onClick={togglePasswordVisibility}
         type="button"
       >
         <span className="flex w-full items-center justify-center bg-white dark:bg-midnightBlue dark:text-white">

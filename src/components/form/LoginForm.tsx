@@ -1,24 +1,33 @@
-import type { FormikProps } from "formik";
-import type { ChangeEvent } from "react";
+"use client";
 
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+import { useLogin } from "@/hooks/api/useLogin";
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
-import type { ErrorMessageType } from "@/types/errorMessage";
-import type { FormLogin } from "@/types/users";
+import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
 import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
-interface LoginFormProps {
-  loginError: ErrorMessageType;
-  formik: FormikProps<FormLogin>;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
+export function LoginForm() {
+  const { handleLogin, loginError, resetApiResponseErrors } = useLogin();
+  const { formik, handleChange } = useLoginForm(
+    handleLogin,
+    resetApiResponseErrors
+  );
 
-export function LoginForm({
-  loginError,
-  formik,
-  handleChange,
-}: LoginFormProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const userIdCookies = getCookie("userId");
+    if (userIdCookies) {
+      router.push("/dashboard");
+      return;
+    }
+  }, [router]);
+
   const { handleLoginDemo } = useLoginDemo();
 
   return (
@@ -71,9 +80,13 @@ export function LoginForm({
       <FormButton>Login</FormButton>
       <div className="mt-8 text-sm dark:text-white">
         Don&apos;t want login?{" "}
-        <span className="font-bold" onClick={() => handleLoginDemo()}>
+        <button
+          type="button"
+          className="font-bold"
+          onClick={() => handleLoginDemo()}
+        >
           View Demo
-        </span>
+        </button>
       </div>
     </form>
   );

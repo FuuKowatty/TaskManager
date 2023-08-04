@@ -1,9 +1,10 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { IconType } from "react-icons";
+
+import { cn } from "@/lib/utils";
 
 interface NavLinkProps {
   href: string;
@@ -15,15 +16,14 @@ export function NavLink({ href, text, icon: Icon }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
-  const activeClass =
-    isActive && "font-bold text-primary-foreground dark:text-white";
+  const activeClass = isActive ? "text-primary-foreground dark:text-white" : "";
 
   return (
     <li className="flex w-full items-center justify-center">
       <Link
         href={href}
-        className={clsx(
-          "flex w-full items-center justify-center rounded-lg  text-muted transition-all hover:font-bold hover:text-primary-foreground focus:font-bold focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-gray-50 dark:text-gray-600 hover:dark:text-white lg:justify-start lg:gap-4 lg:p-3",
+        className={cn(
+          "flex w-full items-center justify-center rounded-lg text-muted transition-all hover:text-primary-foreground focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-gray-50 dark:text-slate-400 hover:dark:text-white dark:focus:text-slate-400 lg:justify-start lg:gap-4 lg:p-3",
           activeClass
         )}
       >
