@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { useSession } from "@/hooks/state/useSession";
 
-import banner from "../app/banner.png";
+import banner from "../../public/banner.png";
 
 export function HelloBanner() {
   const {

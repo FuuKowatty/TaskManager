@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ButtonDemo } from "@/components/button/ButtonDemo";
 import { RedirectButton } from "@/components/button/ButtonRedirect";
 
-import cover from "./cover.webp";
+import cover from "../../public/cover.webp";
 
 export default function Home() {
   return (
