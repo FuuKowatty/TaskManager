@@ -2,6 +2,8 @@
 
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
+import { getErrorMessage } from "@/lib/getErrorMessage";
+
 import { useUpdateTask } from "@/hooks/api/useUpdateTask";
 import { useUpdateTaskForm } from "@/hooks/formik/useUpdateTaskForm";
 import type { Task } from "@/types/task";
@@ -15,8 +17,25 @@ interface ModalProps {
 }
 
 export function EditTaskModal({ closeModal, taskData }: ModalProps) {
-  const { mutate: handleEditTask } = useUpdateTask(taskData.id, closeModal);
-  const { formik } = useUpdateTaskForm(taskData, handleEditTask);
+  const {
+    mutate: handleEditTask,
+    error: taskError,
+    reset,
+  } = useUpdateTask(taskData.id, closeModal);
+  const responseError = getErrorMessage(taskError);
+  const { formik, handleChange } = useUpdateTaskForm(
+    taskData,
+    handleEditTask,
+    reset
+  );
+
+  const props = {
+    formik,
+    handleChange,
+    submitText: "Update Task",
+    handleCancel: closeModal,
+    responseError,
+  };
 
   return (
     <Modal>
@@ -25,11 +44,7 @@ export function EditTaskModal({ closeModal, taskData }: ModalProps) {
           <AiOutlineExclamationCircle className="text-6xl text-blue-700" />
           <p className="text-2xl">Update Task</p>
         </div>
-        <TaskForm
-          formik={formik}
-          submitText="Update Task"
-          handleCancel={closeModal}
-        />
+        <TaskForm {...props} />
       </div>
     </Modal>
   );

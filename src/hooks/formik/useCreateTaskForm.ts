@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 
-import { createTaskValidation } from "@/lib/validation";
+import { taskValidation } from "@/lib/validation";
 
 import type { FormAddTask } from "@/types/task";
 
@@ -15,7 +15,7 @@ export function useCreateTaskForm(
       endDate: "",
       userId: 0,
     },
-    validationSchema: createTaskValidation,
+    validationSchema: taskValidation,
     onSubmit: async (formData) => {
       handleCreateTask(formData);
     },

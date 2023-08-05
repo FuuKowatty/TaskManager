@@ -23,7 +23,7 @@ export default function Home() {
           <ButtonDemo />
         </div>
       </section>
-      <figure className="relative -order-10 h-full w-full justify-end lg:order-last lg:flex lg:w-5/12">
+      <div className="relative -order-10 h-full w-full justify-end lg:order-last lg:flex lg:w-5/12">
         <Image
           fill
           className={"absolute right-0 top-0 object-cover"}
@@ -31,7 +31,7 @@ export default function Home() {
           alt={`Customer Support image`}
           placeholder="blur"
         />
-      </figure>
+      </div>
     </main>
   );
 }

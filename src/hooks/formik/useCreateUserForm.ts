@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 
-import { createUserValidation } from "@/lib/validation";
+import { userValidation } from "@/lib/validation";
 
 import type { FormRegister, Role } from "@/types/users";
 
@@ -16,7 +16,7 @@ export function useCreateUserForm(
       password: "",
       role: "employee" as Role,
     },
-    validationSchema: createUserValidation,
+    validationSchema: userValidation,
     onSubmit: async (formData) => {
       handleCreateUser(formData);
     },

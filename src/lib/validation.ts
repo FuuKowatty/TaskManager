@@ -34,7 +34,7 @@ export const loginValidationSchema = Yup.object({
   ...passowordSchema,
 });
 
-export const createUserValidation = Yup.object({
+export const userValidation = Yup.object({
   name: Yup.string()
     .trim(TRIM_ERROR_MESSAGE)
     .strict(true)
@@ -50,7 +50,7 @@ export const createUserValidation = Yup.object({
   role: Yup.string().required(REQUIRED_ERROR),
 });
 
-export const createTaskValidation = Yup.object({
+export const taskValidation = Yup.object({
   title: Yup.string()
     .trim(TRIM_ERROR_MESSAGE)
     .strict(true)
