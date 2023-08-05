@@ -23,8 +23,10 @@ import type { Task } from "@/types/task";
 
 export function TaskDropdown({
   taskData,
+  assignedTo,
 }: {
-  taskData: Task & { assignedTo: string };
+  taskData: Task;
+  assignedTo: string;
 }) {
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
   const { mutate: handleDeleteTask } = useDeleteTask(taskData.id, closeModal);
@@ -44,7 +46,13 @@ export function TaskDropdown({
       case "edit":
         return <EditTaskModal taskData={taskData} closeModal={closeModal} />;
       case "details":
-        return <DetailsTaskModal closeModal={closeModal} {...taskData} />;
+        return (
+          <DetailsTaskModal
+            closeModal={closeModal}
+            assignedTo={assignedTo}
+            {...taskData}
+          />
+        );
       default:
         return null;
     }
