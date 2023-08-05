@@ -41,10 +41,8 @@ export function getTasksColumn(usersList: User[]) {
       id: "actions",
       cell: ({ row: { original: taskData } }) => (
         <TaskDropdown
-          taskData={{
-            ...taskData,
-            assignedTo: getEmployeeFullNameById(usersList, taskData.userId),
-          }}
+          assignedTo={getEmployeeFullNameById(usersList, taskData.userId)}
+          taskData={taskData}
         />
       ),
     },

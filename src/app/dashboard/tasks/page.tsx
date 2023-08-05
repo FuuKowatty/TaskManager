@@ -1,13 +1,13 @@
 "use client";
 
 import { ButtonCreate } from "@/components/button/ButtonCreate";
-import { ErrorMessage } from "@/components/form/ErrorMessage";
 import { getTasksColumn } from "@/components/table/TaskColumns";
 import { TasksTable } from "@/components/table/TasksTable";
 import { UserTasksFilter } from "@/components/table/UserTasksFilter";
 import { LoadingTable } from "@/components/ui/LoadingTable";
 
-import { useUsersAndEmployeesLists } from "@/hooks/api/useUsersAndEmployeesLists";
+import { useEmployeesList } from "@/hooks/api/useEmployeesList";
+import { useTasksList } from "@/hooks/api/useTasksList";
 import { useSession } from "@/hooks/state/useSession";
 
 export default function TasksPage() {
@@ -15,17 +15,23 @@ export default function TasksPage() {
     sessionUser: { role },
   } = useSession();
 
-  const [
-    { status: tasksStatus, data: tasksList },
-    { status: usersStatus, data: usersList },
-  ] = useUsersAndEmployeesLists();
+  const {
+    data: tasksList,
+    isLoading: isTasksLoading,
+    error: tasksError,
+  } = useTasksList();
 
-  if (tasksStatus === "loading" || usersStatus === "loading")
+  const {
+    data: usersList,
+    isLoading: isUserLoading,
+    error: userError,
+  } = useEmployeesList();
+
+  if (tasksError || userError) return <p>Sorry, could not fetch data</p>;
+
+  if (isTasksLoading || isUserLoading) {
     return <LoadingTable />;
-
-  if (tasksStatus === "error" || usersStatus === "error")
-    return <ErrorMessage>Could not fetch tasks</ErrorMessage>;
-
+  }
   return (
     <>
       {tasksList && usersList && (
