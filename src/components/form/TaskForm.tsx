@@ -2,7 +2,7 @@ import type { FormikProps } from "formik";
 
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
 import type { ErrorMessageType } from "@/types/errorMessage";
-import type { Task } from "@/types/task";
+import type { FormAddTask } from "@/types/task";
 
 import { ErrorMessage } from "./ErrorMessage";
 import { LabelText } from "./LabelText";
@@ -10,7 +10,7 @@ import { ButtonCancel } from "../button/ButtonCancel";
 import { FormButton } from "../button/ButtonForm";
 
 interface TaskFormProps {
-  formik: FormikProps<Task>;
+  formik: FormikProps<FormAddTask>;
   submitText: string;
   handleCancel: () => void;
   responseError?: ErrorMessageType;
