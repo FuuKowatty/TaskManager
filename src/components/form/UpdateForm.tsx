@@ -91,12 +91,10 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
           setIsReadOnly={setIsReadOnly}
         />
       </form>
-      {formik.errors.email && (
-        <ErrorMessage>{formik.errors.email}</ErrorMessage>
-      )}
-      {formik.errors.password && (
-        <ErrorMessage>{formik.errors.password}</ErrorMessage>
-      )}
+      <ErrorMessage>
+        {formik.errors.email && formik.errors.email}
+        {formik.errors.password && formik.errors.password}
+      </ErrorMessage>
     </div>
   );
 }

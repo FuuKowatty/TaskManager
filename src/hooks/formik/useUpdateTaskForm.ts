@@ -3,17 +3,21 @@ import { useFormik } from "formik";
 import { formatToIsoDate } from "@/lib/formatDate";
 import { taskValidation } from "@/lib/validation";
 
-import type { Task } from "@/types/task";
+import type { FormAddTask, Task } from "@/types/task";
 
 export function useUpdateTaskForm(
   taskData: Task,
-  handleEditTask: (data: Task) => void,
+  handleEditTask: (data: FormAddTask) => void,
   reset: () => void
 ) {
+  const { title, description, userId, endDate } = taskData;
+
   const formik = useFormik({
     initialValues: {
-      ...taskData,
-      endDate: formatToIsoDate(taskData.endDate),
+      title,
+      description,
+      endDate: formatToIsoDate(endDate),
+      userId,
     },
     validationSchema: taskValidation,
     onSubmit: async (formData) => {
