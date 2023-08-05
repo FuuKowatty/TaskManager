@@ -15,18 +15,23 @@ interface HashPasswordInputProps
 export function HashPasswordInput({
   styled,
   handleChange,
+  readOnly,
   ...rest
 }: HashPasswordInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const isSettings = styled === "settings";
   const isCreateUser = styled === "createUser";
 
-  const handleClick = (
+  const togglePasswordVisibility = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     setIsPasswordVisible((prev) => !prev);
     event.stopPropagation();
   };
+
+  const settingsPlaceholder = readOnly
+    ? "Click button to edit"
+    : "Enter new password";
 
   return (
     <div
@@ -44,7 +49,7 @@ export function HashPasswordInput({
         type={isPasswordVisible ? "text" : "password"}
         onChange={handleChange}
         name="password"
-        placeholder="Must have at least 6 characters"
+        placeholder={settingsPlaceholder}
         {...rest}
       />
       <button
@@ -52,7 +57,7 @@ export function HashPasswordInput({
           "dark:bg-midnightBlue": isSettings,
           "absolute right-0 top-0 h-full": isCreateUser,
         })}
-        onClick={(event) => handleClick(event)}
+        onClick={togglePasswordVisibility}
         type="button"
         aria-label="Toggle password visibility"
       >

@@ -1,27 +1,41 @@
-import type { FormikProps } from "formik";
-import type { ChangeEvent } from "react";
+"use client";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
+import { getErrorMessage } from "@/lib/getErrorMessage";
+
+import { useLogin } from "@/hooks/api/useLogin";
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
-import type { ErrorMessageType } from "@/types/errorMessage";
-import type { FormLogin } from "@/types/users";
+import { useLoginForm } from "@/hooks/formik/useLoginForm";
 
 import { ErrorMessage } from "./ErrorMessage";
 import { LabelText } from "./LabelText";
 import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
-interface LoginFormProps {
-  responseError: ErrorMessageType;
-  formik: FormikProps<FormLogin>;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-export function LoginForm({
-  responseError,
-  formik,
-  handleChange,
-}: LoginFormProps) {
+export function LoginForm() {
   const { handleLoginDemo } = useLoginDemo();
+  const {
+    mutate: handleLogin,
+    error: loginError,
+    reset: resetApiResponseErrors,
+  } = useLogin();
+  const responseError = getErrorMessage(loginError);
+  const { formik, handleChange } = useLoginForm(
+    handleLogin,
+    resetApiResponseErrors
+  );
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const userIdCookies = getCookie("userId");
+    if (userIdCookies) {
+      router.push("/dashboard");
+      return;
+    }
+  }, [router]);
 
   return (
     <form
@@ -73,7 +87,11 @@ export function LoginForm({
       <FormButton>Login</FormButton>
       <div className="mt-8 text-sm dark:text-white">
         Don&apos;t want login?{" "}
-        <button className="font-bold" onClick={() => handleLoginDemo()}>
+        <button
+          type="button"
+          className="font-bold"
+          onClick={() => handleLoginDemo()}
+        >
           View Demo
         </button>
       </div>

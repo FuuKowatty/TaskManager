@@ -1,5 +1,6 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { clsx } from "clsx";
+import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
@@ -13,7 +14,7 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "TaskManager",
   description:
     "You can choose between login or if you dont have account just click view demo and login as admin",

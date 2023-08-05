@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { useSession } from "@/hooks/state/useSession";
 
+import banner from "../app/banner.png";
+
 export function HelloBanner() {
   const {
     sessionUser: { name, surname },
@@ -22,8 +24,9 @@ export function HelloBanner() {
       </div>
       <div className="hidden h-full overflow-hidden rounded-md xl:block">
         <Image
-          src="https://i.imgur.com/tep9cOL.png"
+          src={banner}
           alt="banner"
+          placeholder="blur"
           className="object:cover"
           height={150}
           width={222}

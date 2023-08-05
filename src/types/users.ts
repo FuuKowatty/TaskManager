@@ -28,3 +28,5 @@ export interface UsersWithCompletedTasks {
   surname: string;
   numberOfCompletedTasks: number;
 }
+
+export type UserCredentials = { email: string } | { password: string };

@@ -15,7 +15,7 @@ export const useLogin = () => {
   const { setStatsPermission: setChartFilter } = useActiveUserId();
   const { setStatsPermission: setTaskFilter } = useActiveTaskFilter();
 
-  const LoginMutation = useMutation({
+  return useMutation({
     mutationFn: async (formData: FormLogin) => {
       const { data } = await apiClient.post<User>("login", formData);
       return data;
@@ -29,6 +29,4 @@ export const useLogin = () => {
       router.push("/dashboard");
     },
   });
-
-  return LoginMutation;
 };
