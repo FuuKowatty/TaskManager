@@ -14,24 +14,24 @@ const EMAIL_FORMAT_ERROR = "Invalid email format";
 
 const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-export const passowordSchema = {
+export const passowordSchema = Yup.object({
   password: Yup.string()
     .trim(TRIM_ERROR_MESSAGE)
     .strict(true)
     .min(6, PASSWORD_MIN_LENGTH_ERROR)
     .required(REQUIRED_ERROR),
-};
+});
 
-export const emailSchema = {
+export const emailSchema = Yup.object({
   email: Yup.string()
     .strict(true)
     .matches(emailRegex, EMAIL_FORMAT_ERROR)
     .required(REQUIRED_ERROR),
-};
+});
 
 export const loginValidationSchema = Yup.object({
-  ...emailSchema,
-  ...passowordSchema,
+  emailSchema,
+  passowordSchema,
 });
 
 export const userValidation = Yup.object({
@@ -45,8 +45,8 @@ export const userValidation = Yup.object({
     .strict(true)
     .min(2, SURNAME_MIN_LENGTH_ERROR)
     .required(REQUIRED_ERROR),
-  ...emailSchema,
-  ...passowordSchema,
+  emailSchema,
+  passowordSchema,
   role: Yup.string().required(REQUIRED_ERROR),
 });
 
