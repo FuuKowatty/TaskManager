@@ -5,7 +5,7 @@ import { useState } from "react";
 import { UpdateConfirmation } from "@/components/form/UpdateConfirmation";
 import { HashPasswordInput } from "@/components/HashPasswordInput";
 
-import { useUpdateUser } from "@/hooks/api/useUpdateUser";
+import { useUpdateCredentials } from "@/hooks/api/useUpdateCredentials";
 import { useSession } from "@/hooks/state/useSession";
 
 import { LabelText } from "./LabelText";
@@ -20,7 +20,7 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
   const { logout } = useSession();
   const [isReadOnly, setIsReadOnly] = useState(true);
   const [value, setValue] = useState(defaultValue);
-  const { mutate: handleUpdateUser } = useUpdateUser(id);
+  const { mutate: handleUpdateUser } = useUpdateCredentials(id);
 
   const updateValue =
     type === "password" ? { password: value } : { email: value };
@@ -29,6 +29,7 @@ export function UpdateForm({ defaultValue, id, type }: UpdateForm) {
     event.preventDefault();
     handleUpdateUser(updateValue, {
       onSuccess: () => {
+        setIsReadOnly(true);
         logout();
       },
     });

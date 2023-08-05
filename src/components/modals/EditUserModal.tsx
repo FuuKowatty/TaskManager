@@ -2,7 +2,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 import { useUpdateUser } from "@/hooks/api/useUpdateUser";
 import { useUpdateUserForm } from "@/hooks/formik/useUpdateUserForm";
-import type { User } from "@/types/users";
+import type { FormRegister, User } from "@/types/users";
 
 import { Modal } from "./Modal";
 import { UserForm } from "../form/UserForm";
@@ -13,7 +13,8 @@ interface ModalProps {
 }
 
 export function EditUserModal({ closeModal, userData }: ModalProps) {
-  const { mutate: handleSubmit } = useUpdateUser(userData.id, closeModal);
+  const { mutate } = useUpdateUser(userData.id, closeModal);
+  const handleSubmit = (formData: FormRegister) => mutate(formData);
   const { formik } = useUpdateUserForm(userData, handleSubmit);
 
   return (
@@ -26,7 +27,7 @@ export function EditUserModal({ closeModal, userData }: ModalProps) {
         <UserForm
           formik={formik}
           handleClose={closeModal}
-          buttonText="Update User"
+          submitText="Update User"
         />
       </div>
     </Modal>

@@ -9,17 +9,16 @@ import { useSession } from "@/hooks/state/useSession";
 
 export default function SettingsPage() {
   const {
-    sessionUser: { email, id },
+    sessionUser: { email, id, isLogged },
   } = useSession();
-
-  if (!email) return <LoadingSettings />;
+  if (!isLogged) return <LoadingSettings />;
 
   return (
     <main className="flex w-full max-w-xl flex-col justify-start gap-12 lg:gap-20 lg:px-20">
       <h2 className="text-6xl font-black">Settings</h2>
       <section className="flex flex-col gap-10">
         <UpdateForm defaultValue={email} type="email" id={id} />
-        <UpdateForm defaultValue="[YOUR_PASSWORD]" type="password" id={id} />
+        <UpdateForm defaultValue="" type="password" id={id} />
       </section>
       <ThemeSwitcher />
       <section className="block lg:hidden">

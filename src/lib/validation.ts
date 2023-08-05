@@ -1,12 +1,12 @@
 import * as Yup from "yup";
 
-const passowordSchema = {
+export const passowordSchema = {
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("This field is required"),
 };
 
-const emailSchema = {
+export const emailSchema = {
   email: Yup.string()
     .email("Invalid email address")
     .required("This field is required"),

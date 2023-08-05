@@ -11,8 +11,8 @@ import { HashPasswordInput } from "../HashPasswordInput";
 
 interface CreateUserFormProps {
   formik: FormikProps<FormRegister>;
-  createError: ErrorMessageType | undefined;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  createError?: ErrorMessageType | undefined;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleClose: () => void;
   submitText: string;
 }

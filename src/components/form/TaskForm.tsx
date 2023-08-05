@@ -14,7 +14,7 @@ interface TaskFormProps {
   submitText: string;
   handleCancel: () => void;
   responseError?: ErrorMessageType;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function TaskForm({
