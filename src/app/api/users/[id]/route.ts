@@ -6,6 +6,8 @@ import { getPrismaError } from "@/lib/getPrismaError";
 import prisma from "@/lib/prisma";
 import { prismaExclude } from "@/lib/prismaExclude";
 
+import type { User, UserCredentials } from "@/types/users";
+
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
@@ -30,13 +32,51 @@ export async function PUT(
 ) {
   try {
     const { id: userId } = params;
-    const json = await request.json();
+    const json: User & { password: string } = await request.json();
 
-    const hashedPassword = json.password
-      ? await bcrypt.hash(json.password, SALT_ROUNDS)
-      : null;
+    const hashedPassword = await bcrypt.hash(json.password, SALT_ROUNDS);
 
-    const data = hashedPassword ? { ...json, password: hashedPassword } : json;
+    const user = await prisma.user.update({
+      where: {
+        id: Number(userId),
+      },
+      data: {
+        ...json,
+        password: hashedPassword,
+      },
+    });
+
+    return NextResponse.json(user, { status: 201 });
+  } catch (error) {
+    const prismaError = getPrismaError(error);
+
+    if (!prismaError) {
+      return;
+    }
+
+    if (prismaError.code === "P2002") {
+      return new NextResponse("User with email already exists", {
+        status: 409,
+      });
+    }
+    return new NextResponse(prismaError.message, { status: 500 });
+  }
+}
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id: userId } = params;
+  const json: UserCredentials = await request.json();
+
+  try {
+    const data: { email?: string; password?: string } = {};
+    if ("password" in json) {
+      data.password = await bcrypt.hash(json.password, SALT_ROUNDS);
+    } else {
+      data.email = json.email;
+    }
 
     const user = await prisma.user.update({
       where: {
@@ -46,7 +86,7 @@ export async function PUT(
     });
 
     return NextResponse.json(user, { status: 201 });
-  } catch (error: unknown) {
+  } catch (error) {
     const prismaError = getPrismaError(error);
 
     if (!prismaError) {
@@ -76,7 +116,10 @@ export async function DELETE(
     });
 
     return NextResponse.json("Post has been deleted");
-  } catch (err) {
-    return NextResponse.json({ message: "DELETE Error", err }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "DELETE Error", error },
+      { status: 500 }
+    );
   }
 }

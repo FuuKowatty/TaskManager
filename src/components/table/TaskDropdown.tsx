@@ -23,8 +23,10 @@ import type { Task } from "@/types/task";
 
 export function TaskDropdown({
   taskData,
+  assignedTo,
 }: {
-  taskData: Task & { assignedTo: string };
+  taskData: Task;
+  assignedTo: string;
 }) {
   const { isModalOpen, openModal, closeModal, modalType } = useModal();
   const { mutate: handleDeleteTask } = useDeleteTask(taskData.id, closeModal);
@@ -32,71 +34,78 @@ export function TaskDropdown({
     sessionUser: { role },
   } = useSession();
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Button variant="ghost" className="h-8 w-8 p-0">
-          <span className="sr-only">Open menu</span>
-          <BiDotsVerticalRounded className="h-6 w-6" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="center">
-        <DropdownMenuLabel>Task Options</DropdownMenuLabel>
-        <DropdownMenuItem>
-          <button
-            className="flex items-center"
-            onClick={() => openModal("details")}
-          >
-            <BsEye className="mr-2 h-4 w-4" />
-            <span>Show details</span>
-          </button>
-        </DropdownMenuItem>
+  const renderModal = () => {
+    switch (modalType) {
+      case "delete":
+        return (
+          <DeleteModal
+            handleDelete={handleDeleteTask}
+            closeModal={closeModal}
+          />
+        );
+      case "edit":
+        return <EditTaskModal taskData={taskData} closeModal={closeModal} />;
+      case "details":
+        return (
+          <DetailsTaskModal
+            closeModal={closeModal}
+            assignedTo={assignedTo}
+            {...taskData}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
-        {role !== "employee" && (
-          <>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <button
-                className="flex items-center"
-                onClick={() => openModal("edit")}
-              >
-                <BiEdit className="mr-2 h-4 w-4" />
-                <span>Edit task</span>
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <button
-                className="flex items-center"
-                onClick={() => openModal("delete")}
-              >
-                <BiTrash className="mr-2 h-4 w-4" />
-                <span>Delete task</span>
-              </button>
-            </DropdownMenuItem>
-          </>
-        )}
-      </DropdownMenuContent>
-      {isModalOpen &&
-        (() => {
-          switch (modalType) {
-            case "delete":
-              return (
-                <DeleteModal
-                  handleDelete={handleDeleteTask}
-                  closeModal={closeModal}
-                />
-              );
-            case "edit":
-              return (
-                <EditTaskModal taskData={taskData} closeModal={closeModal} />
-              );
-            case "details":
-              return <DetailsTaskModal closeModal={closeModal} {...taskData} />;
-            default:
-              return null;
-          }
-        })()}
-    </DropdownMenu>
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <BiDotsVerticalRounded className="h-6 w-6" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="center">
+          <DropdownMenuLabel>Task Options</DropdownMenuLabel>
+          <DropdownMenuItem>
+            <button
+              className="flex items-center"
+              onClick={() => openModal("details")}
+            >
+              <BsEye className="mr-2 h-4 w-4" />
+              <span>Show details</span>
+            </button>
+          </DropdownMenuItem>
+
+          {role !== "employee" && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <button
+                  className="flex items-center"
+                  onClick={() => openModal("edit")}
+                >
+                  <BiEdit className="mr-2 h-4 w-4" />
+                  <span>Edit task</span>
+                </button>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <button
+                  className="flex items-center"
+                  onClick={() => openModal("delete")}
+                >
+                  <BiTrash className="mr-2 h-4 w-4" />
+                  <span>Delete task</span>
+                </button>
+              </DropdownMenuItem>
+            </>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+      {isModalOpen && renderModal()}
+    </>
   );
 }

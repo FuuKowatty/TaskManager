@@ -49,9 +49,7 @@ export function HashPasswordInput({
         type={isPasswordVisible ? "text" : "password"}
         onChange={handleChange}
         name="password"
-        placeholder={
-          isSettings ? settingsPlaceholder : "Must have at least 6 characters"
-        }
+        placeholder={settingsPlaceholder}
         {...rest}
       />
       <button
@@ -61,6 +59,7 @@ export function HashPasswordInput({
         })}
         onClick={togglePasswordVisibility}
         type="button"
+        aria-label="Toggle password visibility"
       >
         <span className="flex w-full items-center justify-center bg-white dark:bg-midnightBlue dark:text-white">
           {isPasswordVisible ? (

@@ -1,6 +1,7 @@
 import type { FormikProps } from "formik";
 
 import { useEmployeesList } from "@/hooks/api/useEmployeesList";
+import type { ErrorMessageType } from "@/types/errorMessage";
 import type { FormAddTask } from "@/types/task";
 
 import { ErrorMessage } from "./ErrorMessage";
@@ -12,16 +13,19 @@ interface TaskFormProps {
   formik: FormikProps<FormAddTask>;
   submitText: string;
   handleCancel: () => void;
-  error?: string;
+  responseError?: ErrorMessageType;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function TaskForm({
   formik,
   submitText,
   handleCancel,
-  error,
+  responseError,
+  handleChange,
 }: TaskFormProps) {
   const { data: usersList } = useEmployeesList();
+
   if (!usersList) {
     return null;
   }
@@ -35,19 +39,15 @@ export function TaskForm({
       onSubmit={formik.handleSubmit}
       className="flex w-full flex-col gap-8 text-left lg:max-w-xl"
     >
-      {error && (
-        <div className="mt-4 text-center">
-          <ErrorMessage>{error}</ErrorMessage>
-        </div>
-      )}
-      <fieldset>
+      <div>
         <label className="flex flex-col gap-1">
           <LabelText required>Title</LabelText>
           <input
             type="text"
             name="title"
             value={formik.values.title}
-            onChange={formik.handleChange}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Analyze our sales data"
@@ -57,10 +57,12 @@ export function TaskForm({
         <ErrorMessage>
           {formik.errors.title && formik.touched.title
             ? formik.errors.title
+            : responseError
+            ? responseError.message ?? ""
             : ""}
         </ErrorMessage>
-      </fieldset>
-      <fieldset>
+      </div>
+      <div>
         <label className="flex flex-col gap-1">
           <LabelText>Description</LabelText>
           <textarea
@@ -72,6 +74,7 @@ export function TaskForm({
             placeholder="The sales data analysis should..."
             value={formik.values.description || ""}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
         </label>
         <ErrorMessage>
@@ -79,8 +82,8 @@ export function TaskForm({
             ? formik.errors.description
             : ""}
         </ErrorMessage>
-      </fieldset>
-      <fieldset>
+      </div>
+      <div>
         <label className="flex flex-col gap-1">
           <LabelText required>End Date</LabelText>
           <input
@@ -88,6 +91,7 @@ export function TaskForm({
             name="endDate"
             value={formik.values.endDate}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             min={blockPreviousDates()}
@@ -99,8 +103,8 @@ export function TaskForm({
             ? formik.errors.endDate
             : ""}
         </ErrorMessage>
-      </fieldset>
-      <fieldset>
+      </div>
+      <div>
         <label className="flex flex-col gap-1">
           <LabelText required>Assign task to:</LabelText>
           <select
@@ -109,6 +113,7 @@ export function TaskForm({
             name="userId"
             value={formik.values.userId}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             aria-required
           >
             <option value={0} hidden>
@@ -127,7 +132,7 @@ export function TaskForm({
             ? formik.errors.userId
             : ""}
         </ErrorMessage>
-      </fieldset>
+      </div>
       <div className="flex flex-col gap-2">
         <ButtonCancel handleCancel={handleCancel} />
         <FormButton>{submitText}</FormButton>

@@ -4,14 +4,13 @@ import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/apiClient";
 
 import { useSession } from "@/hooks/state/useSession";
-import type { User } from "@/types/users";
 
 export function useLoginDemo() {
   const { setSessionUser } = useSession();
   const router = useRouter();
 
   const { mutate: handleLoginDemo, ...mutation } = useMutation({
-    mutationFn: async (): Promise<User> => {
+    mutationFn: async () => {
       const { data } = await apiClient.get("login/demo");
       return data;
     },

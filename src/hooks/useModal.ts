@@ -2,7 +2,9 @@ import { useState } from "react";
 
 export const useModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<string>("");
+  const [modalType, setModalType] = useState<
+    "delete" | "edit" | "details" | ""
+  >("");
 
   const openModal = (type: "delete" | "edit" | "details") => {
     setIsModalOpen(true);

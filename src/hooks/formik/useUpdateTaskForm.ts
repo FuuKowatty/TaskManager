@@ -1,30 +1,37 @@
 import { useFormik } from "formik";
 
 import { formatToIsoDate } from "@/lib/formatDate";
-import { createTaskValidation } from "@/lib/validation";
+import { taskValidation } from "@/lib/validation";
 
 import type { FormAddTask, Task } from "@/types/task";
 
 export function useUpdateTaskForm(
   taskData: Task,
-  handleEditTask: (data: FormAddTask) => void
+  handleEditTask: (data: FormAddTask) => void,
+  reset: () => void
 ) {
-  const { title, description, endDate, userId } = taskData;
+  const { title, description, userId, endDate } = taskData;
 
   const formik = useFormik({
     initialValues: {
       title,
       description,
-      userId,
       endDate: formatToIsoDate(endDate),
+      userId,
     },
-    validationSchema: createTaskValidation,
+    validationSchema: taskValidation,
     onSubmit: async (formData) => {
       handleEditTask(formData);
     },
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    reset();
+    formik.handleChange(e);
+  };
+
   return {
     formik,
+    handleChange,
   };
 }

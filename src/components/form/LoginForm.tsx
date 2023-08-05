@@ -1,8 +1,9 @@
 "use client";
-
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+
+import { getErrorMessage } from "@/lib/getErrorMessage";
 
 import { useLogin } from "@/hooks/api/useLogin";
 import { useLoginDemo } from "@/hooks/api/useLoginDemo";
@@ -14,7 +15,13 @@ import { FormButton } from "../button/ButtonForm";
 import { HashPasswordInput } from "../HashPasswordInput";
 
 export function LoginForm() {
-  const { handleLogin, loginError, resetApiResponseErrors } = useLogin();
+  const { handleLoginDemo } = useLoginDemo();
+  const {
+    mutate: handleLogin,
+    error: loginError,
+    reset: resetApiResponseErrors,
+  } = useLogin();
+  const responseError = getErrorMessage(loginError);
   const { formik, handleChange } = useLoginForm(
     handleLogin,
     resetApiResponseErrors
@@ -29,8 +36,6 @@ export function LoginForm() {
       return;
     }
   }, [router]);
-
-  const { handleLoginDemo } = useLoginDemo();
 
   return (
     <form
@@ -56,8 +61,8 @@ export function LoginForm() {
         <ErrorMessage>
           {formik.errors.email && formik.touched.email
             ? formik.errors.email
-            : loginError && loginError.type === "email"
-            ? loginError.message
+            : responseError && responseError.type === "email"
+            ? responseError.message
             : ""}
         </ErrorMessage>
       </div>
@@ -68,14 +73,15 @@ export function LoginForm() {
             styled="createUser"
             value={formik.values.password}
             handleChange={handleChange}
+            onBlur={formik.handleBlur}
             aria-required
           />
         </label>
         <ErrorMessage>
           {formik.errors.password && formik.touched.password
             ? formik.errors.password
-            : loginError && loginError.type === "password"
-            ? loginError.message
+            : responseError && responseError.type === "password"
+            ? responseError.message
             : ""}
         </ErrorMessage>
       </div>

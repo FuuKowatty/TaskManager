@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
 
-import { createTaskValidation } from "@/lib/validation";
+import { taskValidation } from "@/lib/validation";
 
 import type { FormAddTask } from "@/types/task";
 
 export function useCreateTaskForm(
-  handleCreateTask: (formData: FormAddTask) => void
+  handleCreateTask: (formData: FormAddTask) => void,
+  resetApiResponseError: () => void
 ) {
   const formik = useFormik({
     initialValues: {
@@ -14,13 +15,19 @@ export function useCreateTaskForm(
       endDate: "",
       userId: 0,
     },
-    validationSchema: createTaskValidation,
+    validationSchema: taskValidation,
     onSubmit: async (formData) => {
       handleCreateTask(formData);
     },
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    resetApiResponseError();
+    formik.handleChange(e);
+  };
+
   return {
     formik,
+    handleChange,
   };
 }

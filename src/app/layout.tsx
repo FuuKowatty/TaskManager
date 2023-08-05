@@ -15,7 +15,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "TaskManager - Homepage",
+  title: "TaskManager",
   description:
     "You can choose between login or if you dont have account just click view demo and login as admin",
 };

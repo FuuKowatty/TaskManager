@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import { LoginForm } from "@/components/form/LoginForm";
 import { Logo } from "@/components/Logo";
 
@@ -18,9 +16,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-export const metadata: Metadata = {
-  title: "Login | Task manager",
-  description:
-    "Login to task manager or click view demo to try out task manager without creating an account.",
-};

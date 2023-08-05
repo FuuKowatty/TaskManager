@@ -30,21 +30,19 @@ export function getTasksColumn(usersList: User[]) {
     {
       accessorKey: "startDate",
       header: ({ column }) => TableHeaderSort(column, "Start date"),
-      cell: (props) => formatDate(props.getValue() as string),
+      cell: (props) => <time>{formatDate(props.getValue() as string)}</time>,
     },
     {
       accessorKey: "endDate",
       header: ({ column }) => TableHeaderSort(column, "End date"),
-      cell: (props) => formatDate(props.getValue() as string),
+      cell: (props) => <time>{formatDate(props.getValue() as string)}</time>,
     },
     {
       id: "actions",
       cell: ({ row: { original: taskData } }) => (
         <TaskDropdown
-          taskData={{
-            ...taskData,
-            assignedTo: getEmployeeFullNameById(usersList, taskData.userId),
-          }}
+          assignedTo={getEmployeeFullNameById(usersList, taskData.userId)}
+          taskData={taskData}
         />
       ),
     },

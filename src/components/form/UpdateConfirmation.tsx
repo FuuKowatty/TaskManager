@@ -5,15 +5,20 @@ import { Button } from "@/components/ui/button";
 interface Props {
   isReadOnly: boolean;
   setIsReadOnly: (isReadOnly: boolean) => void;
+  onCancel: () => void;
 }
 
-export function UpdateConfirmation({ isReadOnly, setIsReadOnly }: Props) {
+export function UpdateConfirmation({
+  isReadOnly,
+  setIsReadOnly,
+  onCancel,
+}: Props) {
   if (isReadOnly) {
     return (
       <Button
         type="submit"
         onClick={() => setIsReadOnly(false)}
-        className="bg-midnightBlue"
+        className="w-[96px] bg-midnightBlue"
       >
         Update
       </Button>
@@ -25,13 +30,13 @@ export function UpdateConfirmation({ isReadOnly, setIsReadOnly }: Props) {
       <Button
         type="button"
         variant={"destructive"}
-        className="dark: bg-red-500 hover:bg-red-600"
-        onClick={() => setIsReadOnly(true)}
+        className="dark: w-[96px] bg-red-500 hover:bg-red-600"
+        onClick={onCancel}
       >
         <BiX size={24} className="mr-1" />
         Cancel
       </Button>
-      <Button type="submit" className="bg-blue-700 hover:bg-blue-800">
+      <Button type="submit" className="w-[96px] bg-blue-700 hover:bg-blue-800">
         <BiCheck size={24} className="mr-1" />
         Confirm
       </Button>

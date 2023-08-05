@@ -48,7 +48,10 @@ export function SelectUserInput() {
       onValueChange={(value: string) => handleChange(Number(value))}
       aria-label={`filter tasks by employee`}
     >
-      <SelectTrigger className="w-[180px] dark:bg-midnightBlue dark:text-white">
+      <SelectTrigger
+        className="w-[180px] dark:bg-midnightBlue dark:text-white"
+        aria-labelledby="choose employee"
+      >
         <SelectValue>
           {activeStatsUserId ? `${name} ${surname}` : "All"}
         </SelectValue>

@@ -9,10 +9,9 @@ import { useSession } from "@/hooks/state/useSession";
 
 export default function SettingsPage() {
   const {
-    sessionUser: { email, id },
+    sessionUser: { email, id, isLogged },
   } = useSession();
-
-  if (!email) return <LoadingSettings />;
+  if (!isLogged) return <LoadingSettings />;
 
   return (
     <main className="flex w-full max-w-xl flex-col justify-start gap-12 lg:gap-20 lg:px-20">

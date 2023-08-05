@@ -2,14 +2,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { apiClient } from "@/lib/apiClient";
 
-import type { User } from "@/types/users";
-
-type UpdateUser = User | { email: string } | { password: string };
+import type { FormRegister } from "@/types/users";
 
 export function useUpdateUser(userId: number, closeModal?: () => void) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (formData: UpdateUser): Promise<User> => {
+    mutationFn: async (formData: FormRegister) => {
       const { data } = await apiClient.put(`users/${userId}`, formData);
       return data;
     },

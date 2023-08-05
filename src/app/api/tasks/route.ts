@@ -66,7 +66,10 @@ export async function POST(request: Request) {
 
     if (exsistingTask) {
       return NextResponse.json(
-        { type: "error", message: "Task already exists." },
+        {
+          type: "error",
+          message: "That employee has already assigned the task",
+        },
         { status: 409 }
       );
     }
