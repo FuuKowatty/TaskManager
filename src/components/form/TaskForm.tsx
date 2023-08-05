@@ -47,6 +47,7 @@ export function TaskForm({
             name="title"
             value={formik.values.title}
             onChange={handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Analyze our sales data"
@@ -73,6 +74,7 @@ export function TaskForm({
             placeholder="The sales data analysis should..."
             value={formik.values.description || ""}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
         </label>
         <ErrorMessage>
@@ -89,6 +91,7 @@ export function TaskForm({
             name="endDate"
             value={formik.values.endDate}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             min={blockPreviousDates()}
@@ -110,6 +113,7 @@ export function TaskForm({
             name="userId"
             value={formik.values.userId}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             aria-required
           >
             <option value={0} hidden>

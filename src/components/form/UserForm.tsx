@@ -37,6 +37,7 @@ export function UserForm({
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="John"
@@ -55,6 +56,7 @@ export function UserForm({
             name="surname"
             value={formik.values.surname}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="Cruise"
@@ -75,6 +77,7 @@ export function UserForm({
             name="email"
             value={formik.values.email}
             onChange={handleChange}
+            onBlur={formik.handleBlur}
             className="min-w-[256px] border-b-2 border-gray-400 p-1 text-black focus:border-b-blue-700 
             focus:outline-none dark:border-gray-600 dark:bg-midnightBlue dark:text-white dark:focus:border-b-red-500"
             placeholder="JohnCruise@gmail.com"
@@ -95,6 +98,7 @@ export function UserForm({
           <HashPasswordInput
             value={formik.values.password}
             handleChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             styled="createUser"
             aria-required
           />
@@ -114,6 +118,7 @@ export function UserForm({
             name="role"
             value={formik.values.role}
             onChange={(e) => formik.handleChange(e)}
+            onBlur={formik.handleBlur}
             required
           >
             <option selected value={"employee"}>

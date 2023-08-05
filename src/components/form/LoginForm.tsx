@@ -73,6 +73,7 @@ export function LoginForm() {
             styled="createUser"
             value={formik.values.password}
             handleChange={handleChange}
+            onBlur={formik.handleBlur}
             aria-required
           />
         </label>
