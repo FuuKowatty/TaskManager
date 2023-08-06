@@ -1,4 +1,4 @@
-import { BiCheck, BiX } from "react-icons/bi";
+import { BiCheck as ConfirmIcon, BiX as CancelIcon } from "react-icons/bi";
 
 import { Button } from "@/components/ui/button";
 
@@ -30,14 +30,14 @@ export function UpdateConfirmation({
       <Button
         type="button"
         variant={"destructive"}
-        className="dark: w-[96px] bg-red-500 hover:bg-red-600"
+        className="w-[102px] bg-red-500 hover:bg-red-600"
         onClick={onCancel}
       >
-        <BiX size={24} className="mr-1" />
+        <CancelIcon size={16} className="mr-1" />
         Cancel
       </Button>
-      <Button type="submit" className="w-[96px] bg-blue-700 hover:bg-blue-800">
-        <BiCheck size={24} className="mr-1" />
+      <Button type="submit" className="w-[102px] bg-blue-700 hover:bg-blue-800">
+        <ConfirmIcon size={16} className="mr-1" />
         Confirm
       </Button>
     </div>
