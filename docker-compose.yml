@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   laravel_api:
     container_name: laravel_api
@@ -9,11 +10,11 @@ services:
   frontend:
     container_name: frontend
     build:
-      context: ./next-app
+      context: ./client
     ports:
       - "3000:3000"
     volumes:
-      - ./next-app:/usr/src/app
+      - ./client:/usr/src/app
   mysql_db:
     container_name: mysql_db
     image: mysql:8.0

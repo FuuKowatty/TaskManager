@@ -17,7 +17,7 @@ RUN apt-get update -y && apt-get install -y \
     libpng-dev 
 
 # Composer
-COPY --from=composer:2.6.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # PHP Extension
 RUN docker-php-ext-install gettext intl pdo_mysql gd

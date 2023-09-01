@@ -1,10 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  swcMinify: true,
+const nextConfig = {}
 
-  images: {
-    domains: ["i.imgur.com"],
-  },
-};
-
-module.exports = nextConfig;
+module.exports = nextConfig

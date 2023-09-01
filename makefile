@@ -9,7 +9,7 @@ stop:
 up:
 	docker-compose up -d
 composer-update:
-	docker exec laravel-docker bash -c "composer update"
+	docker exec laravel_api bash -c "composer update"
 data:
-	docker exec laravel-docker bash -c "php artisan jwt:secret"
-	docker exec laravel-docker bash -c "php artisan migrate:fresh --seed"
+	docker exec laravel_api bash -c "php artisan jwt:secret"
+	docker exec laravel_api bash -c "php artisan migrate:fresh --seed"
