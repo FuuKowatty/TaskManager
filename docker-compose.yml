@@ -6,7 +6,11 @@ services:
     volumes:
       - ./api:/var/www/html
     ports:
-      - 8000:80
+      - 80:80
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
   frontend:
     container_name: frontend
     build:
@@ -14,15 +18,19 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./client:/usr/src/app
-  mysql_db:
-    container_name: mysql_db
-    image: mysql:8.0
+      - ./client:/var/www/html
+    networks:
+      - mynetwork
+  mysql:
+    container_name: mysql
+    image: 'mysql:8.0'
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: taskmanager_db
+      MYSQL_DATABASE: laravel
     ports:
     - 3306:3306
+    networks:
+      - mynetwork
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin:latest
@@ -30,3 +38,9 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    name: mynetwork
+    driver: bridge
