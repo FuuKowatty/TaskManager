@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { useSession } from "@/hooks/state/useSession";
 import type { User } from "@/types/users";
@@ -7,7 +7,6 @@ import { useActiveTaskFilter } from "../state/useActiveTaskFilter";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useActiveUserId } from "../state/useActiveStatsUser";
-import axios from "axios";
 import { useEffect } from "react";
 import { apiClient } from "@/lib/apiClient";
 
@@ -19,7 +18,7 @@ export const useAuth = () => {
     const { setStatsPermission: setTaskFilter } = useActiveTaskFilter();
     const router = useNavigate();
   
-    const { mutate: fetchUser, isPending, error } = useMutation({
+    const { mutate: fetchUser, isPending } = useMutation({
      mutationFn: async () => {
         const response = await apiClient().get<User>('/accounts/data', {
             headers: { Authorization: `Bearer ${token}` },

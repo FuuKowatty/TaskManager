@@ -12,8 +12,8 @@ export function useUpdateUser(userId: number, closeModal?: () => void) {
       return data;
     },
     onSettled: () => {
-      queryClient.invalidateQueries(["user"]);
-      queryClient.invalidateQueries(["team"]);
+      queryClient.invalidateQueries({queryKey: ["user"]});
+      queryClient.invalidateQueries({queryKey: ["team"]});
     },
     onSuccess: () => {
       closeModal && closeModal();

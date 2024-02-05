@@ -1,8 +1,7 @@
+import { ChartStat } from "@/types/chartStats";
 import { TfiStatsDown, TfiStatsUp } from "react-icons/tfi";
 
-import type { ChartStats } from "../types/chartStats";
-
-export function getTilesData(statsData: ChartStats) {
+export function getTilesData(statsData: ChartStat[]) {
   const Last6MonthsTasksCount = statsData.reduce(
     (acc, v) => acc + v.taskCount,
     0

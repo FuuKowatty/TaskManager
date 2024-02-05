@@ -12,7 +12,7 @@ export function useDeleteTask(taskId: number, closeModal: () => void) {
       return apiClient().delete(`/api/tasks/${taskId}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["tasks", activeTaskFilter]);
+      queryClient.invalidateQueries({queryKey: ["tasks", activeTaskFilter]});
     },
     onSettled: closeModal,
   });

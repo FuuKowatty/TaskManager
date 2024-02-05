@@ -11,7 +11,7 @@ export function useUpdateTask(taskId: number, closeModal: () => void) {
       return apiClient().put(`/api/tasks/${taskId}`, data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["tasks"]);
+      queryClient.invalidateQueries({queryKey: ["tasks"]});
       closeModal();
     },
   });

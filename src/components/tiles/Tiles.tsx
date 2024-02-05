@@ -1,12 +1,9 @@
-"use client";
-
+import { ChartStat } from "@/types/chartStats";
 import { getTilesData } from "../../lib/getTilesData";
-
-import type { ChartStats } from "@/types/chartStats";
 
 import { Tile } from "./Tile";
 
-export function Tiles({ statsData }: { statsData: ChartStats }) {
+export function Tiles({ statsData }: { statsData: ChartStat[] }) {
   const { monthRate, currentMonth, Last6MonthsTasksCount } =
     getTilesData(statsData);
   const { icon, difference } = monthRate;

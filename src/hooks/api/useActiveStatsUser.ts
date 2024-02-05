@@ -9,7 +9,7 @@ export function useActiveStatsTasks() {
   return useQuery({
     queryKey: ["tasks", activeStatsUserId, "completed-tasks"],
     queryFn: async () => {
-      return (await getTasksList(activeStatsUserId, true)).data ;
+      return (await getTasksList(activeStatsUserId)).data ;
     },
   });
 }

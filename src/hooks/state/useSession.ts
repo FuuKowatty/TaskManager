@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { atom, useAtom } from "jotai";
 
-import type { User } from "@/types/users";
+import { Role, type User } from "@/types/users";
 import { useNavigate } from "react-router-dom";
 
 const initialUserValue: User = {
@@ -9,7 +9,7 @@ const initialUserValue: User = {
   firstName: "",
   lastName: "",
   email: "",
-  role: ""
+  role: Role.employee
 };
 
 const sessionAtom = atom(initialUserValue);

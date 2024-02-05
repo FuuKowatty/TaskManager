@@ -13,7 +13,7 @@ export function useCreateUser() {
       return apiClient().post("/api/users", data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["team"]);
+      queryClient.invalidateQueries({queryKey: ["team"]});
       router("/dashboard/team");
     },
   });

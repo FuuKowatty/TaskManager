@@ -9,7 +9,7 @@ export function useCompleteTask(taskId: number) {
       return apiClient().patch(`/api/tasks/${taskId}/complete`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['tasks']);
+      queryClient.invalidateQueries({queryKey: ['tasks']});
     },
   });
 }

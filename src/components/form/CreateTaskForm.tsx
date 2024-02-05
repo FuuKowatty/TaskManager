@@ -18,7 +18,6 @@ export function CreateTaskForm({
   const router = useNavigate();
   const {
     mutate: handleCreateTask,
-    error: taskError,
     reset: resetApiResponseErrors,
   } = useCreateTask();
 
