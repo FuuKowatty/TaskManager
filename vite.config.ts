@@ -9,8 +9,8 @@ export default defineConfig({
    },
    server: {
     proxy: {
-      '/accounts': 'http://localhost:8000',
-      '/api': 'http://localhost:8000'
+      '/accounts': 'http://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000',
+      '/api': 'http://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000'
     }
    },
    optimizeDeps: {
