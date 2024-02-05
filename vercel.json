@@ -1,8 +1,9 @@
 {
     "rewrites": [
       {
-        "source": "/(.*)",
-        "destination": "/index.html"
+        "source": "/accounts/(.*)",
+        "destination": "http://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000/accounts"
       }
     ]
   }
+  
