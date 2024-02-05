@@ -1,3 +1,6 @@
-{ "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }] }
-
-
+{
+    "rewrites": [
+      { "source": "/accounts/*", "destination": "https://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000/accounts" },
+      { "source": "/api/*", "destination": "https://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000/api" }
+    ]
+  }
