@@ -9,9 +9,13 @@ export default defineConfig({
    },
    server: {
     proxy: {
-      '/accounts': 'http://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000',
+      '/accounts': {
+        target: 'http://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000',
+        changeOrigin: true,
+      
+      },
       '/api': 'http://ec2-16-171-206-207.eu-north-1.compute.amazonaws.com:8000'
-    }
+    },
    },
    optimizeDeps: {
     entries: [
