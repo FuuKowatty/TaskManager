@@ -115,13 +115,6 @@ All users will have access to the tasks page, where they can view a list of task
 In addition to the tasks page, admins will also have access to the team page. On the team page, admins can manage the roster of managers and employees. They have the authority to create, edit, and delete managers or employees to ensure the team is up-to-date and well-organized.
 
 
-## Roadmap
-
-- [x] Optimazed image size
-- [x] Add filtered reseult
-- [ ] Add slider with pokemons regions in Home page
-- [ ] Light Theme -->
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
