@@ -30,7 +30,7 @@
 
 This project is a Task Manager Dashboard with a login option, designed to help organizations efficiently manage their tasks and projects. It provides a user-friendly interface where authorized users can log in and perform various actions based on their assigned roles. The system consists of three main roles: Admin, Manager, and Employee, each having specific functionalities and access levels.bout both Pokémon and berries, allowing you to access and explore their specific details.
 
-[Online](https://taskmanager-ruddy-xi.vercel.app)
+[Online](https://taskmanager-ruddy-xi.vercel.app) <br />
 [Backend](https://github.com/FuuKowatty/TaskManager-Backend)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -40,7 +40,6 @@ This project is a Task Manager Dashboard with a login option, designed to help o
 
   ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white) </br>
   [![Typescript][Typescript.js]][Typescript-url] </br>
-  ![Prisma](https://img.shields.io/badge/Prisma-1B222D?style=for-the-badge&logo=prisma&logoColor=white) </br>
   ![Formik](https://img.shields.io/badge/Formik-3178C6?style=for-the-badge&logo=formik&logoColor=white) </br>
   ![React Query](https://img.shields.io/badge/React_Query-000000?style=for-the-badge&logo=react-query&logoColor=white) </br>
   ![Recharts](https://img.shields.io/badge/Recharts-000000?style=for-the-badge&logo=recharts&logoColor=white)  </br>
