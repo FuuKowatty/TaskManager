@@ -129,38 +129,6 @@ In addition to the tasks page, admins will also have access to the team page. On
 - [ ] Add slider with pokemons regions in Home page
 - [ ] Light Theme -->
 
-## Accounts
-<table>
-    <tr>
-        <th>email</th>
-        <th>password</th>
-        <th>role</th>
-    </tr>
-    <tr>
-        <td>admin@gmail.com</td>
-        <td>qwe123</td>
-        <td>admin</td>
-    </tr>
-        <tr>
-        <td>liam.harrison@example.com</td>
-        <td>ManagerP@ssword1</td>
-        <td>manager</td>
-    </tr>
-    <tr>
-        <td>ella.bennett@example.com</td>
-        <td>pa$$word1</td>
-        <td>employee</td>
-    </tr>
-        <tr>
-        <td>oliver.foster@example.com</td>
-        <td>SecretPass1</td>
-        <td>employee</td>
-    </tr>
-</table>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
