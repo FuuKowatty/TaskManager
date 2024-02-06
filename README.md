@@ -116,12 +116,6 @@ All users will have access to the tasks page, where they can view a list of task
 In addition to the tasks page, admins will also have access to the team page. On the team page, admins can manage the roster of managers and employees. They have the authority to create, edit, and delete managers or employees to ensure the team is up-to-date and well-organized.
 
 
-
-
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 ## Roadmap
 
 - [x] Optimazed image size
@@ -149,12 +143,6 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<!-- ## Contact
-
-Email: <a href = "mailto: bartoszmech0@gmail.com">bartoszmech0@gmail.com</a> -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
